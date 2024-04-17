@@ -18,7 +18,7 @@
             </div>
         </div>
     </nav>
-
+        
     <div class="container-xxl py-5 bg-primary hero-header mb-5">
         <div class="container my-5 py-5 px-lg-5">
             <div class="row g-5 py-5">
@@ -42,16 +42,67 @@
 <div class="container-xxl py-5">
     <div class="container px-lg-5">
         <div class="row g-5">
-            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+            {% for user in users %}
+            <div class="col-md-6 mb-3">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="text-center">{{ user.nombre }}</h5>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST">
+                            <div class="row">
+                                <div class="col">
+                                    <input type="hidden" class="form-control" value="{{ user._id }}" name="id" readonly>
+                                    <small>Ficha</small>
+                                    <input type="text" class="form-control" value="{{ user.email }}" readonly>
+                                </div>
+                                <div class="col">
+                                    <small>Genero</small>
+                                    <input type="text" class="form-control" value="{{ user.genero }}" readonly>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col">
+                                    <small>Nacimiento</small>
+                                    <input type="text" class="form-control" value="{{ user.fecha }}" readonly>
+                                </div>
+                                <div class="col">
+                                    <small>Teléfono</small>
+                                    <input type="text" class="form-control" value="{{ user.telefono }}" readonly>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col">
+                                    <small>Carrera a postularse</small>
+                                    <input type="text" class="form-control" value="{{ user.carrera }}" readonly>
+                                </div>
+                                <div class="col">
 
-            </div>
-            <div class="col-lg-6">
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col">
 
+                                </div>
+                                <div class="col">
+
+                                </div>
+                            </div>
+                            <button class="btn btn-primary">Resultados</button>
+                            <a href="{{ url_for('admin.delete_user', user_id=user._id) }}"
+                                class="btn btn-danger btn-delete">Eliminar</a>
+                        </form>
+                    </div>
+                </div>
             </div>
+            {% endfor %}
         </div>
     </div>
 </div>
 <!-- About End -->
+
+<script src="{{ url_for('static', filename='js/borrar.js') }}"></script>
+
 {% endblock %}
 
 {% block first_block %}

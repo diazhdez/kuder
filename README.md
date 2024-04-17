@@ -5,11 +5,11 @@
 ## Estructura del Proyecto
 
 - `database/`: Contiene la conexión a la base de datos.
-- `functions/`: Contiene funciones de la aplicación.
+- `functions/`: Define funciones de la aplicación.
 - `routes/`: Define las rutas de la aplicación.
 - `static/`: Contiene los archivos estáticos como CSS.
 - `templates/`: Contiene las plantillas HTML.
-- `__init__.py`: Inicia la aplicación.
+- `app.py`: Inicia la aplicación.
 
 ## Cómo correr el proyecto
 

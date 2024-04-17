@@ -8,9 +8,11 @@ from routes.admin import admin_routes
 
 from routes.user import user_routes
 
+import os
+
 app = Flask(__name__)
 
-app.secret_key = 'M0i1Xc$GfPw3Yz@2SbQ9lKpA5rJhDtE7'
+app.secret_key = os.environ.get('SECRET_KEY')
 
 
 # Registrar blueprints

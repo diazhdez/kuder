@@ -42,4 +42,4 @@ def iniciar():
 @session_routes.route('/logout/')
 def logout():
     session.clear()  # Elimina todas las variables de sesión
-    return redirect(url_for('index'))
+    return redirect(url_for('main.index'))
