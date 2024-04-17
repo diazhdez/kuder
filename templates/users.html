@@ -4,7 +4,7 @@
 <!-- Navbar & Hero Start -->
 <div class="container-xxl position-relative p-0">
     <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
-        <a href="{{ url_for('user.user') }}" class="navbar-brand p-0">
+        <a href="{{ url_for('admin.admin') }}" class="navbar-brand p-0">
             <h1 class="m-0"><i class="fa fa-search me-2"></i>UTA<span class="fs-5"> Inventario</span></h1>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -12,8 +12,8 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-0">
-                <a href="{{ url_for('user.test') }}" class="nav-item nav-link">Encuesta</a>
-                <a href="{{ url_for('user.results') }}" class="nav-item nav-link">Resultados</a>
+                <a href="{{ url_for('admin.registro') }}" class="nav-item nav-link">Registro</a>
+                <a href="{{ url_for('admin.users') }}" class="nav-item nav-link">Lista de Aspirantes</a>
                 <a href="{{ url_for('session.logout') }}" class="nav-item nav-link">Cerrar Sesión</a>
             </div>
         </div>
@@ -23,12 +23,12 @@
         <div class="container my-5 py-5 px-lg-5">
             <div class="row g-5 py-5">
                 <div class="col-12 text-center">
-                    <h1 class="text-white animated zoomIn">Resultados</h1>
+                    <h1 class="text-white animated zoomIn">Lista de Aspirantes</h1>
                     <hr class="bg-white mx-auto mt-0" style="width: 90px;">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center">
-                            <li class="breadcrumb-item text-white">Aspirante</li>
-                            <li class="breadcrumb-item text-white">Resultados</li>
+                            <li class="breadcrumb-item text-white">Administrador</li>
+                            <li class="breadcrumb-item text-white">Aspirantes</li>
                         </ol>
                     </nav>
                 </div>
@@ -42,7 +42,12 @@
 <div class="container-xxl py-5">
     <div class="container px-lg-5">
         <div class="row g-5">
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
 
+            </div>
+            <div class="col-lg-6">
+
+            </div>
         </div>
     </div>
 </div>
@@ -50,10 +55,10 @@
 {% endblock %}
 
 {% block first_block %}
-<a class="btn btn-link" href="{{ url_for('user.user') }}">Inicio</a>
+<a class="btn btn-link" href="{{ url_for('admin.admin') }}">Inicio</a>
 <a class="btn btn-link" href="{{ url_for('contact') }}">Contacto</a>
 {% endblock %}
 
 {% block second_block %}
-<a href="{{ url_for('user.user') }}">Inicio</a>
+<a href="{{ url_for('admin.admin') }}">Inicio</a>
 {% endblock %}

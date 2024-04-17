@@ -85,81 +85,14 @@
     </div>
 </div>
 <!-- Contact End -->
+{% endblock %}
 
-<!-- Footer Start -->
-<div class="container-fluid bg-primary text-light footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
-    <div class="container py-5 px-lg-5">
-        <div class="row g-5">
-            <div class="col-md-6 col-lg-5">
-                <h5 class="text-white mb-4">Mantente en contacto</h5>
-                <p><i class="fa fa-map-marker-alt me-3"></i>Av. Comandante Bouganville L5 Fracc. Lomas de Costa
-                    Azul C.P. 39830, Acapulco de Juarez, GRO
-                </p>
-                <p><i class="fa fa-phone-alt me-3"></i>Servicios Escolares: 7446886415</p>
-                <p><i class="fa fa-envelope me-3"></i>universidad@utacapulco.edu.mx</p>
-                <div class="d-flex pt-2">
-                    <a class="btn btn-outline-light btn-social"
-                        href="https://www.facebook.com/people/Oficial-Universidad-Tecnol%C3%B3gica-de-Acapulco/100063862541593/"><i
-                            class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-outline-light btn-social" href="https://twitter.com/UTAcapulco"><i
-                            class="fab fa-twitter"></i></a>
-                    <a class="btn btn-outline-light btn-social"
-                        href="https://www.instagram.com/utacapulco/?igsh=NjE0OHc3eXpoNXNs&utm_source=qr"><i
-                            class="fab fa-instagram"></i></a>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <h5 class="text-white mb-4">Links Populares</h5>
-                <a class="btn btn-link" href="{{ url_for('index') }}">Inicio</a>
-                <a class="btn btn-link" href="{{ url_for('contact') }}">Contacto</a>
-                <a class="btn btn-link" href="{{ url_for('session.login') }}">Iniciar Sesión</a>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <h5 class="text-white mb-4">Galería</h5>
-                <div class="row g-2">
-                    <div class="col-4">
-                        <img class="img-fluid" src="{{ url_for('static', filename='img/portfolio-1.jpg') }}"
-                            alt="Image">
-                    </div>
-                    <div class="col-4">
-                        <img class="img-fluid" src="{{ url_for('static', filename='img/portfolio-2.jpg') }}"
-                            alt="Image">
-                    </div>
-                    <div class="col-4">
-                        <img class="img-fluid" src="{{ url_for('static', filename='img/portfolio-3.jpg') }}"
-                            alt="Image">
-                    </div>
-                    <div class="col-4">
-                        <img class="img-fluid" src="{{ url_for('static', filename='img/portfolio-4.jpg') }}"
-                            alt="Image">
-                    </div>
-                    <div class="col-4">
-                        <img class="img-fluid" src="{{ url_for('static', filename='img/portfolio-5.jpg') }}"
-                            alt="Image">
-                    </div>
-                    <div class="col-4">
-                        <img class="img-fluid" src="{{ url_for('static', filename='img/portfolio-6.jpg') }}"
-                            alt="Image">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container px-lg-5">
-        <div class="copyright">
-            <div class="row">
-                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    &copy; <a class="border-bottom" href="https://utacapulco.edu.mx/">UTA</a>, All Right
-                    Reserved.
-                </div>
-                <div class="col-md-6 text-center text-md-end">
-                    <div class="footer-menu">
-                        <a href="">Inicio</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Footer End -->
+{% block first_block %}
+<a class="btn btn-link" href="{{ url_for('index') }}">Inicio</a>
+<a class="btn btn-link" href="{{ url_for('contact') }}">Contacto</a>
+<a class="btn btn-link" href="{{ url_for('session.login') }}">Iniciar Sesión</a>
+{% endblock %}
+
+{% block second_block %}
+<a href="{{ url_for('index') }}">Inicio</a>
 {% endblock %}
