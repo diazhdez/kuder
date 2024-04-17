@@ -6,12 +6,6 @@ from user import user_routes
 
 from admin import admin_routes
 
-from functions import *
-
-import database as dbase
-
-db = dbase.dbConnection()
-
 app = Flask(__name__)
 
 app.secret_key = 'M0i1Xc$GfPw3Yz@2SbQ9lKpA5rJhDtE7'
@@ -22,9 +16,12 @@ app.secret_key = 'M0i1Xc$GfPw3Yz@2SbQ9lKpA5rJhDtE7'
 def index():
     return render_template('index.html')
 
-@app.route('/about')
-def about():
-    return render_template('about.html')
+
+# Ruta de contacto
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
+
 
 # Ruta para manejar páginas no encontradas
 @app.errorhandler(404)

@@ -4,7 +4,7 @@
 <!-- Navbar & Hero Start -->
 <div class="container-xxl position-relative p-0">
     <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
-        <a href="" class="navbar-brand p-0">
+        <a href="{{ url_for('user.user') }}" class="navbar-brand p-0">
             <h1 class="m-0"><i class="fa fa-search me-2"></i>UTA<span class="fs-5"> Inventario</span></h1>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -12,7 +12,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-0">
-                <a href="{{ url_for('index') }}" class="nav-item nav-link">Inicio</a>
+                <a href="{{ url_for('user.test') }}" class="nav-item nav-link">Encuesta</a>
+                <a href="{{ url_for('user.results') }}" class="nav-item nav-link">Resultados</a>
+                <a href="{{ url_for('session.logout') }}" class="nav-item nav-link">Cerrar Sesión</a>
             </div>
         </div>
     </nav>
@@ -21,7 +23,14 @@
         <div class="container my-5 py-5 px-lg-5">
             <div class="row g-5 py-5">
                 <div class="col-12 text-center">
-
+                    <h1 class="text-white animated zoomIn">Responde tu encuesta</h1>
+                    <hr class="bg-white mx-auto mt-0" style="width: 90px;">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center">
+                            <li class="breadcrumb-item text-white">Aspirante</li>
+                            <li class="breadcrumb-item text-white">Encuesta</li>
+                        </ol>
+                    </nav>
                 </div>
             </div>
         </div>
@@ -33,34 +42,7 @@
 <div class="container-xxl py-5">
     <div class="container px-lg-5">
         <div class="row g-5">
-            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="container mt-4">
-                    <div class="row justify-content-center">
-                        <div class="col-md-6">
-                            <div class="card">
-                                <div class="card-header">
-                                    Iniciar Sesión
-                                </div>
-                                <div class="card-body">
-                                    <form action="/iniciar/" method="post">
-                                        <div class="form-group">
-                                            <label for="email">Ficha:</label>
-                                            <input type="text" class="form-control" id="email" name="email"
-                                                placeholder="Ingresa tu ficha" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="password">Contraseña:</label>
-                                            <input type="password" class="form-control" id="password" name="password"
-                                                placeholder="Ingresa tu contraseña" required>
-                                        </div>
-                                        <button class="btn btn-primary btn-block">Iniciar Sesión</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </div>
 </div>
@@ -72,8 +54,7 @@
         <div class="row g-5">
             <div class="col-md-6 col-lg-5">
                 <h5 class="text-white mb-4">Mantente en contacto</h5>
-                <p><i class="fa fa-map-marker-alt me-3"></i>Av. Comandante Bouganville L5 Fracc. Lomas de
-                    Costa
+                <p><i class="fa fa-map-marker-alt me-3"></i>Av. Comandante Bouganville L5 Fracc. Lomas de Costa
                     Azul C.P. 39830, Acapulco de Juarez, GRO
                 </p>
                 <p><i class="fa fa-phone-alt me-3"></i>Servicios Escolares: 7446886415</p>
@@ -91,9 +72,8 @@
             </div>
             <div class="col-md-6 col-lg-3">
                 <h5 class="text-white mb-4">Links Populares</h5>
-                <a class="btn btn-link" href="{{ url_for('index') }}">Inicio</a>
+                <a class="btn btn-link" href="{{ url_for('user.user') }}">Inicio</a>
                 <a class="btn btn-link" href="{{ url_for('contact') }}">Contacto</a>
-                <a class="btn btn-link" href="{{ url_for('session.login') }}">Iniciar Sesión</a>
             </div>
             <div class="col-md-6 col-lg-3">
                 <h5 class="text-white mb-4">Galería</h5>
@@ -135,7 +115,7 @@
                 </div>
                 <div class="col-md-6 text-center text-md-end">
                     <div class="footer-menu">
-                        <a href="{{ url_for('index') }}">Inicio</a>
+                        <a href="{{ url_for('user.user') }}">Inicio</a>
                     </div>
                 </div>
             </div>
