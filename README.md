@@ -15,4 +15,4 @@
 
 1. Activar el entorno virtual: `.\.venv\Scripts\Activate`
 2. Instalar las dependencias: `pip install -r requirements.txt`
-3. Correr la aplicación: `python __init__.py`
+3. Correr la aplicación: `python app.py`
