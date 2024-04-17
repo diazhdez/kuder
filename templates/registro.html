@@ -1,0 +1,226 @@
+{% extends "layout.html" %}
+
+{% block content %}
+        <!-- Navbar & Hero Start -->
+        <div class="container-xxl position-relative p-0">
+            <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
+                <a href="" class="navbar-brand p-0">
+                    <h1 class="m-0"><i class="fa fa-search me-2"></i>UTA<span class="fs-5"> Inventario</span></h1>
+                    <!-- <img src="img/logo.png" alt="Logo"> -->
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav ms-auto py-0">
+                        <a href="index.html" class="nav-item nav-link">Home</a>
+                        <a href="about.html" class="nav-item nav-link active">About</a>
+                        <a href="{{ url_for('admin.registro') }}" class="nav-item nav-link">Registro</a>
+
+                        <a href="project.html" class="nav-item nav-link">Project</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                            <div class="dropdown-menu m-0">
+                                <a href="team.html" class="dropdown-item">Our Team</a>
+                                <a href="testimonial.html" class="dropdown-item">Testimonial</a>
+                                <a href="404.html" class="dropdown-item">404 Page</a>
+                            </div>
+                        </div>
+                        <a href="contact.html" class="nav-item nav-link">Contact</a>
+                    </div>
+                    <butaton type="button" class="btn text-secondary ms-3" data-bs-toggle="modal"
+                        data-bs-target="#searchModal"><i class="fa fa-search"></i></butaton>
+                </div>
+            </nav>
+
+            <div class="container-xxl py-5 bg-primary hero-header mb-5">
+                <div class="container my-5 py-5 px-lg-5">
+                    <div class="row g-5 py-5">
+                        <div class="col-12 text-center">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <!-- Navbar & Hero End -->
+
+
+        <!-- About Start -->
+        <div class="container mt-4 mb-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">
+                            Registrar:
+                        </div>
+                        <div class="card-body text-center mt-2">
+                            <button class="btn btn-primary user-button" data-toggle="collapse" data-target="#info_user"
+                                aria-expanded="false" aria-controls="info_user" name="tipo_registro">Aspirante</button>
+                            <button class="btn btn-primary admin-button" data-toggle="collapse" data-target="#info_admin"
+                                aria-expanded="false" aria-controls="info_admin" name="tipo_registro">Administrador</button>
+                        </div>
+                        <div id="info_user" class="collapse">
+                            <div class="card-header">
+                                Registro de Aspirantes
+                            </div>
+                            <div class="card-body">
+                                <form action="/register_user/" method="post">
+                                    <div class="form-row">
+                                        <div class="col-mt-4 mb-5">
+                                            <label for="nombre">Nombre Completo:</label>
+                                            <input type="text" class="form-control" id="nombre" name="nombre"
+                                                placeholder="Ingresa nombre completo" required>
+                                        </div>
+                                        <div class="col-mt-4 mb-5">
+                                            <label for="email">Ficha:</label>
+                                            <input type="text" class="form-control" id="email" name="email"
+                                                placeholder="Ingresa la ficha" required>
+                                        </div>
+                                        <div class="col-mt-4 mb-5">
+                                            <label for="password">Contraseña:</label>
+                                            <input type="password" class="form-control" id="password" name="password"
+                                                placeholder="Ingresa la contraseña" required>
+                                        </div>
+                                    </div>
+                                    <div class=”justify-content-center>
+                                        <div class="col-mt-4 mb-5">
+                                            <label for="genero">Género:</label>
+                                            <select class="form-control" id="genero" name="genero" required>
+                                                <option value="Masculino">Masculino</option>
+                                                <option value="Femenino">Femenino</option>
+                                                <option value="Otro">Otro</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-mt-4 mb-5">
+                                            <label for="fecha">Fecha de Nacimiento:</label>
+                                            <input type="date" class="form-control" id="fecha" name="fecha" required>
+                                        </div>
+                                        <div class="col-mt-4 mb-5">
+                                            <label for="telefono">Teléfono:</label>
+                                            <input type="tel" class="form-control" id="telefono" name="telefono"
+                                                placeholder="Ingresa tu teléfono" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-mt-4 mb-5">
+                                            <label for="carrera">Carrera a postularse:</label>
+                                            <select class="form-control" id="carrera" name="carrera" required>
+                                                <option value="Tecnologías de la Información">Tecnologías de la Información
+                                                </option>
+                                                <option value="Mantenimiento Industrial">Mantenimiento Industrial</option>
+                                                <option value="Desarrollo de Negocios">Desarrollo de Negocios</option>
+                                                <option value="Gastronomia">Gastronomia</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-4">
+                                            <button class="btn btn-primary">Registrar Aspirante</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+    
+                        <div id="info_admin" class="collapse">
+                            <div class="card-header">
+                                Registro de Administrador
+                            </div>
+                            <div class="card-body">
+                                <form action="/register_admin/" method="post">
+                                    <div class="form-row">
+                                        <div class="col-mt-4 mb-5">
+                                            <label for="nombre">Nombre Completo:</label>
+                                            <input type="text" class="form-control" id="nombre" name="nombre"
+                                                placeholder="Ingresa nombre completo" required>
+                                        </div>
+                                        <div class="col-mt-4 mb-5">
+                                            <label for="email">Correo Electrónico:</label>
+                                            <input type="text" class="form-control" id="email" name="email"
+                                                placeholder="Ingresa un correo" required>
+                                        </div>
+                                        <div class="col-mt-4 mb-5">
+                                            <label for="password">Contraseña:</label>
+                                            <input type="password" class="form-control" id="password" name="password"
+                                                placeholder="Ingresa una contraseña" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-mt-4 mb-5">
+                                            <label for="area_laboral">Área Laboral:</label>
+                                            <select class="form-control" id="area_laboral" name="area_laboral" required>
+                                                <option value="Alberquero">Alberquero</option>
+                                                <option value="Plomero especializado">Plomero especializado</option>
+                                                <option value="Mosaiquero">Mosaiquero</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-mt-4 mb-5">
+                                            <label for="genero">Género:</label>
+                                            <select class="form-control" id="genero" name="genero" required>
+                                                <option value="Masculino">Masculino</option>
+                                                <option value="Femenino">Femenino</option>
+                                                <option value="Otro">Otro</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-mt-4 mb-5">
+                                            <label for="fecha">Fecha de Nacimiento:</label>
+                                            <input type="date" class="form-control" id="fecha" name="fecha" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-mt-4 mb-5">
+                                            <label for="telefono">Teléfono:</label>
+                                            <input type="tel" class="form-control" id="telefono" name="telefono"
+                                                placeholder="Ingresa un teléfono" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-4">
+                                            <button class="btn btn-primary">Registrar Administrador</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- About End -->
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function () {
+            $(".user-button").click(function () {
+                $("#info_admin").collapse('hide');
+            });
+            $(".admin-button").click(function () {
+                $("#info_user").collapse('hide');
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block first_block %}
+<a class="btn btn-link" href="{{ url_for('admin.admin') }}">Inicio</a>
+<a class="btn btn-link" href="{{ url_for('main.contact') }}">Contacto</a>
+{% endblock %}
+
+{% block second_block %}
+<a href="{{ url_for('admin.admin') }}">Inicio</a>
+{% endblock %}
