@@ -12,7 +12,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-0">
-                <a href="{{ url_for('index') }}" class="nav-item nav-link">Inicio</a>
+                <a href="{{ url_for('main.index') }}" class="nav-item nav-link">Inicio</a>
             </div>
         </div>
     </nav>
@@ -38,7 +38,7 @@
                 <h1 class="display-1">404</h1>
                 <h1 class="mb-4">Página no encontrada</h1>
                 <p class="mb-4">Lo sentimos, la página que ha buscado no existe en nuestro sitio web.</p>
-                <a class="btn btn-primary rounded-pill py-3 px-5" href="{{ url_for('index') }}">Regresar al
+                <a class="btn btn-primary rounded-pill py-3 px-5" href="{{ url_for('main.index') }}">Regresar al
                     inicio</a>
             </div>
         </div>
@@ -48,11 +48,11 @@
 {% endblock %}
 
 {% block first_block %}
-<a class="btn btn-link" href="{{ url_for('index') }}">Inicio</a>
-<a class="btn btn-link" href="{{ url_for('contact') }}">Contacto</a>
+<a class="btn btn-link" href="{{ url_for('main.index') }}">Inicio</a>
+<a class="btn btn-link" href="{{ url_for('main.contact') }}">Contacto</a>
 <a class="btn btn-link" href="{{ url_for('session.login') }}">Iniciar Sesión</a>
 {% endblock %}
 
 {% block second_block %}
-<a href="{{ url_for('index') }}">Inicio</a>
+<a href="{{ url_for('main.index') }}">Inicio</a>
 {% endblock %}

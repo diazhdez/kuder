@@ -1,4 +1,4 @@
-import database as dbase
+import database.database as dbase
 
 db = dbase.dbConnection()
 

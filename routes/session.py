@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, url_for, redirect, flash, session,
 
 import bcrypt
 
-import database as dbase
+import database.database as dbase
 
 db = dbase.dbConnection()
 

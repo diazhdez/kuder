@@ -12,9 +12,9 @@ from email.mime.text import MIMEText
 
 import os
 
-from functions import get_admin
+from functions.functions import get_admin
 
-import database as dbase
+import database.database as dbase
 
 db = dbase.dbConnection()
 

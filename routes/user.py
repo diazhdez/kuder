@@ -1,8 +1,8 @@
 from flask import Blueprint, render_template, url_for, redirect, session
 
-from functions import get_user
+from functions.functions import get_user
 
-import database as dbase
+import database.database as dbase
 
 db = dbase.dbConnection()
 
