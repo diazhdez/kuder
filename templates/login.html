@@ -1,6 +1,12 @@
 {% extends "layout.html" %}
 
 {% block content %}
+ <head>
+    
+   <title>Login & Signup Form</title>
+   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/login.css') }}">
+
+  </head>
 <!-- Navbar & Hero Start -->
 <div class="container-xxl position-relative p-0">
     <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
@@ -33,34 +39,25 @@
 <!-- Navbar & Hero End -->
 
 <!-- About Start -->
-<div class="container-xxl py-5">
-    <div class="container px-lg-5">
-        <div class="row g-5">
-            <div class="wow fadeInUp" data-wow-delay="0.1s">
-                <div class="card">
-                    <div class="card-header">
-                        Iniciar Sesión
-                    </div>
-                    <div class="card-body">
-                        <form action="/iniciar/" method="post">
-                            <div class="form-group">
-                                <label for="email">Ficha:</label>
-                                <input type="text" class="form-control mt-2 mb-2" id="email" name="email"
-                                    placeholder="Ingresa tu ficha" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="password">Contraseña:</label>
-                                <input type="password" class="form-control mt-2" id="password" name="password"
-                                    placeholder="Ingresa tu contraseña" required>
-                            </div>
-                            <button class="btn btn-primary btn-block mt-3">Iniciar Sesión</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+<body>
+    <div class="contenedor">
+    <section class="wrapper">
+        <div class="form signup">
+          <header class="text-dark">Login</header>
+          <form action="/iniciar/" method="post">
+            <h5>Ficha:</h5>
+            <input  class="form-control mt-2" type="text" id="email" name="email" placeholder="Correo" required />
+            <h5 for="email">Contraseña:</h5>
+            <input   class="form-control mt-2" type="password" id="password" name="password" placeholder="Password" required />
+            <input  class="botones" type="submit" value="Iniciar Sesión" />
+          </form>
         </div>
-    </div>
-</div>
+        </div>
+        
+         
+      </section>
+    </body>
+
 <!-- About End -->
 {% endblock %}
 
