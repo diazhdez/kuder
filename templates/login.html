@@ -1,12 +1,11 @@
 {% extends "layout.html" %}
 
 {% block content %}
- <head>
-    
-   <title>Login & Signup Form</title>
-   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/login.css') }}">
 
-  </head>
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/login.css') }}">
+</head>
+
 <!-- Navbar & Hero Start -->
 <div class="container-xxl position-relative p-0">
     <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
@@ -39,24 +38,25 @@
 <!-- Navbar & Hero End -->
 
 <!-- About Start -->
+
 <body>
     <div class="contenedor">
-    <section class="wrapper">
-        <div class="form signup">
-          <header class="text-dark">Login</header>
-          <form action="/iniciar/" method="post">
-            <h5>Ficha:</h5>
-            <input  class="form-control mt-2" type="text" id="email" name="email" placeholder="Correo" required />
-            <h5 for="email">Contraseña:</h5>
-            <input   class="form-control mt-2" type="password" id="password" name="password" placeholder="Password" required />
-            <input  class="botones" type="submit" value="Iniciar Sesión" />
-          </form>
-        </div>
-        </div>
-        
-         
-      </section>
-    </body>
+        <section class="wrapper">
+            <div class="form signup">
+                <header class="text-dark">Login</header>
+                <form action="/iniciar/" method="post">
+                    <h5>Ficha:</h5>
+                    <input class="form-control mt-2" type="text" id="email" name="email" placeholder="Correo"
+                        required />
+                    <h5 for="email">Contraseña:</h5>
+                    <input class="form-control mt-2" type="password" id="password" name="password"
+                        placeholder="Password" required />
+                    <input class="botones" type="submit" value="Iniciar Sesión" />
+                </form>
+            </div>
+        </section>
+    </div>
+</body>
 
 <!-- About End -->
 {% endblock %}
