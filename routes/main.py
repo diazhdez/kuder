@@ -10,6 +10,6 @@ def index():
 
 
 # Ruta de contacto
-@main_routes.route('/contact')
+@main_routes.route('/contact/')
 def contact():
     return render_template('contact.html')
