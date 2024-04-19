@@ -39,6 +39,84 @@ def test():
         return redirect(url_for('session.login'))
 
 
+# Ruta para contestar encuesta en Español
+@user_routes.route('/test/es/')
+def testEs():
+    if 'email' in session:
+        email = session['email']
+        # Función para obtener datos del usuario desde MongoDB
+        user = get_user(email)
+        if user:
+            return render_template('testEs.html', user=user)
+    else:
+        return redirect(url_for('session.login'))
+
+
+# Ruta para contestar encuesta en Nahuatl
+@user_routes.route('/test/na/')
+def testNa():
+    if 'email' in session:
+        email = session['email']
+        # Función para obtener datos del usuario desde MongoDB
+        user = get_user(email)
+        if user:
+            return render_template('testNa.html', user=user)
+    else:
+        return redirect(url_for('session.login'))
+
+
+# Ruta para contestar encuesta en Mixteco
+@user_routes.route('/test/mix/')
+def testMix():
+    if 'email' in session:
+        email = session['email']
+        # Función para obtener datos del usuario desde MongoDB
+        user = get_user(email)
+        if user:
+            return render_template('testMix.html', user=user)
+    else:
+        return redirect(url_for('session.login'))
+
+
+# Ruta para contestar encuesta en Tlapaneco
+@user_routes.route('/test/tla/')
+def testTla():
+    if 'email' in session:
+        email = session['email']
+        # Función para obtener datos del usuario desde MongoDB
+        user = get_user(email)
+        if user:
+            return render_template('testTla.html', user=user)
+    else:
+        return redirect(url_for('session.login'))
+
+
+# Ruta para contestar encuesta en Portugues
+@user_routes.route('/test/por/')
+def testPor():
+    if 'email' in session:
+        email = session['email']
+        # Función para obtener datos del usuario desde MongoDB
+        user = get_user(email)
+        if user:
+            return render_template('testPor.html', user=user)
+    else:
+        return redirect(url_for('session.login'))
+
+
+# Ruta para contestar encuesta en español
+@user_routes.route('/test/fra/')
+def testFra():
+    if 'email' in session:
+        email = session['email']
+        # Función para obtener datos del usuario desde MongoDB
+        user = get_user(email)
+        if user:
+            return render_template('testFra.html', user=user)
+    else:
+        return redirect(url_for('session.login'))
+
+
 # Ruta para mostrar resultados
 @user_routes.route('/results/')
 def results():
@@ -59,8 +137,8 @@ def results():
             data = [go.Bar(x=carreras, y=respuestas_ejemplo)]
 
             # Configurar el diseño del gráfico
-            layout = go.Layout(title='Resultados de la encuesta', xaxis=dict(
-                title='Carreras'), yaxis=dict(title='Número de respuestas'))
+            layout = go.Layout(xaxis=dict(title='Carreras'),
+                               yaxis=dict(title='Número de respuestas'))
 
             # Crear la figura
             fig = go.Figure(data=data, layout=layout)
