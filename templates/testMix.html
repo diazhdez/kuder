@@ -3,838 +3,863 @@
 {% block content %}
 <!-- Navbar & Hero Start -->
 <div class="container-xxl position-relative p-0">
-    <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
-        <a href="{{ url_for('user.user') }}" class="navbar-brand p-0">
-            <h1 class="m-0"><i class="fa fa-search me-2"></i>UTA<span class="fs-5"> Inventario</span></h1>
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-            <span class="fa fa-bars"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav ms-auto py-0">
-                <a href="{{ url_for('user.test') }}" class="nav-item nav-link">Encuesta</a>
-                <a href="{{ url_for('user.results') }}" class="nav-item nav-link">Resultados</a>
-                <a href="{{ url_for('session.logout') }}" class="nav-item nav-link">Cerrar Sesión</a>
-            </div>
-        </div>
-    </nav>
+	<nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
+		<a href="{{ url_for('user.user') }}" class="navbar-brand p-0">
+			<h1 class="m-0"><i class="fa fa-search me-2"></i>UTA<span class="fs-5"> Inventario</span></h1>
+		</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+			<span class="fa fa-bars"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarCollapse">
+			<div class="navbar-nav ms-auto py-0">
+				<a href="{{ url_for('user.test') }}" class="nav-item nav-link">Encuesta</a>
+				<a href="{{ url_for('user.results') }}" class="nav-item nav-link">Resultados</a>
+				<a href="{{ url_for('session.logout') }}" class="nav-item nav-link">Cerrar Sesión</a>
+			</div>
+		</div>
+	</nav>
 
-    <div class="container-xxl py-5 bg-primary hero-header">
-        <div class="col-12 text-center">
-        </div>
-    </div>
+	<div class="container-xxl py-5 bg-primary hero-header">
+		<div class="col-12 text-center">
+		</div>
+	</div>
 </div>
 <!-- Navbar & Hero End -->
-<h1></h1>
+
 <!-- About Start -->
 <div class="container-xxl py-5">
-<div class="container-lg">
-    <div class="row align-items-start">
-        <div class="container">
-            <div class="card shadow">
-                <div class="card-body">
-                    <form action="" method="POST">
-                        <div class="container">
+	<div class="container-lg">
+		<div class="row align-items-start">
+			<div class="container">
+				<div class="card shadow">
+					<div class="card-body">
+						<form action="" method="POST">
+							<div class="container">
+								<div class="row">
+									<div class="col order-first text-center">
+										<h6 for="qusOne" class="text-black mb-4">
+											<br>
+											Reactivo 1.
+										</h6>
+									</div>
+									<div class="col-sm-5 col-md-6">
+										<h6 for="qusOne" class="text-black mb-4">
+											1° Me interesa aprender a reparar una computadora.
+											<br>
+											<br>
+											2° Me interesa saber la forma de elaboración de distintos tipos de pan.
+										</h6>
+									</div>
+									<div class="col-6 col-sm-3">
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="flexRadioDefault"
+												id="flexRadioDefault1">
+											<label class="form-check-label" for="flexRadioDefault1">
+												Opción uno
+											</label>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="flexRadioDefault"
+												id="flexRadioDefault2" checked>
+											<label class="form-check-label" for="flexRadioDefault2">
+												Opción dos
+											</label>
+										</div>
+									</div>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col order-first text-center">
+										<h6 for="qusOne" class="text-black mb-4">
+											<br>
+											Reactivo 2.
+										</h6>
+									</div>
+									<div class="col-sm-5 col-md-6">
+										<h6 for="qusOne" class="text-black mb-4">
+											1° Me interesa capacitarme para desarrollar aplicaciones móviles.
+											<br>
+											<br>
+											2° Me llama la atención aprender a reparar máquinas y equipos industriale.
+										</h6>
+									</div>
+									<div class="col-6 col-sm-3">
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="pregunta2"
+												id="flexRadioDefault1">
+											<label class="form-check-label" for="flexRadioDefault1">
+												Opción uno
+											</label>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="pregunta2"
+												id="flexRadioDefault2" checked>
+											<label class="form-check-label" for="flexRadioDefault2">
+												Opción dos
+											</label>
+										</div>
+									</div>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col order-first text-center">
+										<h6 for="qustwo" class="text-black mb-4">
+											<br>
+											Reactivo 3.
+										</h6>
+									</div>
+									<div class="col-sm-5 col-md-6">
+										<h6 for="qustwo" class="text-black mb-4">
+											1° Me interesa capacitarme para crear páginas web.
+											<br>
+											<br>
+											2° Me llama la atención desarrollar la habilidad para realizar ventas.
+										</h6>
+									</div>
+									<div class="col-6 col-sm-3">
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="pregunta3"
+												id="flexRadioDefault1">
+											<label class="form-check-label" for="flexRadioDefault1">
+												Opción uno
+											</label>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="pregunta3"
+												id="flexRadioDefault2" checked>
+											<label class="form-check-label" for="flexRadioDefault2">
+												Opción dos
+											</label>
+										</div>
+									</div>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col order-first text-center">
+										<h6 for="qustwo" class="text-black mb-4">
+											<br>
+											Reactivo 4.
+										</h6>
+									</div>
+									<div class="col-sm-5 col-md-6">
+										<h6 for="qustwo" class="text-black mb-4">
+											1° Me agrada cocinar.
+											<br>
+											<br>
+											2° Me interesa aprender cómo se crea una red de internet.
+										</h6>
+									</div>
 
-                            <div class="row">
-                                <div class="col order-first text-center">
-                                  <h6 for="qusOne" class="text-black mb-4">
-                                      <br>
-                                      Reactivo 1.                    
-                                  </h6>    
-                                </div>
-                                <div class="col-sm-5 col-md-6">
-                                  <h6 for="qusOne" class="text-black mb-4">
-                                      1° Me interesa aprender a reparar una computadora.
-                                      <br>
-                                      <br>
-                                      2° Me interesa saber la forma de elaboración de distintos tipos de pan.
-                                  </h6>    
-                                </div>
-  
-                                <div class="col-6 col-sm-3">
-                                  <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                      <label class="form-check-label" for="flexRadioDefault1">
-                                        Opción uno
-                                      </label>
-                                    </div>
-                                    <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                                      <label class="form-check-label" for="flexRadioDefault2">
-                                        Opción dos
-                                      </label>
-                                    </div>
-                                  </div>
-                                </div>
-                              <hr>
-
-
-                              <div class="row">
-                                <div class="col order-first text-center">
-                                  <h6 for="qusOne" class="text-black mb-4">
-                                      <br>
-                                      Reactivo 2.                    
-                                  </h6>    
-                                </div>
-                                <div class="col-sm-5 col-md-6">
-                                  <h6 for="qusOne" class="text-black mb-4">
-                                      1° Me interesa capacitarme para desarrollar aplicaciones móviles.
-                                      <br>
-                                      <br>
-                                      2° Me llama la atención aprender a reparar máquinas y equipos industriale.
-                                  </h6>    
-                                </div>
-  
-                                <div class="col-6 col-sm-3">
-                                  <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="pregunta2" id="flexRadioDefault1">
-                                      <label class="form-check-label" for="flexRadioDefault1">
-                                        Opción uno
-                                      </label>
-                                    </div>
-                                    <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="pregunta2" id="flexRadioDefault2" checked>
-                                      <label class="form-check-label" for="flexRadioDefault2">
-                                        Opción dos
-                                      </label>
-                                    </div>
-                                  </div>
-                                </div>
-                              <hr>
-
-                              <div class="row">
-                                <div class="col order-first text-center">
-                                  <h6 for="qustwo" class="text-black mb-4">
-                                      <br>
-                                      Reactivo 3.                    
-                                  </h6>    
-                                </div>
-                                <div class="col-sm-5 col-md-6">
-                                  <h6 for="qustwo" class="text-black mb-4">
-                                      1° Me interesa capacitarme para crear páginas web.
-                                      <br>
-                                      <br>
-                                      2° Me llama la atención desarrollar la habilidad para realizar ventas.
-                                  </h6>    
-                                </div>
-  
-                                <div class="col-6 col-sm-3">
-                                  <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="pregunta3" id="flexRadioDefault1">
-                                      <label class="form-check-label" for="flexRadioDefault1">
-                                        Opción uno
-                                      </label>
-                                    </div>
-                                    <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="pregunta3" id="flexRadioDefault2" checked>
-                                      <label class="form-check-label" for="flexRadioDefault2">
-                                        Opción dos
-                                      </label>
-                                    </div>
-                                  </div>
-                                </div>
-                              <hr>
-
-                              <div class="row">
-                                <div class="col order-first text-center">
-                                  <h6 for="qustwo" class="text-black mb-4">
-                                      <br>
-                                      Reactivo 4.                    
-                                  </h6>    
-                                </div>
-                                <div class="col-sm-5 col-md-6">
-                                  <h6 for="qustwo" class="text-black mb-4">
-                                      1° Me agrada cocinar.
-                                      <br>
-                                      <br>
-                                      2° Me interesa aprender cómo se crea una red de internet.
-                                  </h6>    
-                                </div>
-  
-                                <div class="col-6 col-sm-3">
-                                  <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="pregunta4" id="flexRadioDefault1">
-                                      <label class="form-check-label" for="flexRadioDefault1">
-                                        Opción uno
-                                      </label>
-                                    </div>
-                                    <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="pregunta4" id="flexRadioDefault2" checked>
-                                      <label class="form-check-label" for="flexRadioDefault2">
-                                        Opción dos
-                                      </label>
-                                    </div>
-                                  </div>
-                                </div>
-                              <hr>
-
-                              <div class="row">
-                                <div class="col order-first text-center">
-                                  <h6 for="qustwo" class="text-black mb-4">
-                                      <br>
-                                      Reactivo 5.                    
-                                  </h6>    
-                                </div>
-                                <div class="col-sm-5 col-md-6">
-                                  <h6 for="qustwo" class="text-black mb-4">
-                                      1° Me interesa saber sobre nutrición.
-                                      <br>
-                                      <br>
-                                      2° Me llama la atención el funcionamiento de un equipo de aire acondicionado.
-                                  </h6>    
-                                </div>
-  
-                                <div class="col-6 col-sm-3">
-                                  <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="pregunta5" id="flexRadioDefault1">
-                                      <label class="form-check-label" for="flexRadioDefault1">
-                                        Opción uno
-                                      </label>
-                                    </div>
-                                    <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="pregunta5" id="flexRadioDefault2" checked>
-                                      <label class="form-check-label" for="flexRadioDefault2">
-                                        Opción dos
-                                      </label>
-                                    </div>
-                                  </div>
-                                </div>
-                              <hr>
-
-                              <div class="row">
-                                <div class="col order-first text-center">
-                                  <h6 for="qustwo" class="text-black mb-4">
-                                      <br>
-                                      Reactivo 6.                    
-                                  </h6>    
-                                </div>
-                                <div class="col-sm-5 col-md-6">
-                                  <h6 for="qustwo" class="text-black mb-4">
-                                      1° Me agrada conocer nuevas técnicas culinarias.
-                                      <br>
-                                      <br>
-                                      2° Me interesan los artículos de temas relacionados con el marketing y publicidad.
-                                  </h6>    
-                                </div>
-  
-                                <div class="col-6 col-sm-3">
-                                  <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="pregunta6" id="flexRadioDefault1">
-                                      <label class="form-check-label" for="flexRadioDefault1">
-                                        Opción uno
-                                      </label>
-                                    </div>
-                                    <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="pregunta6" id="flexRadioDefault2" checked>
-                                      <label class="form-check-label" for="flexRadioDefault2">
-                                        Opción dos
-                                      </label>
-                                    </div>
-                                  </div>
-                                </div>
-                              <hr>
-                              
-                              <div class="row">
-                                <div class="col order-first text-center">
-                                  <h6 for="qustwo" class="text-black mb-4">
-                                      <br>
-                                      Reactivo 7.                    
-                                  </h6>    
-                                </div>
-                                <div class="col-sm-5 col-md-6">
-                                  <h6 for="qustwo" class="text-black mb-4">
-                                      1° Me llama la atención como hacer una instalación eléctrica.
-                                      <br>
-                                      <br>
-                                      2° Me interesa trabajar en proyectos sobre tecnologías y comunicación.
-                                  </h6>    
-                                </div>
-  
-                                <div class="col-6 col-sm-3">
-                                  <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="pregunta7" id="flexRadioDefault1">
-                                      <label class="form-check-label" for="flexRadioDefault1">
-                                        Opción uno
-                                      </label>
-                                    </div>
-                                    <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="pregunta7" id="flexRadioDefault2" checked>
-                                      <label class="form-check-label" for="flexRadioDefault2">
-                                        Opción dos
-                                      </label>
-                                    </div>
-                                  </div>
-                                </div>
-                              <hr>
-
-                              <div class="row">
-                                <div class="col order-first text-center">
-                                  <h6 for="qustwo" class="text-black mb-4">
-                                      <br>
-                                      Reactivo 8.                    
-                                  </h6>    
-                                </div>
-                                <div class="col-sm-5 col-md-6">
-                                  <h6 for="qustwo" class="text-black mb-4">
-                                      1° Me llama la atención el uso de equipos de medición de electricidad (multímetro, amperímetro, etc.).
-                                      <br>
-                                      <br>
-                                      2° Me agrada preparar ricos e innovadores platillos.
-                                  </h6>    
-                                </div>
-  
-                                <div class="col-6 col-sm-3">
-                                  <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="pregunta8" id="flexRadioDefault1">
-                                      <label class="form-check-label" for="flexRadioDefault1">
-                                        Opción uno
-                                      </label>
-                                    </div>
-                                    <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="pregunta8" id="flexRadioDefault2" checked>
-                                      <label class="form-check-label" for="flexRadioDefault2">
-                                        Opción dos
-                                      </label>
-                                    </div>
-                                  </div>
-                                </div>
-                              <hr>
-
-                              <div class="row">
-                                <div class="col order-first text-center">
-                                  <h6 for="qustwo" class="text-black mb-4">
-                                      <br>
-                                      Reactivo 9.                    
-                                  </h6>    
-                                </div>
-                                <div class="col-sm-5 col-md-6">
-                                  <h6 for="qustwo" class="text-black mb-4">
-                                      1° Me gusta el área Industrial.
-                                      <br>
-                                      <br>
-                                      2° Me llama la atención conocer el desarrollo de nuevos productos en el mercado.
-                                  </h6>    
-                                </div>
-  
-                                <div class="col-6 col-sm-3">
-                                  <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="pregunta9" id="flexRadioDefault1">
-                                      <label class="form-check-label" for="flexRadioDefault1">
-                                        Opción uno
-                                      </label>
-                                    </div>
-                                    <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="pregunta9" id="flexRadioDefault2" checked>
-                                      <label class="form-check-label" for="flexRadioDefault2">
-                                        Opción dos
-                                      </label>
-                                    </div>
-                                  </div>
-                                </div>
-                              <hr>
-
-                              <div class="row">
-                                <div class="col order-first text-center">
-                                  <h6 for="qustwo" class="text-black mb-4">
-                                      <br>
-                                      Reactivo 10.                    
-                                  </h6>    
-                                </div>
-                                <div class="col-sm-5 col-md-6">
-                                  <h6 for="qustwo" class="text-black mb-4">
-                                      1° Me llama la atención las técnicas que las empresas utilizan para que las personas compren sus productos o servicios.
-                                      <br>
-                                      <br>
-                                      2° Me interesa aprender como conectar un grupo de computadoras a una red de internet.
-                                  </h6>    
-                                </div>
-  
-                                <div class="col-6 col-sm-3">
-                                  <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="pregunta10" id="flexRadioDefault1">
-                                      <label class="form-check-label" for="flexRadioDefault1">
-                                        Opción uno
-                                      </label>
-                                    </div>
-                                    <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="pregunta10" id="flexRadioDefault2" checked>
-                                      <label class="form-check-label" for="flexRadioDefault2">
-                                        Opción dos
-                                      </label>
-                                    </div>
-                                  </div>
-                                </div>
-                              <hr>
-
-                              <div class="row">
-                                <div class="col order-first text-center">
-                                  <h6 for="qustwo" class="text-black mb-4">
-                                      <br>
-                                      Reactivo 11.                    
-                                  </h6>    
-                                </div>
-                                <div class="col-sm-5 col-md-6">
-                                  <h6 for="qustwo" class="text-black mb-4">
-                                      1° Me llama la atención la creación y producción de comerciales publicitarios.                                      .
-                                      <br>
-                                      <br>
-                                      2° Me llama la atención la elaboración de pasteles.
-                                  </h6>    
-                                </div>
-  
-                                <div class="col-6 col-sm-3">
-                                  <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="pregunta11" id="flexRadioDefault1">
-                                      <label class="form-check-label" for="flexRadioDefault1">
-                                        Opción uno
-                                      </label>
-                                    </div>
-                                    <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="pregunta11" id="flexRadioDefault2" checked>
-                                      <label class="form-check-label" for="flexRadioDefault2">
-                                        Opción dos
-                                      </label>
-                                    </div>
-                                  </div>
-                                </div>
-                              <hr>
-
-                              <div class="row">
-                                <div class="col order-first text-center">
-                                  <h6 for="qustwo" class="text-black mb-4">
-                                      <br>
-                                      Reactivo 12.                    
-                                  </h6>    
-                                </div>
-                                <div class="col-sm-5 col-md-6">
-                                  <h6 for="qustwo" class="text-black mb-4">
-                                      1° Me llama la atención la forma en que las empresas realizan sus ventas en línea.
-                                      <br>
-                                      <br>
-                                      2° Me agradaría participar en proyectos industriales.
-                                  </h6>    
-                                </div>
-  
-                                <div class="col-6 col-sm-3">
-                                  <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="pregunta12" id="flexRadioDefault1">
-                                      <label class="form-check-label" for="flexRadioDefault1">
-                                        Opción uno
-                                      </label>
-                                    </div>
-                                    <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="pregunta12" id="flexRadioDefault2" checked>
-                                      <label class="form-check-label" for="flexRadioDefault2">
-                                        Opción dos
-                                      </label>
-                                    </div>
-                                  </div>
-                                </div>
-                              <hr>
-
-                              <div class="row">
-                                <div class="col order-first text-center">
-                                  <h6 for="qustwo" class="text-black mb-4">
-                                      <br>
-                                      Reactivo 13.                    
-                                  </h6>    
-                                </div>
-                                <div class="col-sm-5 col-md-6">
-                                  <h6 for="qustwo" class="text-black mb-4">
-                                      1° Me llama la atención realizar programas de computadoras en distintos lenguajes.
-                                      <br>
-                                      <br>
-                                      2° Me agrada la preparación de bebidas y cocktails.
-                                  </h6>    
-                                </div>
-  
-                                <div class="col-6 col-sm-3">
-                                  <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="pregunta13" id="flexRadioDefault1">
-                                      <label class="form-check-label" for="flexRadioDefault1">
-                                        Opción uno
-                                      </label>
-                                    </div>
-                                    <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="pregunta13" id="flexRadioDefault2" checked>
-                                      <label class="form-check-label" for="flexRadioDefault2">
-                                        Opción dos
-                                      </label>
-                                    </div>
-                                  </div>
-                                </div>
-                              <hr>
-
-                              <div class="row">
-                                <div class="col order-first text-center">
-                                  <h6 for="qustwo" class="text-black mb-4">
-                                      <br>
-                                      Reactivo 14.                    
-                                  </h6>    
-                                </div>
-                                <div class="col-sm-5 col-md-6">
-                                  <h6 for="qustwo" class="text-black mb-4">
-                                      1° Me llama la atención como dos dispositivos móviles se conectan entre si.
-                                      <br>
-                                      <br>
-                                      2° Me llama la atención implementar programas que contribuyan al ahorro de energía eléctrica.
-                                  </h6>    
-                                </div>
-  
-                                <div class="col-6 col-sm-3">
-                                  <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="pregunta14" id="flexRadioDefault1">
-                                      <label class="form-check-label" for="flexRadioDefault1">
-                                        Opción uno
-                                      </label>
-                                    </div>
-                                    <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="pregunta14" id="flexRadioDefault2" checked>
-                                      <label class="form-check-label" for="flexRadioDefault2">
-                                        Opción dos
-                                      </label>
-                                    </div>
-                                  </div>
-                                </div>
-                              <hr>
-
-                              <div class="row">
-                                <div class="col order-first text-center">
-                                  <h6 for="qustwo" class="text-black mb-4">
-                                      <br>
-                                      Reactivo 15.                    
-                                  </h6>    
-                                </div>
-                                <div class="col-sm-5 col-md-6">
-                                  <h6 for="qustwo" class="text-black mb-4">
-                                      1° Me agradar aprender a darle mantenimiento a una computadora.
-                                      <br>
-                                      <br>
-                                      2° Me interesa conocer las decisiones que toman las personas para adquirir un producto.
-                                  </h6>    
-                                </div>
-  
-                                <div class="col-6 col-sm-3">
-                                  <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="pregunta15" id="flexRadioDefault1">
-                                      <label class="form-check-label" for="flexRadioDefault1">
-                                        Opción uno
-                                      </label>
-                                    </div>
-                                    <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="pregunta15" id="flexRadioDefault2" checked>
-                                      <label class="form-check-label" for="flexRadioDefault2">
-                                        Opción dos
-                                      </label>
-                                    </div>
-                                  </div>
-                                </div>
-                              <hr>
-
-                              <div class="row">
-                                <div class="col order-first text-center">
-                                  <h6 for="qustwo" class="text-black mb-4">
-                                      <br>
-                                      Reactivo 16.                    
-                                  </h6>    
-                                </div>
-                                <div class="col-sm-5 col-md-6">
-                                  <h6 for="qustwo" class="text-black mb-4">
-                                      1° Me llama la atención la forma en que se elabora un buen vino.
-                                      <br>
-                                      <br>
-                                      2° Me interesa aprender a armar un cable de red de internet.
-                                  </h6>    
-                                </div>
-  
-                                <div class="col-6 col-sm-3">
-                                  <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="pregunta16" id="flexRadioDefault1">
-                                      <label class="form-check-label" for="flexRadioDefault1">
-                                        Opción uno
-                                      </label>
-                                    </div>
-                                    <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="pregunta16" id="flexRadioDefault2" checked>
-                                      <label class="form-check-label" for="flexRadioDefault2">
-                                        Opción dos
-                                      </label>
-                                    </div>
-                                  </div>
-                                </div>
-                              <hr>
-
-                              <div class="row">
-                                <div class="col order-first text-center">
-                                  <h6 for="qustwo" class="text-black mb-4">
-                                      <br>
-                                      Reactivo 17.                    
-                                  </h6>    
-                                </div>
-                                <div class="col-sm-5 col-md-6">
-                                  <h6 for="qustwo" class="text-black mb-4">
-                                      1° Me llama la atención ser el organizador de algún evento gastronómico.
-                                      <br>
-                                      <br>
-                                      2° Me llaman la atención el funcionamiento de los paneles solares.
-                                  </h6>    
-                                </div>
-  
-                                <div class="col-6 col-sm-3">
-                                  <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="pregunta17" id="flexRadioDefault1">
-                                      <label class="form-check-label" for="flexRadioDefault1">
-                                        Opción uno
-                                      </label>
-                                    </div>
-                                    <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="pregunta17" id="flexRadioDefault2" checked>
-                                      <label class="form-check-label" for="flexRadioDefault2">
-                                        Opción dos
-                                      </label>
-                                    </div>
-                                  </div>
-                                </div>
-                              <hr>
-
-                              <div class="row">
-                                <div class="col order-first text-center">
-                                  <h6 for="qustwo" class="text-black mb-4">
-                                      <br>
-                                      Reactivo 18.                    
-                                  </h6>    
-                                </div>
-                                <div class="col-sm-5 col-md-6">
-                                  <h6 for="qustwo" class="text-black mb-4">
-                                      1° Me llama la atención la elaboración de repostería.
-                                      <br>
-                                      <br>
-                                      2° Me agradan los proyectos orientados a la innovación, creatividad y diseño gráfico orientados hacia la mercadotecnia.
-                                  </h6>    
-                                </div>
-  
-                                <div class="col-6 col-sm-3">
-                                  <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="pregunta18" id="flexRadioDefault1">
-                                      <label class="form-check-label" for="flexRadioDefault1">
-                                        Opción uno
-                                      </label>
-                                    </div>
-                                    <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="pregunta18" id="flexRadioDefault2" checked>
-                                      <label class="form-check-label" for="flexRadioDefault2">
-                                        Opción dos
-                                      </label>
-                                    </div>
-                                  </div>
-                                </div>
-                              <hr>
-
-                              <div class="row">
-                                <div class="col order-first text-center">
-                                  <h6 for="qustwo" class="text-black mb-4">
-                                      <br>
-                                      Reactivo 19.                    
-                                  </h6>    
-                                </div>
-                                <div class="col-sm-5 col-md-6">
-                                  <h6 for="qustwo" class="text-black mb-4">
-                                      1° Me gusta la reparación de aparatos electrodomésticos (refrigeradores, televisiones, aires acondicionados, etc).
-                                      <br>
-                                      <br>
-                                      2° Me interesa aprender a diseñar bases de datos para sistemas de información.
-                                  </h6>    
-                                </div>
-  
-                                <div class="col-6 col-sm-3">
-                                  <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="pregunta19" id="flexRadioDefault1">
-                                      <label class="form-check-label" for="flexRadioDefault1">
-                                        Opción uno
-                                      </label>
-                                    </div>
-                                    <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="pregunta19" id="flexRadioDefault2" checked>
-                                      <label class="form-check-label" for="flexRadioDefault2">
-                                        Opción dos
-                                      </label>
-                                    </div>
-                                  </div>
-                                </div>
-                              <hr>
-
-                              <div class="row">
-                                <div class="col order-first text-center">
-                                  <h6 for="qustwo" class="text-black mb-4">
-                                      <br>
-                                      Reactivo 20.                    
-                                  </h6>    
-                                </div>
-                                <div class="col-sm-5 col-md-6">
-                                  <h6 for="qustwo" class="text-black mb-4">
-                                      1° Me llama la atención la electrónica.
-                                      <br>
-                                      <br>
-                                      2° Me agradaría participar en eventos gastronómicos.
-                                  </h6>    
-                                </div>
-  
-                                <div class="col-6 col-sm-3">
-                                  <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="pregunta20" id="flexRadioDefault1">
-                                      <label class="form-check-label" for="flexRadioDefault1">
-                                        Opción uno
-                                      </label>
-                                    </div>
-                                    <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="pregunta20" id="flexRadioDefault2" checked>
-                                      <label class="form-check-label" for="flexRadioDefault2">
-                                        Opción dos
-                                      </label>
-                                    </div>
-                                  </div>
-                                </div>
-                              <hr>
-
-                              <div class="row">
-                                <div class="col order-first text-center">
-                                  <h6 for="qustwo" class="text-black mb-4">
-                                      <br>
-                                      Reactivo 21.                    
-                                  </h6>    
-                                </div>
-                                <div class="col-sm-5 col-md-6">
-                                  <h6 for="qustwo" class="text-black mb-4">
-                                      1° Me llama la atención los equipos de seguridad industrial.
-                                      <br>
-                                      <br>
-                                      2° Me agrada llevar a cabo la planeación y verificación de presupuestos al momento de iniciar un proyecto.
-                                  </h6>    
-                                </div>
-  
-                                <div class="col-6 col-sm-3">
-                                  <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="pregunta21" id="flexRadioDefault1">
-                                      <label class="form-check-label" for="flexRadioDefault1">
-                                        Opción uno
-                                      </label>
-                                    </div>
-                                    <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="pregunta21" id="flexRadioDefault2" checked>
-                                      <label class="form-check-label" for="flexRadioDefault2">
-                                        Opción dos
-                                      </label>
-                                    </div>
-                                  </div>
-                                </div>
-                              <hr>
-
-                              <div class="row">
-                                <div class="col order-first text-center">
-                                  <h6 for="qustwo" class="text-black mb-4">
-                                      <br>
-                                      Reactivo 22.                    
-                                  </h6>    
-                                </div>
-                                <div class="col-sm-5 col-md-6">
-                                  <h6 for="qustwo" class="text-black mb-4">
-                                      1° Me llama la atención las estrategias que las empresas usan para fijar el precio a sus productos y/o servicios.
-                                      <br>
-                                      <br>
-                                      2° Me interesa aprender a armar las computadoras (capacidad de disco duro, memoria RAM, procesador, etc).
-                                  </h6>    
-                                </div>
-  
-                                <div class="col-6 col-sm-3">
-                                  <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="pregunta22" id="flexRadioDefault1">
-                                      <label class="form-check-label" for="flexRadioDefault1">
-                                        Opción uno
-                                      </label>
-                                    </div>
-                                    <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="pregunta22" id="flexRadioDefault2" checked>
-                                      <label class="form-check-label" for="flexRadioDefault2">
-                                        Opción dos
-                                      </label>
-                                    </div>
-                                  </div>
-                                </div>
-                              <hr>
-
-                              <div class="row">
-                                <div class="col order-first text-center">
-                                  <h6 for="qustwo" class="text-black mb-4">
-                                      <br>
-                                      Reactivo 23.                    
-                                  </h6>    
-                                </div>
-                                <div class="col-sm-5 col-md-6">
-                                  <h6 for="qustwo" class="text-black mb-4">
-                                      1° Me llama la atención conocer como las empresas seleccionan a sus tipos de clientes.
-                                      <br>
-                                      <br>
-                                      2° Me agradaría asistir a cursos de cocina.
-                                  </h6>    
-                                </div>
-  
-                                <div class="col-6 col-sm-3">
-                                  <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="pregunta23" id="flexRadioDefault1">
-                                      <label class="form-check-label" for="flexRadioDefault1">
-                                        Opción uno
-                                      </label>
-                                    </div>
-                                    <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="pregunta23" id="flexRadioDefault2" checked>
-                                      <label class="form-check-label" for="flexRadioDefault2">
-                                        Opción dos
-                                      </label>
-                                    </div>
-                                  </div>
-                                </div>
-                              <hr>
-
-                              <div class="row">
-                                <div class="col order-first text-center">
-                                  <h6 for="qustwo" class="text-black mb-4">
-                                      <br>
-                                      Reactivo 24.                    
-                                  </h6>    
-                                </div>
-                                <div class="col-sm-5 col-md-6">
-                                  <h6 for="qustwo" class="text-black mb-4">
-                                      1° Me gustan las finanzas.
-                                      <br>
-                                      <br>
-                                      2° Me gustaría trabajar en proyectos que contribuyan al cuidado del medio ambiente.
-                                  </h6>    
-                                </div>
-  
-                                <div class="col-6 col-sm-3">
-                                  <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="pregunta24" id="flexRadioDefault1">
-                                      <label class="form-check-label" for="flexRadioDefault1">
-                                        Opción uno
-                                      </label>
-                                    </div>
-                                    <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="pregunta24" id="flexRadioDefault2" checked>
-                                      <label class="form-check-label" for="flexRadioDefault2">
-                                        Opción dos
-                                      </label>
-                                    </div>
-                                  </div>
-                                </div>
-                              <hr>
-
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+									<div class="col-6 col-sm-3">
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="pregunta4"
+												id="flexRadioDefault1">
+											<label class="form-check-label" for="flexRadioDefault1">
+												Opción uno
+											</label>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="pregunta4"
+												id="flexRadioDefault2" checked>
+											<label class="form-check-label" for="flexRadioDefault2">
+												Opción dos
+											</label>
+										</div>
+									</div>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col order-first text-center">
+										<h6 for="qustwo" class="text-black mb-4">
+											<br>
+											Reactivo 5.
+										</h6>
+									</div>
+									<div class="col-sm-5 col-md-6">
+										<h6 for="qustwo" class="text-black mb-4">
+											1° Me interesa saber sobre nutrición.
+											<br>
+											<br>
+											2° Me llama la atención el funcionamiento de un equipo de aire
+											acondicionado.
+										</h6>
+									</div>
+									<div class="col-6 col-sm-3">
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="pregunta5"
+												id="flexRadioDefault1">
+											<label class="form-check-label" for="flexRadioDefault1">
+												Opción uno
+											</label>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="pregunta5"
+												id="flexRadioDefault2" checked>
+											<label class="form-check-label" for="flexRadioDefault2">
+												Opción dos
+											</label>
+										</div>
+									</div>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col order-first text-center">
+										<h6 for="qustwo" class="text-black mb-4">
+											<br>
+											Reactivo 6.
+										</h6>
+									</div>
+									<div class="col-sm-5 col-md-6">
+										<h6 for="qustwo" class="text-black mb-4">
+											1° Me agrada conocer nuevas técnicas culinarias.
+											<br>
+											<br>
+											2° Me interesan los artículos de temas relacionados con el marketing y
+											publicidad.
+										</h6>
+									</div>
+									<div class="col-6 col-sm-3">
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="pregunta6"
+												id="flexRadioDefault1">
+											<label class="form-check-label" for="flexRadioDefault1">
+												Opción uno
+											</label>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="pregunta6"
+												id="flexRadioDefault2" checked>
+											<label class="form-check-label" for="flexRadioDefault2">
+												Opción dos
+											</label>
+										</div>
+									</div>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col order-first text-center">
+										<h6 for="qustwo" class="text-black mb-4">
+											<br>
+											Reactivo 7.
+										</h6>
+									</div>
+									<div class="col-sm-5 col-md-6">
+										<h6 for="qustwo" class="text-black mb-4">
+											1° Me llama la atención como hacer una instalación eléctrica.
+											<br>
+											<br>
+											2° Me interesa trabajar en proyectos sobre tecnologías y comunicación.
+										</h6>
+									</div>
+									<div class="col-6 col-sm-3">
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="pregunta7"
+												id="flexRadioDefault1">
+											<label class="form-check-label" for="flexRadioDefault1">
+												Opción uno
+											</label>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="pregunta7"
+												id="flexRadioDefault2" checked>
+											<label class="form-check-label" for="flexRadioDefault2">
+												Opción dos
+											</label>
+										</div>
+									</div>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col order-first text-center">
+										<h6 for="qustwo" class="text-black mb-4">
+											<br>
+											Reactivo 8.
+										</h6>
+									</div>
+									<div class="col-sm-5 col-md-6">
+										<h6 for="qustwo" class="text-black mb-4">
+											1° Me llama la atención el uso de equipos de medición de electricidad
+											(multímetro, amperímetro,
+											etc.).
+											<br>
+											<br>
+											2° Me agrada preparar ricos e innovadores platillos.
+										</h6>
+									</div>
+									<div class="col-6 col-sm-3">
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="pregunta8"
+												id="flexRadioDefault1">
+											<label class="form-check-label" for="flexRadioDefault1">
+												Opción uno
+											</label>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="pregunta8"
+												id="flexRadioDefault2" checked>
+											<label class="form-check-label" for="flexRadioDefault2">
+												Opción dos
+											</label>
+										</div>
+									</div>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col order-first text-center">
+										<h6 for="qustwo" class="text-black mb-4">
+											<br>
+											Reactivo 9.
+										</h6>
+									</div>
+									<div class="col-sm-5 col-md-6">
+										<h6 for="qustwo" class="text-black mb-4">
+											1° Me gusta el área Industrial.
+											<br>
+											<br>
+											2° Me llama la atención conocer el desarrollo de nuevos productos en el
+											mercado.
+										</h6>
+									</div>
+									<div class="col-6 col-sm-3">
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="pregunta9"
+												id="flexRadioDefault1">
+											<label class="form-check-label" for="flexRadioDefault1">
+												Opción uno
+											</label>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="pregunta9"
+												id="flexRadioDefault2" checked>
+											<label class="form-check-label" for="flexRadioDefault2">
+												Opción dos
+											</label>
+										</div>
+									</div>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col order-first text-center">
+										<h6 for="qustwo" class="text-black mb-4">
+											<br>
+											Reactivo 10.
+										</h6>
+									</div>
+									<div class="col-sm-5 col-md-6">
+										<h6 for="qustwo" class="text-black mb-4">
+											1° Me llama la atención las técnicas que las empresas utilizan para que las
+											personas compren sus
+											productos o servicios.
+											<br>
+											<br>
+											2° Me interesa aprender como conectar un grupo de computadoras a una red de
+											internet.
+										</h6>
+									</div>
+									<div class="col-6 col-sm-3">
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="pregunta10"
+												id="flexRadioDefault1">
+											<label class="form-check-label" for="flexRadioDefault1">
+												Opción uno
+											</label>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="pregunta10"
+												id="flexRadioDefault2" checked>
+											<label class="form-check-label" for="flexRadioDefault2">
+												Opción dos
+											</label>
+										</div>
+									</div>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col order-first text-center">
+										<h6 for="qustwo" class="text-black mb-4">
+											<br>
+											Reactivo 11.
+										</h6>
+									</div>
+									<div class="col-sm-5 col-md-6">
+										<h6 for="qustwo" class="text-black mb-4">
+											1° Me llama la atención la creación y producción de comerciales
+											publicitarios. .
+											<br>
+											<br>
+											2° Me llama la atención la elaboración de pasteles.
+										</h6>
+									</div>
+									<div class="col-6 col-sm-3">
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="pregunta11"
+												id="flexRadioDefault1">
+											<label class="form-check-label" for="flexRadioDefault1">
+												Opción uno
+											</label>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="pregunta11"
+												id="flexRadioDefault2" checked>
+											<label class="form-check-label" for="flexRadioDefault2">
+												Opción dos
+											</label>
+										</div>
+									</div>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col order-first text-center">
+										<h6 for="qustwo" class="text-black mb-4">
+											<br>
+											Reactivo 12.
+										</h6>
+									</div>
+									<div class="col-sm-5 col-md-6">
+										<h6 for="qustwo" class="text-black mb-4">
+											1° Me llama la atención la forma en que las empresas realizan sus ventas en
+											línea.
+											<br>
+											<br>
+											2° Me agradaría participar en proyectos industriales.
+										</h6>
+									</div>
+									<div class="col-6 col-sm-3">
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="pregunta12"
+												id="flexRadioDefault1">
+											<label class="form-check-label" for="flexRadioDefault1">
+												Opción uno
+											</label>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="pregunta12"
+												id="flexRadioDefault2" checked>
+											<label class="form-check-label" for="flexRadioDefault2">
+												Opción dos
+											</label>
+										</div>
+									</div>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col order-first text-center">
+										<h6 for="qustwo" class="text-black mb-4">
+											<br>
+											Reactivo 13.
+										</h6>
+									</div>
+									<div class="col-sm-5 col-md-6">
+										<h6 for="qustwo" class="text-black mb-4">
+											1° Me llama la atención realizar programas de computadoras en distintos
+											lenguajes.
+											<br>
+											<br>
+											2° Me agrada la preparación de bebidas y cocktails.
+										</h6>
+									</div>
+									<div class="col-6 col-sm-3">
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="pregunta13"
+												id="flexRadioDefault1">
+											<label class="form-check-label" for="flexRadioDefault1">
+												Opción uno
+											</label>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="pregunta13"
+												id="flexRadioDefault2" checked>
+											<label class="form-check-label" for="flexRadioDefault2">
+												Opción dos
+											</label>
+										</div>
+									</div>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col order-first text-center">
+										<h6 for="qustwo" class="text-black mb-4">
+											<br>
+											Reactivo 14.
+										</h6>
+									</div>
+									<div class="col-sm-5 col-md-6">
+										<h6 for="qustwo" class="text-black mb-4">
+											1° Me llama la atención como dos dispositivos móviles se conectan entre si.
+											<br>
+											<br>
+											2° Me llama la atención implementar programas que contribuyan al ahorro de
+											energía eléctrica.
+										</h6>
+									</div>
+									<div class="col-6 col-sm-3">
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="pregunta14"
+												id="flexRadioDefault1">
+											<label class="form-check-label" for="flexRadioDefault1">
+												Opción uno
+											</label>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="pregunta14"
+												id="flexRadioDefault2" checked>
+											<label class="form-check-label" for="flexRadioDefault2">
+												Opción dos
+											</label>
+										</div>
+									</div>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col order-first text-center">
+										<h6 for="qustwo" class="text-black mb-4">
+											<br>
+											Reactivo 15.
+										</h6>
+									</div>
+									<div class="col-sm-5 col-md-6">
+										<h6 for="qustwo" class="text-black mb-4">
+											1° Me agradar aprender a darle mantenimiento a una computadora.
+											<br>
+											<br>
+											2° Me interesa conocer las decisiones que toman las personas para adquirir
+											un producto.
+										</h6>
+									</div>
+									<div class="col-6 col-sm-3">
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="pregunta15"
+												id="flexRadioDefault1">
+											<label class="form-check-label" for="flexRadioDefault1">
+												Opción uno
+											</label>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="pregunta15"
+												id="flexRadioDefault2" checked>
+											<label class="form-check-label" for="flexRadioDefault2">
+												Opción dos
+											</label>
+										</div>
+									</div>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col order-first text-center">
+										<h6 for="qustwo" class="text-black mb-4">
+											<br>
+											Reactivo 16.
+										</h6>
+									</div>
+									<div class="col-sm-5 col-md-6">
+										<h6 for="qustwo" class="text-black mb-4">
+											1° Me llama la atención la forma en que se elabora un buen vino.
+											<br>
+											<br>
+											2° Me interesa aprender a armar un cable de red de internet.
+										</h6>
+									</div>
+									<div class="col-6 col-sm-3">
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="pregunta16"
+												id="flexRadioDefault1">
+											<label class="form-check-label" for="flexRadioDefault1">
+												Opción uno
+											</label>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="pregunta16"
+												id="flexRadioDefault2" checked>
+											<label class="form-check-label" for="flexRadioDefault2">
+												Opción dos
+											</label>
+										</div>
+									</div>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col order-first text-center">
+										<h6 for="qustwo" class="text-black mb-4">
+											<br>
+											Reactivo 17.
+										</h6>
+									</div>
+									<div class="col-sm-5 col-md-6">
+										<h6 for="qustwo" class="text-black mb-4">
+											1° Me llama la atención ser el organizador de algún evento gastronómico.
+											<br>
+											<br>
+											2° Me llaman la atención el funcionamiento de los paneles solares.
+										</h6>
+									</div>
+									<div class="col-6 col-sm-3">
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="pregunta17"
+												id="flexRadioDefault1">
+											<label class="form-check-label" for="flexRadioDefault1">
+												Opción uno
+											</label>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="pregunta17"
+												id="flexRadioDefault2" checked>
+											<label class="form-check-label" for="flexRadioDefault2">
+												Opción dos
+											</label>
+										</div>
+									</div>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col order-first text-center">
+										<h6 for="qustwo" class="text-black mb-4">
+											<br>
+											Reactivo 18.
+										</h6>
+									</div>
+									<div class="col-sm-5 col-md-6">
+										<h6 for="qustwo" class="text-black mb-4">
+											1° Me llama la atención la elaboración de repostería.
+											<br>
+											<br>
+											2° Me agradan los proyectos orientados a la innovación, creatividad y diseño
+											gráfico orientados
+											hacia la mercadotecnia.
+										</h6>
+									</div>
+									<div class="col-6 col-sm-3">
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="pregunta18"
+												id="flexRadioDefault1">
+											<label class="form-check-label" for="flexRadioDefault1">
+												Opción uno
+											</label>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="pregunta18"
+												id="flexRadioDefault2" checked>
+											<label class="form-check-label" for="flexRadioDefault2">
+												Opción dos
+											</label>
+										</div>
+									</div>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col order-first text-center">
+										<h6 for="qustwo" class="text-black mb-4">
+											<br>
+											Reactivo 19.
+										</h6>
+									</div>
+									<div class="col-sm-5 col-md-6">
+										<h6 for="qustwo" class="text-black mb-4">
+											1° Me gusta la reparación de aparatos electrodomésticos (refrigeradores,
+											televisiones, aires
+											acondicionados, etc).
+											<br>
+											<br>
+											2° Me interesa aprender a diseñar bases de datos para sistemas de
+											información.
+										</h6>
+									</div>
+									<div class="col-6 col-sm-3">
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="pregunta19"
+												id="flexRadioDefault1">
+											<label class="form-check-label" for="flexRadioDefault1">
+												Opción uno
+											</label>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="pregunta19"
+												id="flexRadioDefault2" checked>
+											<label class="form-check-label" for="flexRadioDefault2">
+												Opción dos
+											</label>
+										</div>
+									</div>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col order-first text-center">
+										<h6 for="qustwo" class="text-black mb-4">
+											<br>
+											Reactivo 20.
+										</h6>
+									</div>
+									<div class="col-sm-5 col-md-6">
+										<h6 for="qustwo" class="text-black mb-4">
+											1° Me llama la atención la electrónica.
+											<br>
+											<br>
+											2° Me agradaría participar en eventos gastronómicos.
+										</h6>
+									</div>
+									<div class="col-6 col-sm-3">
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="pregunta20"
+												id="flexRadioDefault1">
+											<label class="form-check-label" for="flexRadioDefault1">
+												Opción uno
+											</label>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="pregunta20"
+												id="flexRadioDefault2" checked>
+											<label class="form-check-label" for="flexRadioDefault2">
+												Opción dos
+											</label>
+										</div>
+									</div>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col order-first text-center">
+										<h6 for="qustwo" class="text-black mb-4">
+											<br>
+											Reactivo 21.
+										</h6>
+									</div>
+									<div class="col-sm-5 col-md-6">
+										<h6 for="qustwo" class="text-black mb-4">
+											1° Me llama la atención los equipos de seguridad industrial.
+											<br>
+											<br>
+											2° Me agrada llevar a cabo la planeación y verificación de presupuestos al
+											momento de iniciar un
+											proyecto.
+										</h6>
+									</div>
+									<div class="col-6 col-sm-3">
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="pregunta21"
+												id="flexRadioDefault1">
+											<label class="form-check-label" for="flexRadioDefault1">
+												Opción uno
+											</label>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="pregunta21"
+												id="flexRadioDefault2" checked>
+											<label class="form-check-label" for="flexRadioDefault2">
+												Opción dos
+											</label>
+										</div>
+									</div>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col order-first text-center">
+										<h6 for="qustwo" class="text-black mb-4">
+											<br>
+											Reactivo 22.
+										</h6>
+									</div>
+									<div class="col-sm-5 col-md-6">
+										<h6 for="qustwo" class="text-black mb-4">
+											1° Me llama la atención las estrategias que las empresas usan para fijar el
+											precio a sus productos
+											y/o servicios.
+											<br>
+											<br>
+											2° Me interesa aprender a armar las computadoras (capacidad de disco duro,
+											memoria RAM,
+											procesador, etc).
+										</h6>
+									</div>
+									<div class="col-6 col-sm-3">
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="pregunta22"
+												id="flexRadioDefault1">
+											<label class="form-check-label" for="flexRadioDefault1">
+												Opción uno
+											</label>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="pregunta22"
+												id="flexRadioDefault2" checked>
+											<label class="form-check-label" for="flexRadioDefault2">
+												Opción dos
+											</label>
+										</div>
+									</div>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col order-first text-center">
+										<h6 for="qustwo" class="text-black mb-4">
+											<br>
+											Reactivo 23.
+										</h6>
+									</div>
+									<div class="col-sm-5 col-md-6">
+										<h6 for="qustwo" class="text-black mb-4">
+											1° Me llama la atención conocer como las empresas seleccionan a sus tipos de
+											clientes.
+											<br>
+											<br>
+											2° Me agradaría asistir a cursos de cocina.
+										</h6>
+									</div>
+									<div class="col-6 col-sm-3">
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="pregunta23"
+												id="flexRadioDefault1">
+											<label class="form-check-label" for="flexRadioDefault1">
+												Opción uno
+											</label>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="pregunta23"
+												id="flexRadioDefault2" checked>
+											<label class="form-check-label" for="flexRadioDefault2">
+												Opción dos
+											</label>
+										</div>
+									</div>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col order-first text-center">
+										<h6 for="qustwo" class="text-black mb-4">
+											<br>
+											Reactivo 24.
+										</h6>
+									</div>
+									<div class="col-sm-5 col-md-6">
+										<h6 for="qustwo" class="text-black mb-4">
+											1° Me gustan las finanzas.
+											<br>
+											<br>
+											2° Me gustaría trabajar en proyectos que contribuyan al cuidado del medio
+											ambiente.
+										</h6>
+									</div>
+									<div class="col-6 col-sm-3">
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="pregunta24"
+												id="flexRadioDefault1">
+											<label class="form-check-label" for="flexRadioDefault1">
+												Opción uno
+											</label>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="pregunta24"
+												id="flexRadioDefault2" checked>
+											<label class="form-check-label" for="flexRadioDefault2">
+												Opción dos
+											</label>
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 <!-- About End -->
 {% endblock %}
