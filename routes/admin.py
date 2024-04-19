@@ -59,25 +59,15 @@ def register_user():
                 users = db['users']
                 existing_user = users.find_one(
                     {'email': request.form['email']})
-                nombre = request.form['nombre']
                 email = request.form['email']
                 password = request.form['password']
-                genero = request.form['genero']
-                fecha = request.form['fecha']
-                telefono = request.form['telefono']
-                carrera = request.form['carrera']
 
                 if existing_user is None:
                     hashpass = bcrypt.hashpw(
                         password.encode('utf-8'), bcrypt.gensalt())
                     users.insert_one({
-                        'nombre': nombre,
                         'email': email,
-                        'password': hashpass,
-                        'genero': genero,
-                        'fecha': fecha,
-                        'telefono': telefono,
-                        'carrera': carrera
+                        'password': hashpass
                     })
                     return redirect(url_for('admin.registro'))
 

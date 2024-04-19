@@ -29,27 +29,26 @@
 </div>
 <!-- Navbar & Hero End -->
 
-<!-- About Start -->
-
+<!-- Login Start -->
 <body>
-    <div class="contenedor mt-4">
-        <section class="wrapper">
+    <div class="contenedor mt-5">
+        <section class="wrapper shadow">
             <div class="form signup">
                 <header class="text-dark">Login</header>
                 <form action="/iniciar/" method="post">
                     <h5>Ficha:</h5>
-                    <input class="form-control mt-2" type="text" id="email" name="email" placeholder="Correo"
-                        required />
+                    <input class="form-control mt-2" type="text" id="email" name="email" placeholder="Ingresa tu ficha"
+                        required>
                     <h5 for="email">Contraseña:</h5>
                     <input class="form-control mt-2" type="password" id="password" name="password"
-                        placeholder="Password" required />
-                    <input class="botones" type="submit" value="Iniciar Sesión" />
+                        placeholder="Ingresa tu contraseña" required>
+                    <input class="botones" type="submit" value="Iniciar Sesión">
                 </form>
             </div>
         </section>
     </div>
 </body>
-<!-- About End -->
+<!-- Login End -->
 {% endblock %}
 
 {% block first_block %}
