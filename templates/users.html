@@ -32,7 +32,7 @@
                         <h5 class="text-center">{{ user.nombre }}</h5>
                     </div>
                     <div class="card-body">
-                        <form method="POST">
+                        <form>
                             <div class="row">
                                 <div class="col">
                                     <input type="hidden" class="form-control" value="{{ user._id }}" name="id" readonly>
@@ -40,18 +40,8 @@
                                     <input type="text" class="form-control" value="{{ user.email }}" readonly>
                                 </div>
                                 <div class="col">
-                                    <small>Genero</small>
-                                    <input type="text" class="form-control" value="{{ user.genero }}" readonly>
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col">
-                                    <small>Nacimiento</small>
-                                    <input type="text" class="form-control" value="{{ user.fecha }}" readonly>
-                                </div>
-                                <div class="col">
-                                    <small>Teléfono</small>
-                                    <input type="text" class="form-control" value="{{ user.telefono }}" readonly>
+                                    <small>Hora de creación</small>
+                                    <input type="text" class="form-control" value="{{ user.datetime }}" readonly>
                                 </div>
                             </div>
                             <div class="row mt-3">
@@ -63,17 +53,9 @@
 
                                 </div>
                             </div>
-                            <div class="row mt-3">
-                                <div class="col">
-
-                                </div>
-                                <div class="col">
-
-                                </div>
-                            </div>
-                            <button class="btn btn-primary">Resultados</button>
+                            <button class="btn btn-primary mt-3">Resultados</button>
                             <a href="{{ url_for('admin.delete_user', user_id=user._id) }}"
-                                class="btn btn-danger btn-delete">Eliminar</a>
+                                class="btn btn-danger btn-delete mt-3">Eliminar</a>
                         </form>
                     </div>
                 </div>

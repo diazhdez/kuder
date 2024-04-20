@@ -30,6 +30,15 @@
                     Registrar:
                 </div>
                 <div class="card-body text-center mt-2">
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                        {{ message }}
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    {% endwith %}
                     <button class="btn btn-primary user-button" data-toggle="collapse" data-target="#info_user"
                         aria-expanded="false" aria-controls="info_user" name="tipo_registro">Aspirante</button>
                     <button class="btn btn-primary admin-button" data-toggle="collapse" data-target="#info_admin"
@@ -41,23 +50,15 @@
                     </div>
                     <div class="card-body">
                         <form action="/register_user/" method="post">
-                            <div class="form-row">
-                                <div class="col-mt-4 mb-3">
-                                    <label for="email">Ficha:</label>
-                                    <input type="text" class="form-control" id="email" name="email"
-                                        placeholder="Ingresa la ficha" required>
-                                </div>
-                                <div class="col-mt-4 mb-3">
-                                    <label for="password">Contraseña:</label>
-                                    <input type="password" class="form-control" id="password" name="password"
-                                        placeholder="Ingresa la contraseña" required>
-                                </div>
+                            <div class="form-group">
+                                <label for="num_users">Cantidad de usuarios a registrar:</label>
+                                <input type="number" class="form-control" id="num_users" name="num_users" required>
                             </div>
-                            <div class="form-row">
-                                <div class="col-md-4">
-                                    <button class="btn btn-primary">Registrar Aspirante</button>
-                                </div>
+                            <div class="form-group mt-3">
+                                <label for="password">Contraseña para todos los usuarios:</label>
+                                <input type="password" class="form-control" id="password" name="password" minlength="8" required>
                             </div>
+                            <button type="submit" class="btn btn-primary mt-3">Registrar usuarios</button>
                         </form>
                     </div>
                 </div>

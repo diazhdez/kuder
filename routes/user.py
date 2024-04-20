@@ -1,10 +1,10 @@
 from flask import Blueprint, render_template, url_for, redirect, session
 
+from functions.functions import get_user
+
 import plotly.graph_objs as go
 
 from plotly.offline import plot
-
-from functions.functions import get_user
 
 import database.database as dbase
 

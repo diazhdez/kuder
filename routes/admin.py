@@ -1,8 +1,14 @@
 from flask import Blueprint, render_template, url_for, redirect, flash, session, request
 
-import bcrypt
+from functions.functions import get_admin
+
+from datetime import datetime
+
+from random import randint
 
 from bson import ObjectId
+
+import bcrypt
 
 import smtplib
 
@@ -11,8 +17,6 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 import os
-
-from functions.functions import get_admin
 
 import database.database as dbase
 
@@ -56,22 +60,30 @@ def register_user():
         admin = get_admin(email)
         if admin:
             if request.method == 'POST':
-                users = db['users']
-                existing_user = users.find_one(
-                    {'email': request.form['email']})
-                email = request.form['email']
+                # Obtener la cantidad de usuarios a registrar desde el formulario
+                num_users = int(request.form['num_users'])
+                # Contraseña predeterminada para todos los usuarios
                 password = request.form['password']
 
-                if existing_user is None:
-                    hashpass = bcrypt.hashpw(
-                        password.encode('utf-8'), bcrypt.gensalt())
-                    users.insert_one({
-                        'email': email,
-                        'password': hashpass
-                    })
-                    return redirect(url_for('admin.registro'))
+                users = db['users']
 
-                flash('El correo ya está en uso')
+                # Generar los documentos de los usuarios
+                user_docs = []
+                for _ in range(num_users):
+                    email = str(randint(100000, 999999))
+                    hashpass = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+                    # Obtener la fecha y hora actual
+                    date = datetime.now()
+                    user_docs.append({
+                        'email': email,
+                        'password': hashpass,
+                        'datetime': date
+                    })
+
+                # Insertar los documentos de los usuarios en la base de datos
+                users.insert_many(user_docs)
+
+                flash(f'Se registraron {num_users} usuarios correctamente')
                 return redirect(url_for('admin.registro'))
         else:
             return redirect(url_for('session.login'))
@@ -94,9 +106,6 @@ def register_admin():
                 nombre = request.form['nombre']
                 email = request.form['email']
                 password = request.form['password']
-                area = request.form['area']
-                genero = request.form['genero']
-                fecha = request.form['fecha']
                 telefono = request.form['telefono']
 
                 if existing_admin is None:
@@ -106,9 +115,6 @@ def register_admin():
                         'nombre': nombre,
                         'email': email,
                         'password': hashpass,
-                        'area': area,
-                        'genero': genero,
-                        'fecha': fecha,
                         'telefono': telefono
                     })
                     return redirect(url_for('admin.registro'))

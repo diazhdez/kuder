@@ -31,6 +31,15 @@
             <div class="form signup">
                 <header class="text-dark">Login</header>
                 <form action="/iniciar/" method="post">
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    <ul class="messages text-center">
+                        {% for message in messages %}
+                        {{ message }}
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    {% endwith %}
                     <h5>Ficha:</h5>
                     <input class="form-control" type="text" id="email" name="email" placeholder="Ingresa tu ficha"
                         required>
