@@ -1,11 +1,10 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<!-- Navbar & Hero Start -->
 <div class="container-xxl position-relative p-0">
     <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
         <a href="{{ url_for('user.user') }}" class="navbar-brand p-0">
-            <h1 class="m-0"><i class="fa fa-search me-2"></i>UTA<span class="fs-5"> Inventario</span></h1>
+            <h1 class="m-0"><i class="fa fa-search me-2"></i>UTA<span class="fs-5"> InvenTux</span></h1>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="fa fa-bars"></span>
@@ -18,15 +17,11 @@
             </div>
         </div>
     </nav>
-
     <div class="container-xxl py-5 bg-primary hero-header">
         <div class="col-12 text-center">
         </div>
     </div>
 </div>
-<!-- Navbar & Hero End -->
-
-<!-- About Start -->
 <div class="container-xxl py-5">
     <div class="container px-lg-5">
         <div class="section-title position-relative text-center pb-2 wow fadeInUp" data-wow-delay="0.1s">
@@ -38,7 +33,6 @@
         </div>
     </div>
 </div>
-<!-- About End -->
 {% endblock %}
 
 {% block first_block %}
