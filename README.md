@@ -2,17 +2,6 @@
 
 <!-- angeles tonta  -->
 
-## Estructura del Proyecto
+## Objetivo
 
-- `database/`: Contiene la conexión a la base de datos.
-- `functions/`: Define funciones de la aplicación.
-- `routes/`: Define las rutas de la aplicación.
-- `static/`: Contiene los archivos estáticos como CSS.
-- `templates/`: Contiene las plantillas HTML.
-- `app.py`: Inicia la aplicación.
-
-## Cómo correr el proyecto
-
-1. Activar el entorno virtual: `.\.venv\Scripts\Activate`
-2. Instalar las dependencias: `pip install -r requirements.txt`
-3. Correr la aplicación: `python app.py`
+Modernizar el proceso de atracción de aspirantes a los programas educativos de la Universidad Tecnológica de Acapulco a través de la integración estratégica de herramientas tecnológicas, con el propósito de potenciar la visibilidad de la institución, mejorar la experiencia del usuario y aumentar significativamente la tasa de matriculación de nuevos estudiantes.
