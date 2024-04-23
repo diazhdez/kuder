@@ -6,6 +6,8 @@ import plotly.graph_objs as go
 
 from plotly.offline import plot
 
+from bson import ObjectId
+
 import database.database as dbase
 
 db = dbase.dbConnection()
@@ -199,16 +201,26 @@ def results():
         # Función para obtener datos del usuario desde MongoDB
         user = get_user(email)
         if user:
-            # Datos de ejemplo para la gráfica
-            carreras = ['Tecnologías de la Información',
-                        'Mantenimiento Industrial',
-                        'Gastronomía',
-                        'Desarrollo de Negocios']
-            # Número de respuestas de ejemplo para cada carrera
-            respuestas_ejemplo = [10, 5, 7, 2]
+            # Obtener el ID del usuario actual
+            user_id = user['_id']
+            
+            # Obtener todas las respuestas del usuario actual desde la base de datos
+            respuestas_usuario = db.respuestas.find({'user_id': str(user_id)})
+
+            # Inicializar el contador de carreras
+            carreras_count = {'TICS': 0, 'Gastronomía': 0, 'Mantenimiento Industrial': 0, 'Desarrollo de Negocios': 0}
+
+            # Iterar sobre todas las respuestas del usuario
+            for respuesta in respuestas_usuario:
+                # Iterar sobre las preguntas en cada respuesta
+                for pregunta, carrera in respuesta.items():
+                    # Verificar si la respuesta corresponde a una carrera
+                    if pregunta.startswith('pregunta_') and carrera in carreras_count:
+                        # Incrementar el contador de la carrera correspondiente
+                        carreras_count[carrera] += 1
 
             # Crear el gráfico de barras con Plotly
-            data = [go.Bar(x=carreras, y=respuestas_ejemplo)]
+            data = [go.Bar(x=list(carreras_count.keys()), y=list(carreras_count.values()))]
 
             # Configurar el diseño del gráfico
             layout = go.Layout(xaxis=dict(title='Carreras'),
@@ -217,8 +229,8 @@ def results():
             # Crear la figura
             fig = go.Figure(data=data, layout=layout)
 
-            # Guardar el gráfico como un archivo HTML
-            graph_html = plot(fig, output_type='div', include_plotlyjs=True)
+            # Convertir la figura a HTML
+            graph_html = fig.to_html(full_html=False, include_plotlyjs='cdn')
 
             return render_template('results.html', graph=graph_html)
     else:
