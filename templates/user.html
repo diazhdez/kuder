@@ -63,12 +63,16 @@
                                     <div>
                                         <label>Nombre:</label>
                                         <input class="form-control mb-2" value="{{ user.name }}" type="text"
-                                            name="name">
+                                            name="name" required>
                                     </div>
                                     <div>
                                         <label>Carrera a postularse:</label>
-                                        <input class="form-control mb-2" value="{{ user.carrera }}" type="text"
-                                            name="carrera">
+                                        <select class="form-control mb-2" name="carrera" required>
+                                            <option value="TICS">TICS</option>
+                                            <option value="Gastronomía">Gastronomía</option>
+                                            <option value="Mantenimiento Industrial">Mantenimiento Industrial</option>
+                                            <option value="Desarrollo de Negocios">Desarrollo de Negocios</option>
+                                        </select>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-primary">Actualizar</button>
