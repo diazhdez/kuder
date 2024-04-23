@@ -28,7 +28,7 @@
             <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="section-title position-relative mb-4 pb-2">
                     <h6 class="position-relative text-primary ps-4">Inicio</h6>
-                    <h2 class="mt-2">¡Bienvenid@! {{ user.nombre }}</h2>
+                    <h2 class="mt-2">¡Bienvenid@! {{ user.name }}</h2>
                 </div>
                 <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum et tempor sit. Aliqu
                     diam amet diam et eos labore. Clita erat ipsum et lorem et sit, sed stet no labore lorem
@@ -45,6 +45,38 @@
                 </div>
                 <div class="d-flex align-items-center mt-4">
                     <a class="btn btn-primary rounded-pill px-4 me-3" href="{{ url_for('user.test') }}">Empezar</a>
+                    <button class="btn btn-primary rounded-pill px-4 me-3" id="btn-edit{{ user._id }}"
+                        data-bs-toggle="modal" data-bs-target="#modal{{ user._id }}">Actualizar datos</button>
+                </div>
+                <div class="modal fade" id="modal{{user._id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Actualizar datos</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/update/" method="POST">
+                                    <input type="hidden" name="user_id" value="{{ user._id }}">
+                                    <div>
+                                        <label>Nombre:</label>
+                                        <input class="form-control mb-2" value="{{ user.name }}" type="text"
+                                            name="name">
+                                    </div>
+                                    <div>
+                                        <label>Carrera a postularse:</label>
+                                        <input class="form-control mb-2" value="{{ user.carrera }}" type="text"
+                                            name="carrera">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary">Actualizar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-6">

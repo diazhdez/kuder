@@ -4,8 +4,6 @@ from functions.functions import get_user
 
 import plotly.graph_objs as go
 
-from plotly.offline import plot
-
 from bson import ObjectId
 
 import database.database as dbase
@@ -26,6 +24,26 @@ def user():
             return render_template('user.html', user=user)
     else:
         return redirect(url_for('session.login'))
+
+
+# Metodo para actulizar datos de un colaborador
+@user_routes.route('/update/', methods=['POST'])
+def update():
+    if request.method == 'POST':
+        user_id = request.form.get('user_id')
+        name = request.form.get('name')
+        carrera = request.form.get('carrera')
+
+        # Actualizar los datos del usuario
+        db.users.update_one(
+            {'_id': ObjectId(user_id)},
+            {'$set': {
+                'name': name,
+                'carrera': carrera
+            }}
+        )
+
+    return redirect(url_for('user.user'))
 
 
 # Ruta para mostrar encuesta
@@ -117,7 +135,7 @@ def testFra():
             return render_template('testFra.html', user=user)
     else:
         return redirect(url_for('session.login'))
-    
+
 
 # Ruta para mandar las respuestas
 @user_routes.route('/guardar/', methods=['POST', 'GET'])
@@ -188,9 +206,8 @@ def guardar():
                 return redirect(url_for('user.test'))
         else:
             return redirect(url_for('session.login'))
-        
-    return redirect(url_for('user.test'))
 
+    return redirect(url_for('user.test'))
 
 
 # Ruta para mostrar resultados
@@ -203,7 +220,7 @@ def results():
         if user:
             # Obtener el ID del usuario actual
             user_id = user['_id']
-            
+
             # Obtener todas las respuestas del usuario actual desde la base de datos
             respuestas_usuario = db.respuestas.find({'user_id': str(user_id)})
 
@@ -220,10 +237,12 @@ def results():
                         carreras_count[carrera] += 1
 
             # Crear el gráfico de barras con Plotly
-            data = [go.Bar(x=list(carreras_count.keys()), y=list(carreras_count.values()))]
+            data = [go.Bar(x=list(carreras_count.keys()),
+                           y=list(carreras_count.values()))]
 
             # Configurar el diseño del gráfico
-            layout = go.Layout(xaxis=dict(title='Carreras'),
+            layout = go.Layout(title='Carrera a postularse: ', 
+                               xaxis=dict(title='Carreras'),
                                yaxis=dict(title='Número de respuestas'))
 
             # Crear la figura
@@ -232,6 +251,6 @@ def results():
             # Convertir la figura a HTML
             graph_html = fig.to_html(full_html=False, include_plotlyjs='cdn')
 
-            return render_template('results.html', graph=graph_html)
+            return render_template('results.html', graph=graph_html, user=user)
     else:
         return redirect(url_for('session.login'))
