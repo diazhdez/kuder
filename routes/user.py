@@ -225,7 +225,10 @@ def results():
             respuestas_usuario = db.respuestas.find({'user_id': str(user_id)})
 
             # Inicializar el contador de carreras
-            carreras_count = {'TICS': 0, 'Gastronomía': 0, 'Mantenimiento Industrial': 0, 'Desarrollo de Negocios': 0}
+            carreras_count = {'TICS': 0,
+                              'Gastronomía': 0,
+                              'Mantenimiento Industrial': 0,
+                              'Desarrollo de Negocios': 0}
 
             # Iterar sobre todas las respuestas del usuario
             for respuesta in respuestas_usuario:
@@ -241,7 +244,7 @@ def results():
                            y=list(carreras_count.values()))]
 
             # Configurar el diseño del gráfico
-            layout = go.Layout(title='Carrera a postularse: ', 
+            layout = go.Layout(title='Carrera a postularse: ',
                                xaxis=dict(title='Carreras'),
                                yaxis=dict(title='Número de respuestas'))
 
