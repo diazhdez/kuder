@@ -218,6 +218,9 @@ def results():
         # Función para obtener datos del usuario desde MongoDB
         user = get_user(email)
         if user:
+            # Obtener el campo 'carrera' del usuario
+            carrera_usuario = user.get('carrera', 'Carrera no especificada')
+
             # Obtener el ID del usuario actual
             user_id = user['_id']
 
@@ -244,7 +247,7 @@ def results():
                            y=list(carreras_count.values()))]
 
             # Configurar el diseño del gráfico
-            layout = go.Layout(title='Carrera a postularse: ',
+            layout = go.Layout(title='Carrera a postularse: ' + carrera_usuario,  # Incorporar el campo carrera en el título
                                xaxis=dict(title='Carreras'),
                                yaxis=dict(title='Número de respuestas'))
 
