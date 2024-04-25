@@ -48,7 +48,9 @@
                     </div>
                 </div>
                 <div class="d-flex align-items-center mt-4">
-                    {% if not user.has_completed_survey %}
+                    {% if user.has_completed_survey %}
+                    <a class="btn btn-primary rounded-pill px-4 me-3" href="{{ url_for('user.results') }}">Resultados</a>
+                    {% else %}
                     <a class="btn btn-primary rounded-pill px-4 me-3" href="{{ url_for('user.test') }}">Empezar</a>
                     {% endif %}
                     {% if user.carrera %}
