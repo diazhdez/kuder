@@ -1,5 +1,15 @@
 {% extends "layout.html" %}
 
+{% block one %}
+<a href="{{ url_for('main.index') }}" class="navbar-brand p-0">
+    <h1 class="m-0"><i class="fa fa-search me-2"></i>UTA<span class="fs-5"> InvenTux</span></h1>
+</a>
+{% endblock %}
+
+{% block two %}
+<a href="{{ url_for('main.index') }}" class="nav-item nav-link">Inicio</a>
+{% endblock %}
+
 {% block content %}
 
 <head>
@@ -7,25 +17,6 @@
 </head>
 
 <body>
-    <div class="container-xxl position-relative p-0">
-        <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
-            <a href="{{ url_for('main.index') }}" class="navbar-brand p-0">
-                <h1 class="m-0"><i class="fa fa-search me-2"></i>UTA<span class="fs-5"> InvenTux</span></h1>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                <span class="fa fa-bars"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <div class="navbar-nav ms-auto py-0">
-                    <a href="{{ url_for('main.index') }}" class="nav-item nav-link">Inicio</a>
-                </div>
-            </div>
-        </nav>
-        <div class="container-xxl py-5 bg-primary hero-header">
-            <div class="col-12 text-center">
-            </div>
-        </div>
-    </div>
     <div class="contenedor mt-5">
         <section class="wrapper shadow">
             <div class="form signup">

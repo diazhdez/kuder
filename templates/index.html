@@ -1,41 +1,40 @@
 {% extends "layout.html" %}
 
-{% block content %}
-<div class="container-xxl position-relative p-0">
-    <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
-        <a href="{{ url_for('main.index') }}" class="navbar-brand p-0">
-            <h1 class="m-0"><i class="fa fa-search me-2"></i>UTA<span class="fs-5"> InvenTux</span></h1>
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-            <span class="fa fa-bars"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav ms-auto py-0">
-                <a href="{{ url_for('session.login') }}" class="nav-item nav-link">Iniciar Sesión</a>
-            </div>
+{% block one %}
+<a href="{{ url_for('main.index') }}" class="navbar-brand p-0">
+    <h1 class="m-0"><i class="fa fa-search me-2"></i>UTA<span class="fs-5"> InvenTux</span></h1>
+</a>
+{% endblock %}
+
+{% block two %}
+<a href="{{ url_for('session.login') }}" class="nav-item nav-link">Iniciar Sesión</a>
+{% endblock %}
+
+{% block three %}
+<div class="container mt-5 px-lg-5">
+    <div class="row g-5 py-5">
+        <div class="col-lg-6 text-center text-lg-start">
+            <h1 class="text-white mb-4 animated zoomIn">Inventario de Intereses Vocacionales InvenTux</h1>
+            <p class="text-white pb-3 animated zoomIn">Bienvenido a nuestra aplicación del Inventario de
+                intereses vocacionales.
+                Nuestra plataforma está diseñada para ayudarte a descubrir tus pasiones, habilidades y
+                aptitudes,
+                guiándote hacia carreras que se alineen perfectamente con tus intereses.</p>
+            <a href="{{ url_for('session.login') }}"
+                class="btn btn-light py-sm-3 px-sm-5 rounded-pill me-3 animated slideInLeft">Iniciar
+                Sesión</a>
+            <a href="{{ url_for('main.contact') }}"
+                class="btn btn-outline-light py-sm-3 px-sm-5 rounded-pill animated slideInRight">Contactanos</a>
         </div>
-    </nav>
-    <div class="container-xxl py-5 bg-primary hero-header">
-        <div class="container mt-5 px-lg-5">
-            <div class="row g-5 py-5">
-                <div class="col-lg-6 text-center text-lg-start">
-                    <h1 class="text-white mb-4 animated zoomIn">Inventario de Intereses Vocacionales InvenTux</h1>
-                    <p class="text-white pb-3 animated zoomIn">Bienvenido a nuestra aplicación del Inventario de intereses vocacionales.
-                        Nuestra plataforma está diseñada para ayudarte a descubrir tus pasiones, habilidades y aptitudes, 
-                        guiándote hacia carreras que se alineen perfectamente con tus intereses.</p>
-                    <a href="{{ url_for('session.login') }}"
-                        class="btn btn-light py-sm-3 px-sm-5 rounded-pill me-3 animated slideInLeft">Iniciar
-                        Sesión</a>
-                    <a href="{{ url_for('main.contact') }}"
-                        class="btn btn-outline-light py-sm-3 px-sm-5 rounded-pill animated slideInRight">Contactanos</a>
-                </div>
-                <div class="col-lg-6 text-center text-lg-start">
-                    <img class="img-fluid" src="{{ url_for('static', filename='img/hero.png') }}" alt="">
-                </div>
-            </div>
+        <div class="col-lg-6 text-center text-lg-start">
+            <img class="img-fluid wow zoomIn" data-wow-delay="0.2s"
+                src="{{ url_for('static', filename='img/hero.png') }}">
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block content %}
 <div class="container-xxl py-5">
     <div class="container px-lg-5">
         <div class="row g-5">
@@ -45,8 +44,8 @@
                     <h2 class="mt-2">Universidad Tecnológica de Acapulco</h2>
                 </div>
                 <p class="mb-4">La Universidad Tecnológica de Acapulco ofrece una variedad de programas educativos.
-                    Estos programas preparan a los estudiantes para carreras en campos como la industria alimentaria, 
-                    la tecnología, la manufactura y el emprendimiento, proporcionándoles las habilidades necesarias 
+                    Estos programas preparan a los estudiantes para carreras en campos como la industria alimentaria,
+                    la tecnología, la manufactura y el emprendimiento, proporcionándoles las habilidades necesarias
                     para tener éxito en un mundo laboral diverso y competitivo.</p>
                 <div class="row g-3">
                     <div class="col-sm-6">

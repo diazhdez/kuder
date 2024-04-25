@@ -41,6 +41,24 @@
                 <span class="sr-only">Loading...</span>
             </div>
         </div>
+        <div class="container-xxl position-relative p-0">
+            <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
+                {% block one %}{% endblock %}
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav ms-auto py-0">
+                        {% block two %}{% endblock %}
+                    </div>
+                </div>
+            </nav>
+            <div class="container-xxl py-5 bg-primary hero-header">
+                <div class="col-12 text-center">
+                    {% block three %}{% endblock %}
+                </div>
+            </div>
+        </div>
         {% block content %}{% endblock %}
         <div class="container-fluid bg-primary text-light footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
             <div class="container py-5 px-lg-5">
