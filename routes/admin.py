@@ -103,19 +103,19 @@ def register_admin():
                 admin = db['admin']
                 existing_admin = admin.find_one(
                     {'email': request.form['email']})
-                nombre = request.form['nombre']
+                name = request.form['name']
                 email = request.form['email']
                 password = request.form['password']
-                telefono = request.form['telefono']
+                phone = request.form['phone']
 
                 if existing_admin is None:
                     hashpass = bcrypt.hashpw(
                         password.encode('utf-8'), bcrypt.gensalt())
                     admin.insert_one({
-                        'nombre': nombre,
+                        'name': name,
                         'email': email,
                         'password': hashpass,
-                        'telefono': telefono
+                        'phone': phone
                     })
                     return redirect(url_for('admin.registro'))
 
