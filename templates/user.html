@@ -32,11 +32,11 @@
                     <h6 class="position-relative text-primary ps-4">Inicio</h6>
                     <h2 class="mt-2">¡Bienvenid@ {{ user.name }}!</h2>
                 </div>
-                <p class="mb-4">¡Hola y bienvenido a nuestra aplicación de pruebas de
-                    intereses vocacionales!
+                <p class="mb-4">¡Hola y bienvenido a nuestra aplicación basada en el Inventario de intereses
+                    vocacionales propuesto pot G. F. Kuder!
                     Esperamos que disfrutes haciendo el test y que encuentres los resultados útiles y reveladores.
-                    No dudes en explorar las herramientas y recursos que tenemos disponibles para ayudarte en tu
-                    viaje de exploración vocacional.</p>
+                    No dudes en explorar la herramienta que tenemos disponible para ayudarte en tu viaje de exploración
+                    vocacional.</p>
                 <div class="row g-3">
                     <div class="col-sm-6">
                         <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Gastronomía</h6>
@@ -49,7 +49,8 @@
                 </div>
                 <div class="d-flex align-items-center mt-4">
                     {% if user.has_completed_survey %}
-                    <a class="btn btn-primary rounded-pill px-4 me-3" href="{{ url_for('user.results') }}">Resultados</a>
+                    <a class="btn btn-primary rounded-pill px-4 me-3"
+                        href="{{ url_for('user.results') }}">Resultados</a>
                     {% else %}
                     <a class="btn btn-primary rounded-pill px-4 me-3" href="{{ url_for('user.test') }}">Empezar</a>
                     {% endif %}
