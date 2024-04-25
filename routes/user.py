@@ -21,6 +21,8 @@ def user():
         # Función para obtener datos del usuario desde MongoDB
         user = get_user(email)
         if user:
+            # Agregar una variable al contexto de la plantilla para indicar si el usuario ha completado algún test
+            user['has_completed_survey'] = user_has_completed_survey(user['_id'])
             return render_template('user.html', user=user)
     else:
         return redirect(url_for('session.login'))
@@ -86,7 +88,10 @@ def testNa():
         # Función para obtener datos del usuario desde MongoDB
         user = get_user(email)
         if user:
-            return render_template('testNa.html', user=user)
+            if user_has_completed_survey(user['_id']):
+                return redirect(url_for('user.results'))
+            else:
+                return render_template('testNa.html', user=user)
     else:
         return redirect(url_for('session.login'))
 
@@ -99,7 +104,10 @@ def testMix():
         # Función para obtener datos del usuario desde MongoDB
         user = get_user(email)
         if user:
-            return render_template('testMix.html', user=user)
+            if user_has_completed_survey(user['_id']):
+                return redirect(url_for('user.results'))
+            else:
+                return render_template('testMix.html', user=user)
     else:
         return redirect(url_for('session.login'))
 
@@ -112,7 +120,10 @@ def testTla():
         # Función para obtener datos del usuario desde MongoDB
         user = get_user(email)
         if user:
-            return render_template('testTla.html', user=user)
+            if user_has_completed_survey(user['_id']):
+                return redirect(url_for('user.results'))
+            else:
+                return render_template('testTla.html', user=user)
     else:
         return redirect(url_for('session.login'))
 
@@ -125,7 +136,10 @@ def testPor():
         # Función para obtener datos del usuario desde MongoDB
         user = get_user(email)
         if user:
-            return render_template('testPor.html', user=user)
+            if user_has_completed_survey(user['_id']):
+                return redirect(url_for('user.results'))
+            else:
+                return render_template('testPor.html', user=user)
     else:
         return redirect(url_for('session.login'))
 
@@ -138,7 +152,10 @@ def testFra():
         # Función para obtener datos del usuario desde MongoDB
         user = get_user(email)
         if user:
-            return render_template('testFra.html', user=user)
+            if user_has_completed_survey(user['_id']):
+                return redirect(url_for('user.results'))
+            else:
+                return render_template('testFra.html', user=user)
     else:
         return redirect(url_for('session.login'))
 
@@ -262,6 +279,9 @@ def results():
 
             # Convertir la figura a HTML
             graph_html = fig.to_html(full_html=False, include_plotlyjs='cdn')
+
+            # Agregar una variable al contexto de la plantilla para indicar si el usuario ha completado algún test
+            user['has_completed_survey'] = user_has_completed_survey(user['_id'])
 
             return render_template('results.html', graph=graph_html, user=user)
     else:

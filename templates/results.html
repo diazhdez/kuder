@@ -11,7 +11,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-0">
+                {% if not user.has_completed_survey %}
                 <a href="{{ url_for('user.test') }}" class="nav-item nav-link">Encuesta</a>
+                {% endif %}
                 <a href="{{ url_for('user.results') }}" class="nav-item nav-link">Resultados</a>
                 <a href="{{ url_for('session.logout') }}" class="nav-item nav-link">Cerrar Sesión</a>
             </div>
