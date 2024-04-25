@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, url_for, redirect, session, request
 
-from functions.functions import get_user
+from functions.functions import get_user, user_has_completed_survey
 
 import plotly.graph_objs as go
 
@@ -54,7 +54,10 @@ def test():
         # Función para obtener datos del usuario desde MongoDB
         user = get_user(email)
         if user:
-            return render_template('test.html', user=user)
+            if user_has_completed_survey(user['_id']):
+                return redirect(url_for('user.results'))
+            else:
+                return render_template('test.html', user=user)
     else:
         return redirect(url_for('session.login'))
 
@@ -67,7 +70,10 @@ def testEs():
         # Función para obtener datos del usuario desde MongoDB
         user = get_user(email)
         if user:
-            return render_template('testEs.html', user=user)
+            if user_has_completed_survey(user['_id']):
+                return redirect(url_for('user.results'))
+            else:
+                return render_template('testEs.html', user=user)
     else:
         return redirect(url_for('session.login'))
 
