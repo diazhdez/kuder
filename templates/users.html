@@ -15,6 +15,16 @@
 {% block content %}
 <div class="container-xxl py-5">
     <div class="container px-lg-5">
+        <form method="post" action="{{ url_for('admin.users') }}">
+            <div class="row g-2">
+                <div class="col-md-3 mb-3">
+                    <input type="text" class="form-control" placeholder="Buscar usuarios" name="search_query">
+                </div>
+                <div class="col mb-3">
+                    <button class="btn btn-primary">Buscar</button>
+                </div>
+            </div>
+        </form>
         <div class="row g-5">
             {% for user in users %}
             <div class="col-md-6 mb-3">
