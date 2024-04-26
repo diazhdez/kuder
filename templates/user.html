@@ -93,9 +93,7 @@
                                         </select>
                                         {% endif %}
                                     </div>
-                                    {% if user.carrera %}
-
-                                    {% else %}
+                                    {% if not user.carrera %}
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-primary">Actualizar</button>
                                     </div>
