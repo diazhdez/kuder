@@ -117,6 +117,7 @@ def register_admin():
                         'password': hashpass,
                         'phone': phone
                     })
+                    flash('Se registró el administrador correctamente')
                     return redirect(url_for('admin.registro'))
 
                 flash('El correo ya está en uso')

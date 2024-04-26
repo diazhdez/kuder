@@ -44,8 +44,8 @@ def iniciar():
         return redirect(url_for('user.user'))
 
     # Buscar en la colección de admin
-    login_admin = admin.find_one({'email': email, 'password': password})
-    if login_admin:
+    login_admin = admin.find_one({'email': email})
+    if login_admin and bcrypt.checkpw(password.encode('utf-8'), login_admin['password']):
         session['email'] = email
         return redirect(url_for('admin.admin'))
 
