@@ -8,14 +8,20 @@
 
 {% block two %}
 <a href="{{ url_for('admin.registro') }}" class="nav-item nav-link">Registro</a>
-<a href="{{ url_for('admin.users') }}" class="nav-item nav-link">Lista de Aspirantes</a>
+<div class="nav-item dropdown">
+    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Listas</a>
+    <div class="dropdown-menu m-0">
+        <a href="{{ url_for('admin.users') }}" class="dropdown-item">Aspirantes</a>
+        <a href="{{ url_for('admin.admins') }}" class="dropdown-item">Administradores</a>
+    </div>
+</div>
 <a href="{{ url_for('session.logout') }}" class="nav-item nav-link">Cerrar Sesión</a>
 {% endblock %}
 
 {% block content %}
 <div class="container mt-4 mb-5">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-8 wow fadeInUp" data-wow-delay="0.3s">
             <div class="card shadow">
                 <div class="card-header">
                     Registrar:
