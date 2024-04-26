@@ -129,13 +129,23 @@ def register_admin():
 
 
 # Ruta para visualizar los aspirantes
-@admin_routes.route('/admin/users/')
+@admin_routes.route('/admin/users/', methods=['POST', 'GET'])
 def users():
     if 'email' in session:
         email = session['email']
         admin = get_admin(email)
         if admin:
-            users = db['users'].find()
+            if request.method == 'POST':
+                search_query = request.form.get('search_query')
+                users = db['users'].find({
+                    '$or': [
+                        {'name': {'$regex': search_query, '$options': 'i'}},
+                        {'email': {'$regex': search_query, '$options': 'i'}},
+                        {'carrera': {'$regex': search_query, '$options': 'i'}}
+                    ]
+                })
+            else:
+                users = db['users'].find()
             return render_template('users.html', users=users)
         else:
             return redirect(url_for('session.login'))
