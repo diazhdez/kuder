@@ -23,50 +23,36 @@
     <div class="container px-lg-5">
         <div class="section-title position-relative text-center mb-5 pb-2 wow fadeInUp" data-wow-delay="0.1s">
             <h6 class="position-relative d-inline text-primary ps-4">Listas</h6>
-            <h2 class="mt-2">Aspirantes</h2>
+            <h2 class="mt-2">Administradores</h2>
         </div>
-        <form method="post" action="{{ url_for('admin.users') }}">
-            <div class="row g-2 wow fadeInUp" data-wow-delay="0.3s">
-                <div class="col-md-3 mb-3">
-                    <input type="text" class="form-control" placeholder="Buscar usuarios" name="search_query">
-                </div>
-                <div class="col mb-3">
-                    <button class="btn btn-primary">Buscar</button>
-                </div>
-            </div>
-        </form>
         <div class="row g-5">
-            {% for user in users %}
+            {% for admin in admins %}
             <div class="col-md-6 mb-3 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="text-center">{{ user.name }}</h5>
+                        <h5 class="text-center">{{ admin.name }}</h5>
                     </div>
                     <div class="card-body">
                         <form>
                             <div class="row">
                                 <div class="col">
-                                    <input type="hidden" class="form-control" value="{{ user._id }}" name="id" readonly>
-                                    <small>Ficha</small>
-                                    <input type="text" class="form-control" value="{{ user.email }}" readonly>
+                                    <input type="hidden" class="form-control" value="{{ admin._id }}" name="id" readonly>
+                                    <small>Correo</small>
+                                    <input type="text" class="form-control" value="{{ admin.email }}" readonly>
                                 </div>
                                 <div class="col">
-                                    <small>Hora de creación</small>
-                                    <input type="text" class="form-control" value="{{ user.datetime }}" readonly>
+                                    <small>Teléfono</small>
+                                    <input type="text" class="form-control" value="{{ admin.phone }}" readonly>
                                 </div>
                             </div>
                             <div class="row mt-3">
                                 <div class="col">
-                                    <small>Carrera a postularse</small>
-                                    <input type="text" class="form-control" value="{{ user.carrera }}" readonly>
-                                </div>
-                                <div class="col">
-
+                                    {% if not admin.sudo %}
+                                        <a href="{{ url_for('admin.delete_admin', admin_id=admin._id) }}"
+                                            class="btn btn-danger btn-delete mt-3">Eliminar</a>
+                                    {% endif %}
                                 </div>
                             </div>
-                            <button class="btn btn-primary mt-3">Resultados</button>
-                            <a href="{{ url_for('admin.delete_user', user_id=user._id) }}"
-                                class="btn btn-danger btn-delete mt-3">Eliminar</a>
                         </form>
                     </div>
                 </div>

@@ -33,7 +33,7 @@ def admin():
         # Función para obtener datos del usuario desde MongoDB
         admin = get_admin(email)
         if admin:
-            return render_template('admin.html')
+            return render_template('admin.html', admin=admin)
     else:
         return redirect(url_for('session.login'))
 
@@ -129,7 +129,7 @@ def register_admin():
 
 
 # Ruta para visualizar los aspirantes
-@admin_routes.route('/admin/users/', methods=['POST', 'GET'])
+@admin_routes.route('/admin/listas/users/', methods=['POST', 'GET'])
 def users():
     if 'email' in session:
         email = session['email']
@@ -159,6 +159,29 @@ def delete_user(user_id):
     users = db['users']
     users.delete_one({'_id': ObjectId(user_id)})
     return redirect(url_for('admin.users'))
+
+
+# Ruta para visualizar los administradores
+@admin_routes.route('/admin/listas/admins/')
+def admins():
+    if 'email' in session:
+        email = session['email']
+        admin = get_admin(email)
+        if admin:
+            admins = db['admin'].find()
+            return render_template('admins.html', admins=admins)
+        else:
+            return redirect(url_for('session.login'))
+    else:
+        return redirect(url_for('session.login'))
+    
+
+# Method DELETE
+@admin_routes.route('/delete/<string:admin_id>/')
+def delete_admin(admin_id):
+    admin = db['admin']
+    admin.delete_one({'_id': ObjectId(admin_id)})
+    return redirect(url_for('admin.admins'))
 
 
 # Función para enviar correo a empleados aceptados
