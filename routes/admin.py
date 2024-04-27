@@ -215,3 +215,18 @@ def enviar_mensaje_aceptado(empleado):
         print('Correo enviado correctamente a', destinatario)
     except Exception as e:
         print(f'Error al enviar el correo: {str(e)}')
+
+
+# Ruta para visualizar los correos
+@admin_routes.route('/admin/correos/')
+def correos():
+    if 'email' in session:
+        email = session['email']
+        admin = get_admin(email)
+        if admin:
+            correos = db['correos'].find()
+            return render_template('email.html', correos=correos)
+        else:
+            return redirect(url_for('session.login'))
+    else:
+        return redirect(url_for('session.login'))

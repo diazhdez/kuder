@@ -2,13 +2,27 @@ from flask import Blueprint, render_template, redirect, url_for, flash, request
 
 from functions.functions import enviar_correo_contacto
 
+import database.database as dbase
+
+db = dbase.dbConnection()
+
 main_routes = Blueprint('main', __name__)
 
 
 # Ruta principal
-@main_routes.route('/')
+@main_routes.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template('index.html')
+    if request.method == 'POST':
+        email = request.form.get('email')
+        if email:
+            correos = db['correos']
+            # Guardar el correo en MongoDB
+            correos.insert_one({'email': email})
+            return redirect(url_for('main.index'))
+        else:
+            return redirect(url_for('main.index'))
+    else:
+        return render_template('index.html')
 
 
 @main_routes.route('/contact/', methods=['GET', 'POST'])
