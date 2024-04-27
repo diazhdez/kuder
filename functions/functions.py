@@ -4,6 +4,8 @@ from email.mime.text import MIMEText
 
 import smtplib
 
+import os
+
 import database.database as dbase
 
 db = dbase.dbConnection()
@@ -28,9 +30,9 @@ def user_has_completed_survey(user_id):
 # Función para enviar correos
 def enviar_correo_contacto(name, subject, message):
     # Correo desde el que se enviarán los mensajes
-    email = 'contact.quarium@gmail.com'
+    email = os.environ.get('EMAIL')
     # Contraseña del correo
-    password = 'otjt nkts nczg qcxw'
+    password = os.environ.get('PASSWD')
 
     # Correo que recibirá los mensajes de contacto
     destinatario = 'natividadv617@gmail.com'
