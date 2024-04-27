@@ -8,13 +8,13 @@ from random import randint
 
 from bson import ObjectId
 
-import bcrypt
-
-import smtplib
-
 from email.mime.multipart import MIMEMultipart
 
 from email.mime.text import MIMEText
+
+import smtplib
+
+import bcrypt
 
 import os
 
