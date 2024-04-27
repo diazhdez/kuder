@@ -1,4 +1,6 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, redirect, url_for, flash, request
+
+from functions.functions import enviar_correo_contacto
 
 main_routes = Blueprint('main', __name__)
 
@@ -9,7 +11,21 @@ def index():
     return render_template('index.html')
 
 
-# Ruta de contacto
-@main_routes.route('/contact/')
+@main_routes.route('/contact/', methods=['GET', 'POST'])
 def contact():
-    return render_template('contact.html')
+    if request.method == 'POST':
+        name = request.form['name']
+        subject = request.form['subject']
+        message = request.form['message']
+        
+        # Enviar correo de contacto utilizando la función
+        exito = enviar_correo_contacto(name, subject, message)
+        
+        if exito:
+            flash('¡Mensaje enviado correctamente!', 'success')
+        else:
+            flash('Hubo un problema al enviar el mensaje. Por favor, inténtalo de nuevo más tarde.', 'error')
+        
+        return redirect(url_for('main.contact'))  # Redireccionar a la página de contacto
+    else:
+        return render_template('contact.html')
