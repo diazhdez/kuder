@@ -33,16 +33,17 @@
 			<div class="container">
 				<div class="card shadow">
 					<div class="card-body">
-						<form action="" method="POST">
+						<form action="/guardar/" method="POST">
+							<input type="hidden" name="user_id" value="{{ user._id }}">
 							<div class="container">
 								<div class="row">
 									<div class="col order-first text-center">
-										<h6 for="qusOne" class="text-black mb-4">
+										<h6 for="pregunta1" class="text-black mb-4">
 											Reactivo 1.
 										</h6>
 									</div>
 									<div class="col-sm-5 col-md-6">
-										<h6 for="qusOne" class="text-black mb-4">
+										<h6 for="pregunta1" class="text-black mb-4">
 											1° Me interesa aprender a reparar una computadora.
 											<br>
 											<br>
@@ -51,16 +52,16 @@
 									</div>
 									<div class="col-6 col-sm-3">
 										<div class="form-check">
-											<input class="form-check-input" type="radio" name="flexRadioDefault"
-												id="flexRadioDefault1">
-											<label class="form-check-label" for="flexRadioDefault1">
+											<input class="form-check-input" type="radio" name="pregunta1"
+												id="pregunta1" value="TICS" required>
+											<label class="form-check-label" for="pregunta1">
 												Opción uno
 											</label>
 										</div>
 										<div class="form-check">
-											<input class="form-check-input" type="radio" name="flexRadioDefault"
-												id="flexRadioDefault2" checked>
-											<label class="form-check-label" for="flexRadioDefault2">
+											<input class="form-check-input" type="radio" name="pregunta1"
+												id="pregunta1" value="Gastronomía" required>
+											<label class="form-check-label" for="pregunta1">
 												Opción dos
 											</label>
 										</div>
@@ -69,30 +70,30 @@
 								<hr>
 								<div class="row">
 									<div class="col order-first text-center">
-										<h6 for="qusOne" class="text-black mb-4">
+										<h6 for="pregunta2" class="text-black mb-4">
 											Reactivo 2.
 										</h6>
 									</div>
 									<div class="col-sm-5 col-md-6">
-										<h6 for="qusOne" class="text-black mb-4">
+										<h6 for="pregunta2" class="text-black mb-4">
 											1° Me interesa capacitarme para desarrollar aplicaciones móviles.
 											<br>
 											<br>
-											2° Me llama la atención aprender a reparar máquinas y equipos industriale.
+											2° Me llama la atención aprender a reparar máquinas y equipos industriales.
 										</h6>
 									</div>
 									<div class="col-6 col-sm-3">
 										<div class="form-check">
 											<input class="form-check-input" type="radio" name="pregunta2"
-												id="flexRadioDefault1">
-											<label class="form-check-label" for="flexRadioDefault1">
+												id="pregunta2" value="TICS" required>
+											<label class="form-check-label" for="pregunta2">
 												Opción uno
 											</label>
 										</div>
 										<div class="form-check">
 											<input class="form-check-input" type="radio" name="pregunta2"
-												id="flexRadioDefault2" checked>
-											<label class="form-check-label" for="flexRadioDefault2">
+												id="pregunta2" value="Mantenimiento Industrial" required>
+											<label class="form-check-label" for="pregunta2">
 												Opción dos
 											</label>
 										</div>
@@ -101,12 +102,12 @@
 								<hr>
 								<div class="row">
 									<div class="col order-first text-center">
-										<h6 for="qustwo" class="text-black mb-4">
+										<h6 for="pregunta3" class="text-black mb-4">
 											Reactivo 3.
 										</h6>
 									</div>
 									<div class="col-sm-5 col-md-6">
-										<h6 for="qustwo" class="text-black mb-4">
+										<h6 for="pregunta3" class="text-black mb-4">
 											1° Me interesa capacitarme para crear páginas web.
 											<br>
 											<br>
@@ -116,15 +117,15 @@
 									<div class="col-6 col-sm-3">
 										<div class="form-check">
 											<input class="form-check-input" type="radio" name="pregunta3"
-												id="flexRadioDefault1">
-											<label class="form-check-label" for="flexRadioDefault1">
+												id="pregunta3" value="TICS" required>
+											<label class="form-check-label" for="pregunta3">
 												Opción uno
 											</label>
 										</div>
 										<div class="form-check">
 											<input class="form-check-input" type="radio" name="pregunta3"
-												id="flexRadioDefault2" checked>
-											<label class="form-check-label" for="flexRadioDefault2">
+												id="pregunta3" value="Desarrollo de Negocios" required>
+											<label class="form-check-label" for="pregunta3">
 												Opción dos
 											</label>
 										</div>
@@ -133,12 +134,12 @@
 								<hr>
 								<div class="row">
 									<div class="col order-first text-center">
-										<h6 for="qustwo" class="text-black mb-4">
+										<h6 for="pregunta4" class="text-black mb-4">
 											Reactivo 4.
 										</h6>
 									</div>
 									<div class="col-sm-5 col-md-6">
-										<h6 for="qustwo" class="text-black mb-4">
+										<h6 for="pregunta4" class="text-black mb-4">
 											1° Me agrada cocinar.
 											<br>
 											<br>
@@ -148,15 +149,15 @@
 									<div class="col-6 col-sm-3">
 										<div class="form-check">
 											<input class="form-check-input" type="radio" name="pregunta4"
-												id="flexRadioDefault1">
-											<label class="form-check-label" for="flexRadioDefault1">
+												id="pregunta4" value="Gastronomía" required>
+											<label class="form-check-label" for="pregunta4">
 												Opción uno
 											</label>
 										</div>
 										<div class="form-check">
 											<input class="form-check-input" type="radio" name="pregunta4"
-												id="flexRadioDefault2" checked>
-											<label class="form-check-label" for="flexRadioDefault2">
+												id="pregunta4" value="TICS" required>
+											<label class="form-check-label" for="pregunta4">
 												Opción dos
 											</label>
 										</div>
@@ -165,12 +166,12 @@
 								<hr>
 								<div class="row">
 									<div class="col order-first text-center">
-										<h6 for="qustwo" class="text-black mb-4">
+										<h6 for="pregunta5" class="text-black mb-4">
 											Reactivo 5.
 										</h6>
 									</div>
 									<div class="col-sm-5 col-md-6">
-										<h6 for="qustwo" class="text-black mb-4">
+										<h6 for="pregunta5" class="text-black mb-4">
 											1° Me interesa saber sobre nutrición.
 											<br>
 											<br>
@@ -181,15 +182,15 @@
 									<div class="col-6 col-sm-3">
 										<div class="form-check">
 											<input class="form-check-input" type="radio" name="pregunta5"
-												id="flexRadioDefault1">
-											<label class="form-check-label" for="flexRadioDefault1">
+												id="pregunta5" Value="Gastronomía" required>
+											<label class="form-check-label" for="pregunta5">
 												Opción uno
 											</label>
 										</div>
 										<div class="form-check">
 											<input class="form-check-input" type="radio" name="pregunta5"
-												id="flexRadioDefault2" checked>
-											<label class="form-check-label" for="flexRadioDefault2">
+												id="pregunta5" Value="Mantenimiento Industrial" required>
+											<label class="form-check-label" for="pregunta5">
 												Opción dos
 											</label>
 										</div>
@@ -198,12 +199,12 @@
 								<hr>
 								<div class="row">
 									<div class="col order-first text-center">
-										<h6 for="qustwo" class="text-black mb-4">
+										<h6 for="pregunta6" class="text-black mb-4">
 											Reactivo 6.
 										</h6>
 									</div>
 									<div class="col-sm-5 col-md-6">
-										<h6 for="qustwo" class="text-black mb-4">
+										<h6 for="pregunta6" class="text-black mb-4">
 											1° Me agrada conocer nuevas técnicas culinarias.
 											<br>
 											<br>
@@ -214,15 +215,15 @@
 									<div class="col-6 col-sm-3">
 										<div class="form-check">
 											<input class="form-check-input" type="radio" name="pregunta6"
-												id="flexRadioDefault1">
-											<label class="form-check-label" for="flexRadioDefault1">
+												id="pregunta6" Value="Gastronomía" required>
+											<label class="form-check-label" for="pregunta6">
 												Opción uno
 											</label>
 										</div>
 										<div class="form-check">
 											<input class="form-check-input" type="radio" name="pregunta6"
-												id="flexRadioDefault2" checked>
-											<label class="form-check-label" for="flexRadioDefault2">
+												id="pregunta6" value="Desarrollo de Negocios" required>
+											<label class="form-check-label" for="pregunta6">
 												Opción dos
 											</label>
 										</div>
@@ -231,12 +232,12 @@
 								<hr>
 								<div class="row">
 									<div class="col order-first text-center">
-										<h6 for="qustwo" class="text-black mb-4">
+										<h6 for="pregunta7" class="text-black mb-4">
 											Reactivo 7.
 										</h6>
 									</div>
 									<div class="col-sm-5 col-md-6">
-										<h6 for="qustwo" class="text-black mb-4">
+										<h6 for="pregunta7" class="text-black mb-4">
 											1° Me llama la atención como hacer una instalación eléctrica.
 											<br>
 											<br>
@@ -246,15 +247,15 @@
 									<div class="col-6 col-sm-3">
 										<div class="form-check">
 											<input class="form-check-input" type="radio" name="pregunta7"
-												id="flexRadioDefault1">
-											<label class="form-check-label" for="flexRadioDefault1">
+												id="pregunta7" value="Mantenimiento Industrial" required>
+											<label class="form-check-label" for="pregunta7">
 												Opción uno
 											</label>
 										</div>
 										<div class="form-check">
 											<input class="form-check-input" type="radio" name="pregunta7"
-												id="flexRadioDefault2" checked>
-											<label class="form-check-label" for="flexRadioDefault2">
+												id="pregunta7" value="TICS" required>
+											<label class="form-check-label" for="pregunta7">
 												Opción dos
 											</label>
 										</div>
@@ -263,12 +264,12 @@
 								<hr>
 								<div class="row">
 									<div class="col order-first text-center">
-										<h6 for="qustwo" class="text-black mb-4">
+										<h6 for="pregunta8" class="text-black mb-4">
 											Reactivo 8.
 										</h6>
 									</div>
 									<div class="col-sm-5 col-md-6">
-										<h6 for="qustwo" class="text-black mb-4">
+										<h6 for="pregunta8" class="text-black mb-4">
 											1° Me llama la atención el uso de equipos de medición de electricidad
 											(multímetro, amperímetro,
 											etc.).
@@ -280,15 +281,15 @@
 									<div class="col-6 col-sm-3">
 										<div class="form-check">
 											<input class="form-check-input" type="radio" name="pregunta8"
-												id="flexRadioDefault1">
-											<label class="form-check-label" for="flexRadioDefault1">
+												id="pregunta8" value="Mantenimiento Industrial" required>
+											<label class="form-check-label" for="pregunta8">
 												Opción uno
 											</label>
 										</div>
 										<div class="form-check">
 											<input class="form-check-input" type="radio" name="pregunta8"
-												id="flexRadioDefault2" checked>
-											<label class="form-check-label" for="flexRadioDefault2">
+												id="pregunta8" value="Gastronomía" required>
+											<label class="form-check-label" for="pregunta8">
 												Opción dos
 											</label>
 										</div>
@@ -297,12 +298,12 @@
 								<hr>
 								<div class="row">
 									<div class="col order-first text-center">
-										<h6 for="qustwo" class="text-black mb-4">
+										<h6 for="pregunta9" class="text-black mb-4">
 											Reactivo 9.
 										</h6>
 									</div>
 									<div class="col-sm-5 col-md-6">
-										<h6 for="qustwo" class="text-black mb-4">
+										<h6 for="pregunta9" class="text-black mb-4">
 											1° Me gusta el área Industrial.
 											<br>
 											<br>
@@ -313,15 +314,15 @@
 									<div class="col-6 col-sm-3">
 										<div class="form-check">
 											<input class="form-check-input" type="radio" name="pregunta9"
-												id="flexRadioDefault1">
-											<label class="form-check-label" for="flexRadioDefault1">
+												id="pregunta9" value="Mantenimiento Industrial" required>
+											<label class="form-check-label" for="pregunta9">
 												Opción uno
 											</label>
 										</div>
 										<div class="form-check">
 											<input class="form-check-input" type="radio" name="pregunta9"
-												id="flexRadioDefault2" checked>
-											<label class="form-check-label" for="flexRadioDefault2">
+												id="pregunta9" value="Desarrollo de Negocios" required>
+											<label class="form-check-label" for="pregunta9">
 												Opción dos
 											</label>
 										</div>
@@ -330,12 +331,12 @@
 								<hr>
 								<div class="row">
 									<div class="col order-first text-center">
-										<h6 for="qustwo" class="text-black mb-4">
+										<h6 for="pregunta10" class="text-black mb-4">
 											Reactivo 10.
 										</h6>
 									</div>
 									<div class="col-sm-5 col-md-6">
-										<h6 for="qustwo" class="text-black mb-4">
+										<h6 for="pregunta10" class="text-black mb-4">
 											1° Me llama la atención las técnicas que las empresas utilizan para que las
 											personas compren sus
 											productos o servicios.
@@ -348,15 +349,15 @@
 									<div class="col-6 col-sm-3">
 										<div class="form-check">
 											<input class="form-check-input" type="radio" name="pregunta10"
-												id="flexRadioDefault1">
-											<label class="form-check-label" for="flexRadioDefault1">
+												id="pregunta10" value="Desarrollo de Negocios" required>
+											<label class="form-check-label" for="pregunta10">
 												Opción uno
 											</label>
 										</div>
 										<div class="form-check">
 											<input class="form-check-input" type="radio" name="pregunta10"
-												id="flexRadioDefault2" checked>
-											<label class="form-check-label" for="flexRadioDefault2">
+												id="pregunta10" value="TICS" required>
+											<label class="form-check-label" for="pregunta10">
 												Opción dos
 											</label>
 										</div>
@@ -365,14 +366,14 @@
 								<hr>
 								<div class="row">
 									<div class="col order-first text-center">
-										<h6 for="qustwo" class="text-black mb-4">
+										<h6 for="pregunta11" class="text-black mb-4">
 											Reactivo 11.
 										</h6>
 									</div>
 									<div class="col-sm-5 col-md-6">
-										<h6 for="qustwo" class="text-black mb-4">
+										<h6 for="pregunta11" class="text-black mb-4">
 											1° Me llama la atención la creación y producción de comerciales
-											publicitarios. .
+											publicitarios.
 											<br>
 											<br>
 											2° Me llama la atención la elaboración de pasteles.
@@ -381,15 +382,15 @@
 									<div class="col-6 col-sm-3">
 										<div class="form-check">
 											<input class="form-check-input" type="radio" name="pregunta11"
-												id="flexRadioDefault1">
-											<label class="form-check-label" for="flexRadioDefault1">
+												id="pregunta11" value="Desarrollo de Negocios" required>
+											<label class="form-check-label" for="pregunta11">
 												Opción uno
 											</label>
 										</div>
 										<div class="form-check">
 											<input class="form-check-input" type="radio" name="pregunta11"
-												id="flexRadioDefault2" checked>
-											<label class="form-check-label" for="flexRadioDefault2">
+												id="pregunta11" value="Gastronomía" required>
+											<label class="form-check-label" for="pregunta11">
 												Opción dos
 											</label>
 										</div>
@@ -398,12 +399,12 @@
 								<hr>
 								<div class="row">
 									<div class="col order-first text-center">
-										<h6 for="qustwo" class="text-black mb-4">
+										<h6 for="pregunta12" class="text-black mb-4">
 											Reactivo 12.
 										</h6>
 									</div>
 									<div class="col-sm-5 col-md-6">
-										<h6 for="qustwo" class="text-black mb-4">
+										<h6 for="pregunta12" class="text-black mb-4">
 											1° Me llama la atención la forma en que las empresas realizan sus ventas en
 											línea.
 											<br>
@@ -414,15 +415,15 @@
 									<div class="col-6 col-sm-3">
 										<div class="form-check">
 											<input class="form-check-input" type="radio" name="pregunta12"
-												id="flexRadioDefault1">
-											<label class="form-check-label" for="flexRadioDefault1">
+												id="pregunta11" value="Desarrollo de Negocios" required>
+											<label class="form-check-label" for="pregunta11" value="mantenimiento">
 												Opción uno
 											</label>
 										</div>
 										<div class="form-check">
 											<input class="form-check-input" type="radio" name="pregunta12"
-												id="flexRadioDefault2" checked>
-											<label class="form-check-label" for="flexRadioDefault2">
+												id="pregunta12" value="Mantenimiento Industrial" required>
+											<label class="form-check-label" for="pregunta12">
 												Opción dos
 											</label>
 										</div>
@@ -431,12 +432,12 @@
 								<hr>
 								<div class="row">
 									<div class="col order-first text-center">
-										<h6 for="qustwo" class="text-black mb-4">
+										<h6 for="pregunta13" class="text-black mb-4">
 											Reactivo 13.
 										</h6>
 									</div>
 									<div class="col-sm-5 col-md-6">
-										<h6 for="qustwo" class="text-black mb-4">
+										<h6 for="pregunta13" class="text-black mb-4">
 											1° Me llama la atención realizar programas de computadoras en distintos
 											lenguajes.
 											<br>
@@ -447,15 +448,15 @@
 									<div class="col-6 col-sm-3">
 										<div class="form-check">
 											<input class="form-check-input" type="radio" name="pregunta13"
-												id="flexRadioDefault1">
-											<label class="form-check-label" for="flexRadioDefault1">
+												id="pregunta13" value="TICS" required>
+											<label class="form-check-label" for="pregunta13">
 												Opción uno
 											</label>
 										</div>
 										<div class="form-check">
 											<input class="form-check-input" type="radio" name="pregunta13"
-												id="flexRadioDefault2" checked>
-											<label class="form-check-label" for="flexRadioDefault2">
+												id="pregunta13" value="Gastronomía" required>
+											<label class="form-check-label" for="pregunta13">
 												Opción dos
 											</label>
 										</div>
@@ -464,12 +465,12 @@
 								<hr>
 								<div class="row">
 									<div class="col order-first text-center">
-										<h6 for="qustwo" class="text-black mb-4">
+										<h6 for="pregunta14" class="text-black mb-4">
 											Reactivo 14.
 										</h6>
 									</div>
 									<div class="col-sm-5 col-md-6">
-										<h6 for="qustwo" class="text-black mb-4">
+										<h6 for="pregunta14" class="text-black mb-4">
 											1° Me llama la atención como dos dispositivos móviles se conectan entre si.
 											<br>
 											<br>
@@ -480,15 +481,15 @@
 									<div class="col-6 col-sm-3">
 										<div class="form-check">
 											<input class="form-check-input" type="radio" name="pregunta14"
-												id="flexRadioDefault1">
-											<label class="form-check-label" for="flexRadioDefault1">
+												id="pregunta14" value="TICS" required>
+											<label class="form-check-label" for="pregunta14">
 												Opción uno
 											</label>
 										</div>
 										<div class="form-check">
 											<input class="form-check-input" type="radio" name="pregunta14"
-												id="flexRadioDefault2" checked>
-											<label class="form-check-label" for="flexRadioDefault2">
+												id="pregunta14" value="Mantenimiento Industrial" required>
+											<label class="form-check-label" for="pregunta14">
 												Opción dos
 											</label>
 										</div>
@@ -497,12 +498,12 @@
 								<hr>
 								<div class="row">
 									<div class="col order-first text-center">
-										<h6 for="qustwo" class="text-black mb-4">
+										<h6 for="pregunta15" class="text-black mb-4">
 											Reactivo 15.
 										</h6>
 									</div>
 									<div class="col-sm-5 col-md-6">
-										<h6 for="qustwo" class="text-black mb-4">
+										<h6 for="pregunta15" class="text-black mb-4">
 											1° Me agradar aprender a darle mantenimiento a una computadora.
 											<br>
 											<br>
@@ -513,15 +514,15 @@
 									<div class="col-6 col-sm-3">
 										<div class="form-check">
 											<input class="form-check-input" type="radio" name="pregunta15"
-												id="flexRadioDefault1">
-											<label class="form-check-label" for="flexRadioDefault1">
+												id="pregunta15" value="TICS" required>
+											<label class="form-check-label" for="pregunta15">
 												Opción uno
 											</label>
 										</div>
 										<div class="form-check">
 											<input class="form-check-input" type="radio" name="pregunta15"
-												id="flexRadioDefault2" checked>
-											<label class="form-check-label" for="flexRadioDefault2">
+												id="pregunta15" value="Desarrollo de Negocios" required>
+											<label class="form-check-label" for="pregunta15">
 												Opción dos
 											</label>
 										</div>
@@ -530,12 +531,12 @@
 								<hr>
 								<div class="row">
 									<div class="col order-first text-center">
-										<h6 for="qustwo" class="text-black mb-4">
+										<h6 for="pregunta16" class="text-black mb-4">
 											Reactivo 16.
 										</h6>
 									</div>
 									<div class="col-sm-5 col-md-6">
-										<h6 for="qustwo" class="text-black mb-4">
+										<h6 for="pregunta16" class="text-black mb-4">
 											1° Me llama la atención la forma en que se elabora un buen vino.
 											<br>
 											<br>
@@ -545,15 +546,15 @@
 									<div class="col-6 col-sm-3">
 										<div class="form-check">
 											<input class="form-check-input" type="radio" name="pregunta16"
-												id="flexRadioDefault1">
-											<label class="form-check-label" for="flexRadioDefault1">
+												id="pregunta16" value="Gastronomía" required>
+											<label class="form-check-label" for="pregunta16">
 												Opción uno
 											</label>
 										</div>
 										<div class="form-check">
 											<input class="form-check-input" type="radio" name="pregunta16"
-												id="flexRadioDefault2" checked>
-											<label class="form-check-label" for="flexRadioDefault2">
+												id="pregunta16" value="TICS" required>
+											<label class="form-check-label" for="pregunta16">
 												Opción dos
 											</label>
 										</div>
@@ -562,12 +563,12 @@
 								<hr>
 								<div class="row">
 									<div class="col order-first text-center">
-										<h6 for="qustwo" class="text-black mb-4">
+										<h6 for="pregunta17" class="text-black mb-4">
 											Reactivo 17.
 										</h6>
 									</div>
 									<div class="col-sm-5 col-md-6">
-										<h6 for="qustwo" class="text-black mb-4">
+										<h6 for="pregunta17" class="text-black mb-4">
 											1° Me llama la atención ser el organizador de algún evento gastronómico.
 											<br>
 											<br>
@@ -577,15 +578,15 @@
 									<div class="col-6 col-sm-3">
 										<div class="form-check">
 											<input class="form-check-input" type="radio" name="pregunta17"
-												id="flexRadioDefault1">
-											<label class="form-check-label" for="flexRadioDefault1">
+												id="pregunta17" value="Gastronomía" required>
+											<label class="form-check-label" for="pregunta17">
 												Opción uno
 											</label>
 										</div>
 										<div class="form-check">
 											<input class="form-check-input" type="radio" name="pregunta17"
-												id="flexRadioDefault2" checked>
-											<label class="form-check-label" for="flexRadioDefault2">
+												id="pregunta17" value="Mantenimiento Industrial" required>
+											<label class="form-check-label" for="pregunta17">
 												Opción dos
 											</label>
 										</div>
@@ -594,12 +595,12 @@
 								<hr>
 								<div class="row">
 									<div class="col order-first text-center">
-										<h6 for="qustwo" class="text-black mb-4">
+										<h6 for="pregunta18" class="text-black mb-4">
 											Reactivo 18.
 										</h6>
 									</div>
 									<div class="col-sm-5 col-md-6">
-										<h6 for="qustwo" class="text-black mb-4">
+										<h6 for="pregunta18" class="text-black mb-4">
 											1° Me llama la atención la elaboración de repostería.
 											<br>
 											<br>
@@ -611,15 +612,15 @@
 									<div class="col-6 col-sm-3">
 										<div class="form-check">
 											<input class="form-check-input" type="radio" name="pregunta18"
-												id="flexRadioDefault1">
-											<label class="form-check-label" for="flexRadioDefault1">
+												id="pregunta18" value="Gastronomía" required>
+											<label class="form-check-label" for="pregunta18">
 												Opción uno
 											</label>
 										</div>
 										<div class="form-check">
 											<input class="form-check-input" type="radio" name="pregunta18"
-												id="flexRadioDefault2" checked>
-											<label class="form-check-label" for="flexRadioDefault2">
+												id="pregunta18" value="Desarrollo de Negocios" required>
+											<label class="form-check-label" for="pregunta18">
 												Opción dos
 											</label>
 										</div>
@@ -628,12 +629,12 @@
 								<hr>
 								<div class="row">
 									<div class="col order-first text-center">
-										<h6 for="qustwo" class="text-black mb-4">
+										<h6 for="pregunta19" class="text-black mb-4">
 											Reactivo 19.
 										</h6>
 									</div>
 									<div class="col-sm-5 col-md-6">
-										<h6 for="qustwo" class="text-black mb-4">
+										<h6 for="pregunta19" class="text-black mb-4">
 											1° Me gusta la reparación de aparatos electrodomésticos (refrigeradores,
 											televisiones, aires
 											acondicionados, etc).
@@ -646,15 +647,15 @@
 									<div class="col-6 col-sm-3">
 										<div class="form-check">
 											<input class="form-check-input" type="radio" name="pregunta19"
-												id="flexRadioDefault1">
-											<label class="form-check-label" for="flexRadioDefault1">
+												id="pregunta19" value="Mantenimiento de Negocios" required>
+											<label class="form-check-label" for="pregunta19">
 												Opción uno
 											</label>
 										</div>
 										<div class="form-check">
 											<input class="form-check-input" type="radio" name="pregunta19"
-												id="flexRadioDefault2" checked>
-											<label class="form-check-label" for="flexRadioDefault2">
+												id="pregunta19" value="TICS" required>
+											<label class="form-check-label" for="pregunta19">
 												Opción dos
 											</label>
 										</div>
@@ -663,12 +664,12 @@
 								<hr>
 								<div class="row">
 									<div class="col order-first text-center">
-										<h6 for="qustwo" class="text-black mb-4">
+										<h6 for="pregunta20" class="text-black mb-4">
 											Reactivo 20.
 										</h6>
 									</div>
 									<div class="col-sm-5 col-md-6">
-										<h6 for="qustwo" class="text-black mb-4">
+										<h6 for="pregunta20" class="text-black mb-4">
 											1° Me llama la atención la electrónica.
 											<br>
 											<br>
@@ -678,15 +679,15 @@
 									<div class="col-6 col-sm-3">
 										<div class="form-check">
 											<input class="form-check-input" type="radio" name="pregunta20"
-												id="flexRadioDefault1">
-											<label class="form-check-label" for="flexRadioDefault1">
+												id="pregunta20" value="Mantenimiento Industrial" required>
+											<label class="form-check-label" for="pregunta20">
 												Opción uno
 											</label>
 										</div>
 										<div class="form-check">
 											<input class="form-check-input" type="radio" name="pregunta20"
-												id="flexRadioDefault2" checked>
-											<label class="form-check-label" for="flexRadioDefault2">
+												id="pregunta20" value="Gastronomía" required>
+											<label class="form-check-label" for="pregunta20">
 												Opción dos
 											</label>
 										</div>
@@ -695,12 +696,12 @@
 								<hr>
 								<div class="row">
 									<div class="col order-first text-center">
-										<h6 for="qustwo" class="text-black mb-4">
+										<h6 for="pregunta21" class="text-black mb-4">
 											Reactivo 21.
 										</h6>
 									</div>
 									<div class="col-sm-5 col-md-6">
-										<h6 for="qustwo" class="text-black mb-4">
+										<h6 for="pregunta21" class="text-black mb-4">
 											1° Me llama la atención los equipos de seguridad industrial.
 											<br>
 											<br>
@@ -712,15 +713,15 @@
 									<div class="col-6 col-sm-3">
 										<div class="form-check">
 											<input class="form-check-input" type="radio" name="pregunta21"
-												id="flexRadioDefault1">
-											<label class="form-check-label" for="flexRadioDefault1">
+												id="pregunta21" value="Mantenimiento Industrial" required>
+											<label class="form-check-label" for="pregunta21">
 												Opción uno
 											</label>
 										</div>
 										<div class="form-check">
 											<input class="form-check-input" type="radio" name="pregunta21"
-												id="flexRadioDefault2" checked>
-											<label class="form-check-label" for="flexRadioDefault2">
+												id="pregunta21" value="Desarrollo de Negocios" required>
+											<label class="form-check-label" for="pregunta21">
 												Opción dos
 											</label>
 										</div>
@@ -729,12 +730,12 @@
 								<hr>
 								<div class="row">
 									<div class="col order-first text-center">
-										<h6 for="qustwo" class="text-black mb-4">
+										<h6 for="pregunta22" class="text-black mb-4">
 											Reactivo 22.
 										</h6>
 									</div>
 									<div class="col-sm-5 col-md-6">
-										<h6 for="qustwo" class="text-black mb-4">
+										<h6 for="pregunta22" class="text-black mb-4">
 											1° Me llama la atención las estrategias que las empresas usan para fijar el
 											precio a sus productos
 											y/o servicios.
@@ -748,15 +749,15 @@
 									<div class="col-6 col-sm-3">
 										<div class="form-check">
 											<input class="form-check-input" type="radio" name="pregunta22"
-												id="flexRadioDefault1">
-											<label class="form-check-label" for="flexRadioDefault1">
+												id="pregunta22" value="Desarrollo de Negocios" required>
+											<label class="form-check-label" for="pregunta22">
 												Opción uno
 											</label>
 										</div>
 										<div class="form-check">
 											<input class="form-check-input" type="radio" name="pregunta22"
-												id="flexRadioDefault2" checked>
-											<label class="form-check-label" for="flexRadioDefault2">
+												id="pregunta22" value="TICS" required>
+											<label class="form-check-label" for="pregunta22">
 												Opción dos
 											</label>
 										</div>
@@ -765,12 +766,12 @@
 								<hr>
 								<div class="row">
 									<div class="col order-first text-center">
-										<h6 for="qustwo" class="text-black mb-4">
+										<h6 for="pregunta23" class="text-black mb-4">
 											Reactivo 23.
 										</h6>
 									</div>
 									<div class="col-sm-5 col-md-6">
-										<h6 for="qustwo" class="text-black mb-4">
+										<h6 for="pregunta23" class="text-black mb-4">
 											1° Me llama la atención conocer como las empresas seleccionan a sus tipos de
 											clientes.
 											<br>
@@ -781,15 +782,15 @@
 									<div class="col-6 col-sm-3">
 										<div class="form-check">
 											<input class="form-check-input" type="radio" name="pregunta23"
-												id="flexRadioDefault1">
-											<label class="form-check-label" for="flexRadioDefault1">
+												id="pregunta23" value="Desarrollo de Negocios" required>
+											<label class="form-check-label" for="pregunta23">
 												Opción uno
 											</label>
 										</div>
 										<div class="form-check">
 											<input class="form-check-input" type="radio" name="pregunta23"
-												id="flexRadioDefault2" checked>
-											<label class="form-check-label" for="flexRadioDefault2">
+												id="pregunta23" value="Gastronomía" required>
+											<label class="form-check-label" for="pregunta23">
 												Opción dos
 											</label>
 										</div>
@@ -798,12 +799,12 @@
 								<hr>
 								<div class="row">
 									<div class="col order-first text-center">
-										<h6 for="qustwo" class="text-black mb-4">
+										<h6 for="pregunta24" class="text-black mb-4">
 											Reactivo 24.
 										</h6>
 									</div>
 									<div class="col-sm-5 col-md-6">
-										<h6 for="qustwo" class="text-black mb-4">
+										<h6 for="pregunta24" class="text-black mb-4">
 											1° Me gustan las finanzas.
 											<br>
 											<br>
@@ -814,19 +815,23 @@
 									<div class="col-6 col-sm-3">
 										<div class="form-check">
 											<input class="form-check-input" type="radio" name="pregunta24"
-												id="flexRadioDefault1">
-											<label class="form-check-label" for="flexRadioDefault1">
+												id="pregunta24" value="Desarrollo de Negocios" required>
+											<label class="form-check-label" for="pregunta24">
 												Opción uno
 											</label>
 										</div>
 										<div class="form-check">
 											<input class="form-check-input" type="radio" name="pregunta24"
-												id="flexRadioDefault2" checked>
-											<label class="form-check-label" for="flexRadioDefault2">
+												id="pregunta24" value="Mantenimiento Industrial" required>
+											<label class="form-check-label" for="pregunta24">
 												Opción dos
 											</label>
 										</div>
 									</div>
+								</div>
+								<hr>
+								<div class="col-12">
+									<button class="btn btn-primary w-100 py-3">Enviar Respuestas</button>
 								</div>
 							</div>
 						</form>

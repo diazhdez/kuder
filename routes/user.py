@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, url_for, redirect, session, request
+from flask import Blueprint, render_template, url_for, redirect, session, request, send_file
 
 from functions.functions import get_user, user_has_completed_survey
 
@@ -7,6 +7,8 @@ import plotly.graph_objs as go
 from bson import ObjectId
 
 import database.database as dbase
+
+import plotly.io as pio
 
 db = dbase.dbConnection()
 
@@ -286,3 +288,54 @@ def results():
             return render_template('results.html', graph=graph_html, user=user)
     else:
         return redirect(url_for('session.login'))
+    
+@user_routes.route('/results/pdf')
+def download_pdf():
+    if 'email' in session:
+        email = session['email']
+        # Obtener datos del usuario desde MongoDB
+        user = get_user(email)
+        if user:
+            # Obtener el campo 'carrera' del usuario
+            carrera_usuario = user.get('carrera', 'Carrera no especificada')
+
+            # Obtener el ID del usuario actual
+            user_id = user['_id']
+
+            # Obtener todas las respuestas del usuario actual desde la base de datos
+            respuestas_usuario = db.respuestas.find({'user_id': str(user_id)})
+
+            # Inicializar el contador de carreras
+            carreras_count = {'TICS': 0,
+                              'Gastronomía': 0,
+                              'Mantenimiento Industrial': 0,
+                              'Desarrollo de Negocios': 0}
+
+            # Iterar sobre todas las respuestas del usuario
+            for respuesta in respuestas_usuario:
+                # Iterar sobre las preguntas en cada respuesta
+                for pregunta, carrera in respuesta.items():
+                    # Verificar si la respuesta corresponde a una carrera
+                    if pregunta.startswith('pregunta_') and carrera in carreras_count:
+                        # Incrementar el contador de la carrera correspondiente
+                        carreras_count[carrera] += 1
+
+            # Crear el gráfico de barras con Plotly
+            data = [go.Bar(x=list(carreras_count.keys()),
+                           y=list(carreras_count.values()))]
+
+            # Configurar el diseño del gráfico
+            layout = go.Layout(title='Carrera a postularse: ' + carrera_usuario,  # Incorporar el campo carrera en el título
+                               xaxis=dict(title='Carreras'),
+                               yaxis=dict(title='Número de respuestas'))
+
+            # Crear la figura
+            fig = go.Figure(data=data, layout=layout)
+
+            # Guardar la figura como PDF temporalmente
+            temp_pdf_path = "temp_graph.pdf"
+            pio.write_image(fig, temp_pdf_path, format="pdf")
+
+            # Enviar el archivo PDF al usuario para su descarga
+            return send_file(temp_pdf_path, as_attachment=True)
+    return redirect(url_for('session.login'))
