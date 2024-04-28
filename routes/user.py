@@ -6,9 +6,9 @@ import plotly.graph_objs as go
 
 from bson import ObjectId
 
-import database.database as dbase
-
 import plotly.io as pio
+
+import database.database as dbase
 
 db = dbase.dbConnection()
 
@@ -333,7 +333,7 @@ def download_pdf():
             fig = go.Figure(data=data, layout=layout)
 
             # Guardar la figura como PDF temporalmente
-            temp_pdf_path = "temp_graph.pdf"
+            temp_pdf_path = "resultados.pdf"
             pio.write_image(fig, temp_pdf_path, format="pdf")
 
             # Enviar el archivo PDF al usuario para su descarga
