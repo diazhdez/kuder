@@ -27,6 +27,13 @@ def user_has_completed_survey(user_id):
     return respuestas.find_one({'user_id': str(user_id)}) is not None
 
 
+# Función para verificar si el usuario ha completado el formulario de HubSpot
+def user_has_completed_hubspot_form(user_id):
+    # Supongamos que 'hubspot_responses' es la colección donde se almacenan las respuestas de HubSpot
+    hubspot_responses = db['hubspot_responses']
+    return hubspot_responses.find_one({'user_id': str(user_id)}) is not None
+
+
 # Función para enviar correos
 def enviar_correo_contacto(name, subject, message):
     # Correo desde el que se enviarán los mensajes

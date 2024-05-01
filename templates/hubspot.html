@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+
+{% block one %}
+<a href="{{ url_for('user.user') }}" class="navbar-brand p-0">
+    <h1 class="m-0"><i class="fa fa-search me-2"></i>Kuder<span class="fs-5"></span></h1>
+</a>
+{% endblock %}
+
+{% block two %}
+{% if not user.has_completed_survey %}
+<a href="{{ url_for('user.hubspot') }}" class="nav-item nav-link">Test</a>
+{% endif %}
+<a href="{{ url_for('user.results') }}" class="nav-item nav-link">Resultados</a>
+<a href="{{ url_for('session.logout') }}" class="nav-item nav-link">Cerrar Sesión</a>
+{% endblock %}
+
+{% block content %}
+<div class="container-xxl py-5">
+    <div class="container px-lg-5">
+        <div class="section-title position-relative text-center pb-2 wow fadeInUp" data-wow-delay="0.1s">
+            <h6 class="position-relative d-inline text-primary ps-4">Formulario</h6>
+            <h2 class="mt-2">¡Ingresa tus datos!</h2>
+        </div>
+        <div class="row g-5 mt-2">
+            <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
+            <script>
+                hbspt.forms.create({
+                    region: "na1",
+                    portalId: "45910466",
+                    formId: "82555417-a2c7-41d9-a6ed-21613d47aacc",
+                    onFormSubmit: function ($form) {
+                        // Capturar los datos del formulario
+                        var formData = {};
+                        $form.find("input, textarea, select").each(function (index, element) {
+                            formData[element.name] = $(element).val();
+                        });
+
+                        // Agregar el ID del usuario al objeto formData (asegúrate de que user_id esté disponible)
+                        formData['user_id'] = user_id; // Debes asegurarte de que user_id esté disponible en este contexto
+
+                        // Enviar los datos al servidor
+                        fetch('/save_hubspot_data', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(formData)
+                        }).then(function (response) {
+                            // Redirigir al usuario a la ruta '/test/' después de enviar el formulario
+                            window.location.href = '/test/';
+                        }).catch(function (error) {
+                            console.error('Error:', error);
+                        });
+                    }
+                });
+            </script>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block first_block %}
+<a class="btn btn-link" href="{{ url_for('user.user') }}">Inicio</a>
+<a class="btn btn-link" href="{{ url_for('main.contact') }}">Contacto</a>
+{% endblock %}
+
+{% block second_block %}
+<a href="{{ url_for('user.user') }}">Inicio</a>
+{% endblock %}
