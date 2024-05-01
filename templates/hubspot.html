@@ -29,28 +29,8 @@
                     portalId: "45910466",
                     formId: "82555417-a2c7-41d9-a6ed-21613d47aacc",
                     onFormSubmit: function ($form) {
-                        // Capturar los datos del formulario
-                        var formData = {};
-                        $form.find("input, textarea, select").each(function (index, element) {
-                            formData[element.name] = $(element).val();
-                        });
-
-                        // Agregar el ID del usuario al objeto formData (asegúrate de que user_id esté disponible)
-                        formData['user_id'] = user_id; // Debes asegurarte de que user_id esté disponible en este contexto
-
-                        // Enviar los datos al servidor
-                        fetch('/save_hubspot_data', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify(formData)
-                        }).then(function (response) {
-                            // Redirigir al usuario a la ruta '/test/' después de enviar el formulario
-                            window.location.href = '/test/';
-                        }).catch(function (error) {
-                            console.error('Error:', error);
-                        });
+                        // Redirige al usuario a la ruta '/test/' después de enviar el formulario
+                        window.location.href = '/test/';
                     }
                 });
             </script>
