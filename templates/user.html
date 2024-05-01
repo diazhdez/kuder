@@ -8,7 +8,7 @@
 
 {% block two %}
 {% if not user.has_completed_survey %}
-<a href="{{ url_for('user.test') }}" class="nav-item nav-link">Encuesta</a>
+<a href="{{ url_for('user.hubspot') }}" class="nav-item nav-link">Test</a>
 {% endif %}
 <a href="{{ url_for('user.results') }}" class="nav-item nav-link">Resultados</a>
 <a href="{{ url_for('session.logout') }}" class="nav-item nav-link">Cerrar Sesión</a>
@@ -43,7 +43,7 @@
                     <a class="btn btn-primary rounded-pill px-4 me-3"
                         href="{{ url_for('user.results') }}">Resultados</a>
                     {% else %}
-                    <a class="btn btn-primary rounded-pill px-4 me-3" href="{{ url_for('user.test') }}">Empezar</a>
+                    <a class="btn btn-primary rounded-pill px-4 me-3" href="{{ url_for('user.hubspot') }}">Empezar</a>
                     {% endif %}
                     {% if user.carrera %}
                     <button class="btn btn-primary rounded-pill px-4 me-3" id="btn-edit{{ user._id }}"

@@ -8,7 +8,7 @@
 
 {% block two %}
 {% if not user.has_completed_survey %}
-<a href="{{ url_for('user.test') }}" class="nav-item nav-link">Encuesta</a>
+<a href="{{ url_for('user.test') }}" class="nav-item nav-link">Test</a>
 {% endif %}
 <a href="{{ url_for('user.results') }}" class="nav-item nav-link">Resultados</a>
 <a href="{{ url_for('session.logout') }}" class="nav-item nav-link">Cerrar Sesión</a>
@@ -19,7 +19,7 @@
     <div class="container px-lg-5">
         <div class="section-title position-relative text-center pb-2 wow fadeInUp" data-wow-delay="0.1s">
             <h6 class="position-relative d-inline text-primary ps-4">Resultados</h6>
-            <h2 class="mt-2">Resultados de la encuesta</h2>
+            <h2 class="mt-2">Resultados del test</h2>
         </div>
         <div class="row g-5">
             {{ graph | safe }}
