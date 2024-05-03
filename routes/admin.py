@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, url_for, redirect, flash, session, request
+from flask import Blueprint, render_template, url_for, redirect, flash, session, request, send_file
 
 from functions.functions import get_admin
 
@@ -19,6 +19,11 @@ import bcrypt
 import os
 
 import database.database as dbase
+
+from functools import wraps
+
+import plotly.graph_objs as go
+
 
 db = dbase.dbConnection()
 
@@ -230,3 +235,5 @@ def correos():
             return redirect(url_for('session.login'))
     else:
         return redirect(url_for('session.login'))
+
+

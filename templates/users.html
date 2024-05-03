@@ -62,10 +62,10 @@
                                     <input type="text" class="form-control" value="{{ user.carrera }}" readonly>
                                 </div>
                                 <div class="col">
-
                                 </div>
                             </div>
-                            <button class="btn btn-primary mt-3">Resultados</button>
+                            <!-- Botón para descargar resultados -->
+                            <a href="" class="btn btn-primary mt-3">Descargar Resultados</a>
                             <a href="{{ url_for('admin.delete_user', user_id=user._id) }}"
                                 class="btn btn-danger btn-delete mt-3">Eliminar</a>
                         </form>
