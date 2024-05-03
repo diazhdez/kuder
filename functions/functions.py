@@ -6,32 +6,65 @@ import smtplib
 
 import os
 
+import mysql.connector
+
 import database.database as dbase
 
+# Obtener la conexión a la base de datos
 db = dbase.dbConnection()
 
 
+# Función para obtener un usuario por su correo electrónico
 def get_user(email):
-    user = db['users'].find_one({'email': email})
-    return user
+    try:
+        cursor = db.cursor(dictionary=True)
+        cursor.execute("SELECT * FROM user WHERE email = %s", (email,))
+        user = cursor.fetchone()
+        return user
+    except mysql.connector.Error as err:
+        print("Error al obtener usuario:", err)
+    finally:
+        cursor.close()
 
 
+# Función para obtener un administrador por su correo electrónico
 def get_admin(email):
-    admin = db['admin'].find_one({'email': email})
-    return admin
+    try:
+        cursor = db.cursor(dictionary=True)
+        cursor.execute("SELECT * FROM admin WHERE email = %s", (email,))
+        admin = cursor.fetchone()
+        return admin
+    except mysql.connector.Error as err:
+        print("Error al obtener administrador:", err)
+    finally:
+        cursor.close()
 
 
-# Función para verificar si el usuario ha completado el cuestionario
+# Función para verificar si el usuario ha completado el test
 def user_has_completed_survey(user_id):
-    respuestas = db['respuestas']
-    return respuestas.find_one({'user_id': str(user_id)}) is not None
+    try:
+        cursor = db.cursor()
+        cursor.execute(
+            "SELECT * FROM answers WHERE user_id = %s", (str(user_id),))
+        return cursor.fetchone() is not None
+    except mysql.connector.Error as err:
+        print("Error al verificar si el usuario ha completado el test:", err)
+    finally:
+        cursor.close()
 
 
 # Función para verificar si el usuario ha completado el formulario de HubSpot
 def user_has_completed_hubspot_form(user_id):
-    # Supongamos que 'hubspot_responses' es la colección donde se almacenan las respuestas de HubSpot
-    hubspot_responses = db['hubspot_responses']
-    return hubspot_responses.find_one({'user_id': str(user_id)}) is not None
+    try:
+        cursor = db.cursor()
+        cursor.execute(
+            "SELECT * FROM hubspot WHERE user_id = %s", (str(user_id),))
+        return cursor.fetchone() is not None
+    except mysql.connector.Error as err:
+        print(
+            "Error al verificar si el usuario ha completado el formulario de HubSpot:", err)
+    finally:
+        cursor.close()
 
 
 # Función para enviar correos
@@ -39,10 +72,10 @@ def enviar_correo_contacto(name, subject, message):
     # Correo desde el que se enviarán los mensajes
     email = os.environ.get('EMAIL')
     # Contraseña del correo
-    password = os.environ.get('PASSWD')
+    password = os.environ.get('PASSWORD')
 
     # Correo que recibirá los mensajes de contacto
-    destinatario = 'natividadv617@gmail.com'
+    destinatario = os.environ.get('DESTINATARIO')
 
     # Crear el mensaje
     mensaje = MIMEMultipart()

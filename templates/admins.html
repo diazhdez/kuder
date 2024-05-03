@@ -37,21 +37,13 @@
                         <form>
                             <div class="row">
                                 <div class="col">
-                                    <input type="hidden" class="form-control" value="{{ admin._id }}" name="id" readonly>
+                                    <input type="hidden" class="form-control" value="{{ admin.id }}" name="id" readonly>
                                     <small>Correo</small>
                                     <input type="text" class="form-control" value="{{ admin.email }}" readonly>
                                 </div>
                                 <div class="col">
                                     <small>Teléfono</small>
                                     <input type="text" class="form-control" value="{{ admin.phone }}" readonly>
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col">
-                                    {% if not admin.sudo %}
-                                        <a href="{{ url_for('admin.delete_admin', admin_id=admin._id) }}"
-                                            class="btn btn-danger btn-delete mt-3">Eliminar</a>
-                                    {% endif %}
                                 </div>
                             </div>
                         </form>

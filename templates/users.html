@@ -47,13 +47,13 @@
                         <form>
                             <div class="row">
                                 <div class="col">
-                                    <input type="hidden" class="form-control" value="{{ user._id }}" name="id" readonly>
+                                    <input type="hidden" class="form-control" value="{{ user.id }}" name="id" readonly>
                                     <small>Ficha</small>
                                     <input type="text" class="form-control" value="{{ user.email }}" readonly>
                                 </div>
                                 <div class="col">
                                     <small>Hora de creación</small>
-                                    <input type="text" class="form-control" value="{{ user.datetime }}" readonly>
+                                    <input type="text" class="form-control" value="{{ user.date }}" readonly>
                                 </div>
                             </div>
                             <div class="row mt-3">
@@ -66,7 +66,7 @@
                                 </div>
                             </div>
                             <button class="btn btn-primary mt-3">Resultados</button>
-                            <a href="{{ url_for('admin.delete_user', user_id=user._id) }}"
+                            <a href="{{ url_for('admin.delete_user', user_id=user.id) }}"
                                 class="btn btn-danger btn-delete mt-3">Eliminar</a>
                         </form>
                     </div>

@@ -29,8 +29,30 @@
                     portalId: "45910466",
                     formId: "82555417-a2c7-41d9-a6ed-21613d47aacc",
                     onFormSubmit: function ($form) {
-                        // Redirige al usuario a la ruta '/test/' después de enviar el formulario
-                        window.location.href = '/test/';
+                        // Obtiene los valores del formulario
+                        var formData = {};
+                        $form.find("input, select, textarea").each(function () {
+                            formData[$(this).attr("name")] = $(this).val();
+                        });
+
+                        // Envía los datos al servidor
+                        $.ajax({
+                            type: "POST",
+                            url: "/save_form_data",  // Ruta en tu aplicación Flask para guardar los datos
+                            data: JSON.stringify(formData),
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            success: function (data) {
+                                // Maneja la respuesta del servidor si es necesario
+                                console.log("Datos enviados exitosamente:", data);
+                                // Redirige al usuario a la ruta '/test/' después de enviar el formulario
+                                window.location.href = '/test/';
+                            },
+                            error: function (xhr, status, error) {
+                                // Maneja errores si ocurren
+                                console.error("Error al enviar los datos:", error);
+                            }
+                        });
                     }
                 });
             </script>

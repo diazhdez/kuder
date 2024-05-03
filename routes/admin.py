@@ -6,8 +6,6 @@ from datetime import datetime
 
 from random import randint
 
-from bson import ObjectId
-
 from email.mime.multipart import MIMEMultipart
 
 from email.mime.text import MIMEText
@@ -17,6 +15,8 @@ import smtplib
 import bcrypt
 
 import os
+
+import mysql.connector
 
 import database.database as dbase
 
@@ -30,7 +30,7 @@ admin_routes = Blueprint('admin', __name__)
 def admin():
     if 'email' in session:
         email = session['email']
-        # Función para obtener datos del usuario desde MongoDB
+        # Función para obtener datos del usuario desde MySQL
         admin = get_admin(email)
         if admin:
             return render_template('admin.html', admin=admin)
@@ -43,7 +43,7 @@ def admin():
 def registro():
     if 'email' in session:
         email = session['email']
-        # Función para obtener datos del usuario desde MongoDB
+        # Función para obtener datos del usuario desde MySQL
         admin = get_admin(email)
         if admin:
             return render_template('registro.html')
@@ -56,35 +56,40 @@ def registro():
 def register_user():
     if 'email' in session:
         email = session['email']
-        # Función para obtener datos del usuario desde MongoDB
+        # Función para obtener datos del usuario desde MySQL
         admin = get_admin(email)
         if admin:
             if request.method == 'POST':
-                # Obtener la cantidad de usuarios a registrar desde el formulario
-                num_users = int(request.form['num_users'])
-                # Contraseña predeterminada para todos los usuarios
-                password = request.form['password']
+                try:
+                    # Obtener la cantidad de usuarios a registrar desde el formulario
+                    num_users = int(request.form['num_users'])
+                    # Contraseña predeterminada para todos los usuarios
+                    password = request.form['password']
 
-                users = db['users']
+                    cursor = db.cursor()
 
-                # Generar los documentos de los usuarios
-                user_docs = []
-                for _ in range(num_users):
-                    email = str(randint(100000, 999999))
-                    hashpass = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
-                    # Obtener la fecha y hora actual
-                    date = datetime.now()
-                    user_docs.append({
-                        'email': email,
-                        'password': hashpass,
-                        'datetime': date
-                    })
+                    # Generar los documentos de los usuarios
+                    user_docs = []
+                    for _ in range(num_users):
+                        email = str(randint(100000, 999999))
+                        hashpass = bcrypt.hashpw(
+                            password.encode('utf-8'), bcrypt.gensalt())
+                        # Obtener la fecha y hora actual
+                        date = datetime.now()
+                        user_docs.append((email, hashpass, date))
 
-                # Insertar los documentos de los usuarios en la base de datos
-                users.insert_many(user_docs)
+                    # Insertar los documentos de los usuarios en la base de datos
+                    cursor.executemany(
+                        "INSERT INTO user (email, password, date) VALUES (%s, %s, %s)", user_docs)
+                    db.commit()
 
-                flash(f'Se registraron {num_users} usuarios correctamente')
-                return redirect(url_for('admin.registro'))
+                    flash(f'Se registraron {num_users} usuarios correctamente')
+                    return redirect(url_for('admin.registro'))
+                except mysql.connector.Error as err:
+                    print("Error al registrar usuarios:", err)
+                    db.rollback()
+                finally:
+                    cursor.close()
         else:
             return redirect(url_for('session.login'))
 
@@ -96,32 +101,43 @@ def register_user():
 def register_admin():
     if 'email' in session:
         email = session['email']
-        # Función para obtener datos del usuario desde MongoDB
+        # Función para obtener datos del usuario desde MySQL
         admin = get_admin(email)
         if admin:
             if request.method == 'POST':
-                admin = db['admin']
-                existing_admin = admin.find_one(
-                    {'email': request.form['email']})
-                name = request.form['name']
-                email = request.form['email']
-                password = request.form['password']
-                phone = request.form['phone']
+                cursor = db.cursor()
+                try:
+                    existing_admin = request.form['email']
+                    name = request.form['name']
+                    email = request.form['email']
+                    password = request.form['password']
+                    phone = request.form['phone']
 
-                if existing_admin is None:
-                    hashpass = bcrypt.hashpw(
-                        password.encode('utf-8'), bcrypt.gensalt())
-                    admin.insert_one({
-                        'name': name,
-                        'email': email,
-                        'password': hashpass,
-                        'phone': phone
-                    })
-                    flash('Se registró el administrador correctamente')
-                    return redirect(url_for('admin.registro'))
+                    # Verificar si el administrador ya existe en la base de datos
+                    cursor.execute(
+                        "SELECT * FROM admin WHERE email = %s", (email,))
+                    existing_admin = cursor.fetchone()
 
-                flash('El correo ya está en uso')
-                return redirect(url_for('admin.registro'))
+                    if existing_admin is None:
+                        # Hash de la contraseña
+                        hashpass = bcrypt.hashpw(
+                            password.encode('utf-8'), bcrypt.gensalt())
+
+                        # Insertar el nuevo administrador en la base de datos
+                        cursor.execute(
+                            "INSERT INTO admin (name, email, password, phone) VALUES (%s, %s, %s, %s)", (name, email, hashpass, phone))
+                        db.commit()
+
+                        flash('Se registró el administrador correctamente')
+                        return redirect(url_for('admin.registro'))
+                    else:
+                        flash('El correo ya está en uso')
+                        return redirect(url_for('admin.registro'))
+                except mysql.connector.Error as err:
+                    print("Error al registrar administrador:", err)
+                    db.rollback()
+                finally:
+                    cursor.close()
         else:
             return redirect(url_for('session.login'))
 
@@ -137,27 +153,48 @@ def users():
         if admin:
             if request.method == 'POST':
                 search_query = request.form.get('search_query')
-                users = db['users'].find({
-                    '$or': [
-                        {'name': {'$regex': search_query, '$options': 'i'}},
-                        {'email': {'$regex': search_query, '$options': 'i'}},
-                        {'carrera': {'$regex': search_query, '$options': 'i'}}
-                    ]
-                })
+                cursor = db.cursor(dictionary=True)
+                try:
+                    # Consulta para buscar usuarios por nombre, email o carrera
+                    query = "SELECT * FROM user WHERE name LIKE %s OR email LIKE %s OR carrera LIKE %s"
+                    cursor.execute(query, ('%' + search_query + '%',
+                                   '%' + search_query + '%', '%' + search_query + '%'))
+                    users = cursor.fetchall()
+                    return render_template('users.html', users=users)
+                except mysql.connector.Error as err:
+                    print("Error al buscar usuarios:", err)
+                finally:
+                    cursor.close()
             else:
-                users = db['users'].find()
-            return render_template('users.html', users=users)
+                cursor = db.cursor(dictionary=True)
+                try:
+                    # Consulta para obtener todos los usuarios
+                    cursor.execute("SELECT * FROM user")
+                    users = cursor.fetchall()
+                    return render_template('users.html', users=users)
+                except mysql.connector.Error as err:
+                    print("Error al obtener usuarios:", err)
+                finally:
+                    cursor.close()
         else:
             return redirect(url_for('session.login'))
     else:
         return redirect(url_for('session.login'))
 
 
-# Method DELETE
-@admin_routes.route('/delete/<string:user_id>/')
+# Ruta para eliminar un aspirante
+@admin_routes.route('/delete/<int:user_id>/')
 def delete_user(user_id):
-    users = db['users']
-    users.delete_one({'_id': ObjectId(user_id)})
+    cursor = db.cursor()
+    try:
+        # Consulta para eliminar el aspirante por ID
+        cursor.execute("DELETE FROM user WHERE id = %s", (user_id,))
+        db.commit()
+    except mysql.connector.Error as err:
+        print("Error al eliminar usuario:", err)
+        db.rollback()
+    finally:
+        cursor.close()
     return redirect(url_for('admin.users'))
 
 
@@ -168,20 +205,59 @@ def admins():
         email = session['email']
         admin = get_admin(email)
         if admin:
-            admins = db['admin'].find()
-            return render_template('admins.html', admins=admins)
+            cursor = db.cursor(dictionary=True)
+            try:
+                # Consulta para obtener todos los administradores
+                cursor.execute("SELECT * FROM admin")
+                admins = cursor.fetchall()
+                return render_template('admins.html', admins=admins)
+            except mysql.connector.Error as err:
+                print("Error al obtener administradores:", err)
+            finally:
+                cursor.close()
         else:
             return redirect(url_for('session.login'))
     else:
         return redirect(url_for('session.login'))
-    
 
-# Method DELETE
-@admin_routes.route('/delete/<string:admin_id>/')
+
+# Ruta para eliminar un administrador
+@admin_routes.route('/delete/<int:admin_id>/')
 def delete_admin(admin_id):
-    admin = db['admin']
-    admin.delete_one({'_id': ObjectId(admin_id)})
+    cursor = db.cursor()
+    try:
+        # Consulta para eliminar el administrador por ID
+        cursor.execute("DELETE FROM admin WHERE id = %s", (admin_id,))
+        db.commit()
+    except mysql.connector.Error as err:
+        print("Error al eliminar administrador:", err)
+        db.rollback()
+    finally:
+        cursor.close()
     return redirect(url_for('admin.admins'))
+
+
+# Ruta para visualizar los correos
+@admin_routes.route('/admin/correos/')
+def correos():
+    if 'email' in session:
+        email = session['email']
+        admin = get_admin(email)
+        if admin:
+            cursor = db.cursor(dictionary=True)
+            try:
+                # Consulta para obtener todos los correos
+                cursor.execute("SELECT * FROM email")
+                correos = cursor.fetchall()
+                return render_template('email.html', correos=correos)
+            except mysql.connector.Error as err:
+                print("Error al obtener correos:", err)
+            finally:
+                cursor.close()
+        else:
+            return redirect(url_for('session.login'))
+    else:
+        return redirect(url_for('session.login'))
 
 
 # Función para enviar correo a empleados aceptados
@@ -215,18 +291,3 @@ def enviar_mensaje_aceptado(empleado):
         print('Correo enviado correctamente a', destinatario)
     except Exception as e:
         print(f'Error al enviar el correo: {str(e)}')
-
-
-# Ruta para visualizar los correos
-@admin_routes.route('/admin/correos/')
-def correos():
-    if 'email' in session:
-        email = session['email']
-        admin = get_admin(email)
-        if admin:
-            correos = db['correos'].find()
-            return render_template('email.html', correos=correos)
-        else:
-            return redirect(url_for('session.login'))
-    else:
-        return redirect(url_for('session.login'))
