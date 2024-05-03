@@ -1,18 +1,18 @@
-from pymongo import MongoClient
-
-import certifi
+import mysql.connector
 
 import os
-
-MONGO_URI = os.environ.get('MONGO_URI')
-
-ca = certifi.where()
 
 
 def dbConnection():
     try:
-        client = MongoClient(MONGO_URI, tlsCAFile=ca)
-        db = client["U-Test"]
-    except ConnectionError:
-        print('Error de conexión con la BD')
-    return db
+        # Crear la conexión a la base de datos MySQL
+        connection = mysql.connector.connect(
+            host=os.environ.get('MYSQL_HOST'),
+            user=os.environ.get('MYSQL_USER'),
+            password=os.environ.get('MYSQL_PASSWORD'),
+            database=os.environ.get('MYSQL_DATABASE')
+        )
+        return connection
+    except mysql.connector.Error as err:
+        print("Error de conexión a la base de datos MySQL:", err)
+        return None
