@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, url_for, redirect, session, request, send_file
 
-from functions.functions import get_user, user_has_completed_survey
+from functions.functions import get_user, user_has_completed_survey, user_has_completed_hubspot_form
 
 import plotly.graph_objs as go
 
@@ -24,7 +24,8 @@ def user():
         user = get_user(email)
         if user:
             # Agregar una variable al contexto de la plantilla para indicar si el usuario ha completado algún test
-            user['has_completed_survey'] = user_has_completed_survey(user['_id'])
+            user['has_completed_survey'] = user_has_completed_survey(
+                user['_id'])
             return render_template('user.html', user=user)
     else:
         return redirect(url_for('session.login'))
@@ -50,7 +51,7 @@ def update():
     return redirect(url_for('user.user'))
 
 
-# Ruta para mostrar encuesta
+# Ruta para mostrar test
 @user_routes.route('/test/')
 def test():
     if 'email' in session:
@@ -66,7 +67,7 @@ def test():
         return redirect(url_for('session.login'))
 
 
-# Ruta para contestar encuesta en Español
+# Ruta para contestar test en Español
 @user_routes.route('/test/es/')
 def testEs():
     if 'email' in session:
@@ -82,7 +83,7 @@ def testEs():
         return redirect(url_for('session.login'))
 
 
-# Ruta para contestar encuesta en Nahuatl
+# Ruta para contestar test en Nahuatl
 @user_routes.route('/test/na/')
 def testNa():
     if 'email' in session:
@@ -98,7 +99,7 @@ def testNa():
         return redirect(url_for('session.login'))
 
 
-# Ruta para contestar encuesta en Mixteco
+# Ruta para contestar test en Mixteco
 @user_routes.route('/test/mix/')
 def testMix():
     if 'email' in session:
@@ -114,7 +115,7 @@ def testMix():
         return redirect(url_for('session.login'))
 
 
-# Ruta para contestar encuesta en Tlapaneco
+# Ruta para contestar test en Tlapaneco
 @user_routes.route('/test/tla/')
 def testTla():
     if 'email' in session:
@@ -130,7 +131,7 @@ def testTla():
         return redirect(url_for('session.login'))
 
 
-# Ruta para contestar encuesta en Portugues
+# Ruta para contestar test en Portugues
 @user_routes.route('/test/por/')
 def testPor():
     if 'email' in session:
@@ -146,7 +147,7 @@ def testPor():
         return redirect(url_for('session.login'))
 
 
-# Ruta para contestar encuesta en español
+# Ruta para contestar test en frances
 @user_routes.route('/test/fra/')
 def testFra():
     if 'email' in session:
@@ -283,12 +284,14 @@ def results():
             graph_html = fig.to_html(full_html=False, include_plotlyjs='cdn')
 
             # Agregar una variable al contexto de la plantilla para indicar si el usuario ha completado algún test
-            user['has_completed_survey'] = user_has_completed_survey(user['_id'])
+            user['has_completed_survey'] = user_has_completed_survey(
+                user['_id'])
 
             return render_template('results.html', graph=graph_html, user=user)
     else:
         return redirect(url_for('session.login'))
-    
+
+
 @user_routes.route('/results/pdf')
 def download_pdf():
     if 'email' in session:
@@ -339,3 +342,27 @@ def download_pdf():
             # Enviar el archivo PDF al usuario para su descarga
             return send_file(temp_pdf_path, as_attachment=True)
     return redirect(url_for('session.login'))
+
+
+# Ruta para mostrar el formulario de hubspot
+@user_routes.route('/hubspot/')
+def hubspot():
+    if 'email' in session:
+        email = session['email']
+        user = get_user(email)
+        if user:
+            if user_has_completed_hubspot_form(user['_id']):
+                return redirect(url_for('user.test'))  # Redirige si ya ha completado el formulario de HubSpot
+            else:
+                user['has_completed_survey'] = user_has_completed_survey(user['_id'])
+                return render_template('hubspot.html', user=user)
+    else:
+        return redirect(url_for('session.login'))
+
+
+@user_routes.route('/save_hubspot_data', methods=['POST'])
+def save_hubspot_data():
+    data = request.json  # Obtiene los datos enviados desde el formulario
+    # Guarda los datos en MongoDB
+    db.hubspot_responses.insert_one(data)
+    return '', 204  # Responde con éxito
