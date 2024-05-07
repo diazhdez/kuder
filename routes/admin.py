@@ -235,25 +235,14 @@ def admin_results_graph_individual(user_id):
 
     fig = go.Figure(data=data, layout=layout)
 
-    # Convertir la figura a HTML
-    graph_html = fig.to_html(full_html=False, include_plotlyjs='cdn')
-
-    # Convertir el HTML a bytes
-    graph_bytes = graph_html.encode()
-
-    # Crear un objeto BytesIO a partir de los bytes
-    from io import BytesIO
-    graph_bytes_io = BytesIO(graph_bytes)
-
-    # Mover el cursor al principio del objeto BytesIO
-    graph_bytes_io.seek(0)
+    # Convertir el gráfico a PDF
+    pdf_bytes = fig.to_image(format="pdf")
 
     # Crear una respuesta Flask
-    response = make_response(graph_bytes_io.getvalue())
+    response = make_response(pdf_bytes)
 
     # Establecer el tipo de contenido y la cabecera de descarga
-    response.headers['Content-Type'] = 'text/html'
-    response.headers['Content-Disposition'] = f'attachment; filename=graph_user_{
-        user_id}.html'
+    response.headers['Content-Type'] = 'application/pdf'
+    response.headers['Content-Disposition'] = f'attachment; filename=graph_user_{user_id}.pdf'
 
     return response
