@@ -14,7 +14,6 @@ import database.database as dbase
 
 import plotly.graph_objs as go
 
-
 db = dbase.dbConnection()
 
 admin_routes = Blueprint('admin', __name__)
@@ -138,7 +137,8 @@ def users():
                         {'firstname': {'$regex': search_query, '$options': 'i'}},
                         {'lastname': {'$regex': search_query, '$options': 'i'}},
                         {'email': {'$regex': search_query, '$options': 'i'}},
-                        {'carrera_a_postulars': {'$regex': search_query, '$options': 'i'}}
+                        {'carrera_a_postulars': {
+                            '$regex': search_query, '$options': 'i'}}
                     ]
                 })
             else:
@@ -211,7 +211,8 @@ def admin_results_graph_individual(user_id):
     if not usuario:
         return "Usuario no encontrado"
 
-    carrera_usuario = usuario.get('carrera_a_postulars', 'Carrera no especificada')
+    carrera_usuario = usuario.get(
+        'carrera_a_postulars', 'Carrera no especificada')
 
     carreras_count = {'TICS': 0,
                       'Gastronomía': 0,
@@ -252,6 +253,7 @@ def admin_results_graph_individual(user_id):
 
     # Establecer el tipo de contenido y la cabecera de descarga
     response.headers['Content-Type'] = 'text/html'
-    response.headers['Content-Disposition'] = f'attachment; filename=graph_user_{user_id}.html'
+    response.headers['Content-Disposition'] = f'attachment; filename=graph_user_{
+        user_id}.html'
 
     return response
