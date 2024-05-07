@@ -2,6 +2,8 @@ from flask import Blueprint, render_template, url_for, redirect, flash, session,
 
 from functions.functions import get_admin
 
+from functions.functions import get_user
+
 from datetime import datetime
 
 from random import randint
@@ -237,3 +239,61 @@ def correos():
         return redirect(url_for('session.login'))
 
 
+# Ruta para que los administradores vean y descarguen la gráfica de todos los usuarios
+@admin_routes.route('/admin/results/graph')
+def admin_results_graph():
+    if 'email' in session:
+        email = session['email']
+        # Función para obtener datos del usuario desde MongoDB
+        admin = get_admin(email)
+        if admin:
+            # Obtener los datos de todos los usuarios desde MongoDB
+            usuarios = db['users'].find()
+
+            # Inicializar el contador de carreras para todos los usuarios
+            carreras_count_total = {'TICS': 0,
+                                    'Gastronomía': 0,
+                                    'Mantenimiento Industrial': 0,
+                                    'Desarrollo de Negocios': 0}
+
+            # Iterar sobre todos los usuarios para recopilar datos
+            for usuario in usuarios:
+                carrera_usuario = usuario.get('carrera', 'Carrera no especificada')
+                respuestas_usuario = db.respuestas.find({'user_id': str(usuario['_id'])})
+
+                # Iterar sobre todas las respuestas del usuario
+                for respuesta in respuestas_usuario:
+                    # Iterar sobre las preguntas en cada respuesta
+                    for pregunta, carrera in respuesta.items():
+                        # Verificar si la respuesta corresponde a una carrera
+                        if pregunta.startswith('pregunta_') and carrera in carreras_count_total:
+                            # Incrementar el contador de la carrera correspondiente
+                            carreras_count_total[carrera] += 1
+
+            # Crear el gráfico de barras con Plotly para todos los usuarios
+            data_total = [go.Bar(x=list(carreras_count_total.keys()),
+                                 y=list(carreras_count_total.values()))]
+
+            # Configurar el diseño del gráfico para todos los usuarios
+            layout_total = go.Layout(title='Carreras de todos los usuarios',
+                                     xaxis=dict(title='Carreras'),
+                                     yaxis=dict(title='Número de respuestas'))
+
+            # Crear la figura para todos los usuarios
+            fig_total = go.Figure(data=data_total, layout=layout_total)
+
+            # Convertir la figura a HTML
+            graph_html_total = fig_total.to_html(full_html=False, include_plotlyjs='cdn')
+
+            # Guardar la gráfica como archivo temporal
+            graph_temp_file = "/tmp/graph_all_users.html"
+            fig_total.write_html(graph_temp_file)
+
+            # Descargar la gráfica como archivo
+            return send_file(graph_temp_file, as_attachment=True)
+        else:
+            # Redirigir si el usuario no es un administrador
+            return redirect(url_for('session.login'))
+    else:
+        # Redirigir si no hay sesión iniciada
+        return redirect(url_for('session.login'))
