@@ -23,10 +23,19 @@ def user():
         # Función para obtener datos del usuario desde MongoDB
         user = get_user(email)
         if user:
-            # Agregar una variable al contexto de la plantilla para indicar si el usuario ha completado algún test
+            # Obtener el ID del usuario
+            user_id = user['_id']
+            # Buscar si el usuario ha respondido el test
             user['has_completed_survey'] = user_has_completed_survey(
                 user['_id'])
-            return render_template('user.html', user=user)
+            # Buscar las respuestas del usuario en la colección hubspot_responses
+            hubspot_response = db.hubspot_responses.find_one(
+                {'user_id': str(user_id)})
+            if hubspot_response:
+                # Pasar los datos de las respuestas a la plantilla
+                return render_template('user.html', user=user, hubspot_response=hubspot_response)
+            else:
+                return render_template('user.html', user=user, hubspot_response=None)
     else:
         return redirect(url_for('session.login'))
 
@@ -245,7 +254,8 @@ def results():
         user = get_user(email)
         if user:
             # Obtener el campo 'carrera' del usuario
-            carrera_usuario = user.get('carrera', 'Carrera no especificada')
+            carrera_usuario = user.get(
+                'carrera_a_postulars', 'Carrera no especificada')
 
             # Obtener el ID del usuario actual
             user_id = user['_id']
@@ -352,9 +362,11 @@ def hubspot():
         user = get_user(email)
         if user:
             if user_has_completed_hubspot_form(user['_id']):
-                return redirect(url_for('user.test'))  # Redirige si ya ha completado el formulario de HubSpot
+                # Redirige si ya ha completado el formulario de HubSpot
+                return redirect(url_for('user.test'))
             else:
-                user['has_completed_survey'] = user_has_completed_survey(user['_id'])
+                user['has_completed_survey'] = user_has_completed_survey(
+                    user['_id'])
                 return render_template('hubspot.html', user=user)
     else:
         return redirect(url_for('session.login'))
@@ -362,7 +374,24 @@ def hubspot():
 
 @user_routes.route('/save_hubspot_data', methods=['POST'])
 def save_hubspot_data():
-    data = request.json  # Obtiene los datos enviados desde el formulario
-    # Guarda los datos en MongoDB
+    data = request.json  # Obtener los datos enviados desde el formulario
+
+    # Extraer los datos relevantes del formulario
+    firstname = data.get('firstname')
+    lastname = data.get('lastname')
+    carrera_a_postulars = data.get('carrera_a_postulars')
+
+    # Obtener el ID del usuario
+    user_id = data.get('user_id')
+
+    # Guardar los datos del formulario en la colección hubspot_responses
     db.hubspot_responses.insert_one(data)
-    return '', 204  # Responde con éxito
+
+    # Actualizar la colección de usuarios con los nuevos datos
+    db.users.update_one(
+        {'_id': ObjectId(user_id)},
+        {'$set': {'firstname': firstname, 'lastname': lastname,
+                  'carrera_a_postulars': carrera_a_postulars}}
+    )
+
+    return '', 204  # Responder con éxito

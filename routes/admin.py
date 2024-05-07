@@ -71,7 +71,8 @@ def register_user():
                 user_docs = []
                 for _ in range(num_users):
                     email = str(randint(100000, 999999))
-                    hashpass = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+                    hashpass = bcrypt.hashpw(
+                        password.encode('utf-8'), bcrypt.gensalt())
                     # Obtener la fecha y hora actual
                     date = datetime.now()
                     user_docs.append({
@@ -139,9 +140,10 @@ def users():
                 search_query = request.form.get('search_query')
                 users = db['users'].find({
                     '$or': [
-                        {'name': {'$regex': search_query, '$options': 'i'}},
+                        {'firstname': {'$regex': search_query, '$options': 'i'}},
+                        {'lastname': {'$regex': search_query, '$options': 'i'}},
                         {'email': {'$regex': search_query, '$options': 'i'}},
-                        {'carrera': {'$regex': search_query, '$options': 'i'}}
+                        {'carrera_a_postulars': {'$regex': search_query, '$options': 'i'}}
                     ]
                 })
             else:
@@ -154,7 +156,7 @@ def users():
 
 
 # Method DELETE
-@admin_routes.route('/delete/<string:user_id>/')
+@admin_routes.route('/deleteUser/<string:user_id>/')
 def delete_user(user_id):
     users = db['users']
     users.delete_one({'_id': ObjectId(user_id)})
@@ -174,10 +176,10 @@ def admins():
             return redirect(url_for('session.login'))
     else:
         return redirect(url_for('session.login'))
-    
+
 
 # Method DELETE
-@admin_routes.route('/delete/<string:admin_id>/')
+@admin_routes.route('/deleteAdmin/<string:admin_id>/')
 def delete_admin(admin_id):
     admin = db['admin']
     admin.delete_one({'_id': ObjectId(admin_id)})

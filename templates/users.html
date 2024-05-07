@@ -41,7 +41,7 @@
             <div class="col-md-6 mb-3 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="text-center">{{ user.name }}</h5>
+                        <h5 class="text-center">{{ user.firstname }} {{ user.lastname }}</h5>
                     </div>
                     <div class="card-body">
                         <form>
@@ -59,7 +59,8 @@
                             <div class="row mt-3">
                                 <div class="col">
                                     <small>Carrera a postularse</small>
-                                    <input type="text" class="form-control" value="{{ user.carrera }}" readonly>
+                                    <input type="text" class="form-control" value="{{ user.carrera_a_postulars }}"
+                                        readonly>
                                 </div>
                                 <div class="col">
 

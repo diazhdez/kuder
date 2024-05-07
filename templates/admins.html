@@ -50,7 +50,7 @@
                                 <div class="col">
                                     {% if not admin.sudo %}
                                         <a href="{{ url_for('admin.delete_admin', admin_id=admin._id) }}"
-                                            class="btn btn-danger btn-delete mt-3">Eliminar</a>
+                                            class="btn btn-danger btn-borrar mt-3">Eliminar</a>
                                     {% endif %}
                                 </div>
                             </div>
@@ -62,7 +62,7 @@
         </div>
     </div>
 </div>
-<script src="{{ url_for('static', filename='js/borrar.js') }}"></script>
+<script src="{{ url_for('static', filename='js/delete.js') }}"></script>
 {% endblock %}
 
 {% block first_block %}
