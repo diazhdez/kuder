@@ -8,15 +8,7 @@ from random import randint
 
 from bson import ObjectId
 
-from email.mime.multipart import MIMEMultipart
-
-from email.mime.text import MIMEText
-
-import smtplib
-
 import bcrypt
-
-import os
 
 import database.database as dbase
 
@@ -184,39 +176,6 @@ def delete_admin(admin_id):
     admin = db['admin']
     admin.delete_one({'_id': ObjectId(admin_id)})
     return redirect(url_for('admin.admins'))
-
-
-# Función para enviar correo a empleados aceptados
-def enviar_mensaje_aceptado(empleado):
-    email = 'contact.quarium@gmail.com'
-    password = 'otjt nkts nczg qcxw'
-    destinatario = empleado['correo']
-
-    template_file = os.path.join('templates', 'correo_aceptacion.html')
-
-    # Cargar el contenido del archivo HTML
-    with open(template_file, 'r') as file:
-        html_content = file.read()
-
-    # Crear el mensaje
-    mensaje = MIMEMultipart()
-    mensaje['From'] = email
-    mensaje['To'] = destinatario
-    mensaje['Subject'] = 'Registro Aceptado'
-
-    # Adjuntar el contenido HTML al mensaje
-    mensaje.attach(MIMEText(html_content, 'html'))
-
-    try:
-        server = smtplib.SMTP('smtp.gmail.com', 587)
-        server.starttls()
-        server.login(email, password)
-        texto_del_correo = mensaje.as_string()
-        server.sendmail(email, destinatario, texto_del_correo)
-        server.quit()
-        print('Correo enviado correctamente a', destinatario)
-    except Exception as e:
-        print(f'Error al enviar el correo: {str(e)}')
 
 
 # Ruta para visualizar los correos

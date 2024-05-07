@@ -239,6 +239,8 @@ def guardar():
                 })
 
                 return redirect(url_for('user.test'))
+            else:
+                return redirect(url_for('user.test'))
         else:
             return redirect(url_for('session.login'))
 
