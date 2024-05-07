@@ -211,8 +211,7 @@ def admin_results_graph_individual(user_id):
     if not usuario:
         return "Usuario no encontrado"
 
-    carrera_usuario = usuario.get(
-        'carrera_a_postulars', 'Carrera no especificada')
+    carrera_usuario = usuario.get('carrera_a_postulars', 'Carrera no especificada')
 
     carreras_count = {'TICS': 0,
                       'Gastronomía': 0,
@@ -235,14 +234,24 @@ def admin_results_graph_individual(user_id):
 
     fig = go.Figure(data=data, layout=layout)
 
-    # Convertir el gráfico a PDF
-    pdf_bytes = fig.to_image(format="pdf")
+    # Convertir la figura a HTML
+    graph_html = fig.to_html(full_html=False, include_plotlyjs='cdn')
+
+    # Convertir el HTML a bytes
+    graph_bytes = graph_html.encode()
+
+    # Crear un objeto BytesIO a partir de los bytes
+    from io import BytesIO
+    graph_bytes_io = BytesIO(graph_bytes)
+
+    # Mover el cursor al principio del objeto BytesIO
+    graph_bytes_io.seek(0)
 
     # Crear una respuesta Flask
-    response = make_response(pdf_bytes)
+    response = make_response(graph_bytes_io.getvalue())
 
     # Establecer el tipo de contenido y la cabecera de descarga
-    response.headers['Content-Type'] = 'application/pdf'
-    response.headers['Content-Disposition'] = f'attachment; filename=graph_user_{user_id}.pdf'
+    response.headers['Content-Type'] = 'text/html'
+    response.headers['Content-Disposition'] = f'attachment; filename=graph_user_{user_id}.html'
 
     return response

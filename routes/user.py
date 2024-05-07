@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, url_for, redirect, session, request, send_file
+from flask import Blueprint, render_template, url_for, redirect, session, request, make_response
 
 from functions.functions import get_user, user_has_completed_survey, user_has_completed_hubspot_form
 
@@ -304,15 +304,15 @@ def results():
         return redirect(url_for('session.login'))
 
 
-@user_routes.route('/results/pdf')
-def download_pdf():
+@user_routes.route('/results/html')
+def download_html():
     if 'email' in session:
         email = session['email']
         # Obtener datos del usuario desde MongoDB
         user = get_user(email)
         if user:
             # Obtener el campo 'carrera' del usuario
-            carrera_usuario = user.get('carrera', 'Carrera no especificada')
+            carrera_usuario = user.get('carrera_a_postulars', 'Carrera no especificada')
 
             # Obtener el ID del usuario actual
             user_id = user['_id']
@@ -347,13 +347,30 @@ def download_pdf():
             # Crear la figura
             fig = go.Figure(data=data, layout=layout)
 
-            # Guardar la figura como PDF temporalmente
-            temp_pdf_path = "resultados.pdf"
-            pio.write_image(fig, temp_pdf_path, format="pdf")
+            # Convertir la figura a HTML
+            graph_html = fig.to_html(full_html=False, include_plotlyjs='cdn')
 
-            # Enviar el archivo PDF al usuario para su descarga
-            return send_file(temp_pdf_path, as_attachment=True)
+            # Convertir el HTML a bytes
+            graph_bytes = graph_html.encode()
+
+            # Crear un objeto BytesIO a partir de los bytes
+            from io import BytesIO
+            graph_bytes_io = BytesIO(graph_bytes)
+
+            # Mover el cursor al principio del objeto BytesIO
+            graph_bytes_io.seek(0)
+
+            # Crear una respuesta Flask
+            response = make_response(graph_bytes_io.getvalue())
+
+            # Establecer el tipo de contenido y la cabecera de descarga
+            response.headers['Content-Type'] = 'text/html'
+            response.headers['Content-Disposition'] = 'attachment; filename=resultados.html'
+
+            return response
+
     return redirect(url_for('session.login'))
+
 
 
 # Ruta para mostrar el formulario de hubspot
