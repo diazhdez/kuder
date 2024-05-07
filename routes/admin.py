@@ -1,8 +1,6 @@
-from flask import Blueprint, render_template, url_for, redirect, flash, session, request, send_file
+from flask import Blueprint, render_template, url_for, redirect, flash, session, request, make_response
 
 from functions.functions import get_admin
-
-from functions.functions import get_user
 
 from datetime import datetime
 
@@ -21,8 +19,6 @@ import bcrypt
 import os
 
 import database.database as dbase
-
-from functools import wraps
 
 import plotly.graph_objs as go
 
@@ -239,61 +235,62 @@ def correos():
         return redirect(url_for('session.login'))
 
 
-# Ruta para que los administradores vean y descarguen la gráfica de todos los usuarios
-@admin_routes.route('/admin/results/graph')
-def admin_results_graph():
-    if 'email' in session:
-        email = session['email']
-        # Función para obtener datos del usuario desde MongoDB
-        admin = get_admin(email)
-        if admin:
-            # Obtener los datos de todos los usuarios desde MongoDB
-            usuarios = db['users'].find()
-
-            # Inicializar el contador de carreras para todos los usuarios
-            carreras_count_total = {'TICS': 0,
-                                    'Gastronomía': 0,
-                                    'Mantenimiento Industrial': 0,
-                                    'Desarrollo de Negocios': 0}
-
-            # Iterar sobre todos los usuarios para recopilar datos
-            for usuario in usuarios:
-                carrera_usuario = usuario.get('carrera', 'Carrera no especificada')
-                respuestas_usuario = db.respuestas.find({'user_id': str(usuario['_id'])})
-
-                # Iterar sobre todas las respuestas del usuario
-                for respuesta in respuestas_usuario:
-                    # Iterar sobre las preguntas en cada respuesta
-                    for pregunta, carrera in respuesta.items():
-                        # Verificar si la respuesta corresponde a una carrera
-                        if pregunta.startswith('pregunta_') and carrera in carreras_count_total:
-                            # Incrementar el contador de la carrera correspondiente
-                            carreras_count_total[carrera] += 1
-
-            # Crear el gráfico de barras con Plotly para todos los usuarios
-            data_total = [go.Bar(x=list(carreras_count_total.keys()),
-                                 y=list(carreras_count_total.values()))]
-
-            # Configurar el diseño del gráfico para todos los usuarios
-            layout_total = go.Layout(title='Carreras de todos los usuarios',
-                                     xaxis=dict(title='Carreras'),
-                                     yaxis=dict(title='Número de respuestas'))
-
-            # Crear la figura para todos los usuarios
-            fig_total = go.Figure(data=data_total, layout=layout_total)
-
-            # Convertir la figura a HTML
-            graph_html_total = fig_total.to_html(full_html=False, include_plotlyjs='cdn')
-
-            # Guardar la gráfica como archivo temporal
-            graph_temp_file = "/tmp/graph_all_users.html"
-            fig_total.write_html(graph_temp_file)
-
-            # Descargar la gráfica como archivo
-            return send_file(graph_temp_file, as_attachment=True)
-        else:
-            # Redirigir si el usuario no es un administrador
-            return redirect(url_for('session.login'))
-    else:
-        # Redirigir si no hay sesión iniciada
+@admin_routes.route('/admin/results/graph/<user_id>')
+def admin_results_graph_individual(user_id):
+    if 'email' not in session:
         return redirect(url_for('session.login'))
+
+    email = session['email']
+    admin = get_admin(email)
+
+    if not admin:
+        return redirect(url_for('session.login'))
+
+    usuario = db['users'].find_one({'_id': ObjectId(user_id)})
+    if not usuario:
+        return "Usuario no encontrado"
+
+    carrera_usuario = usuario.get('carrera_a_postulars', 'Carrera no especificada')
+
+    carreras_count = {'TICS': 0,
+                      'Gastronomía': 0,
+                      'Mantenimiento Industrial': 0,
+                      'Desarrollo de Negocios': 0}
+
+    respuestas_usuario = db.respuestas.find({'user_id': str(user_id)})
+
+    for respuesta in respuestas_usuario:
+        for pregunta, carrera in respuesta.items():
+            if pregunta.startswith('pregunta_') and carrera in carreras_count:
+                carreras_count[carrera] += 1
+
+    data = [go.Bar(x=list(carreras_count.keys()),
+                   y=list(carreras_count.values()))]
+
+    layout = go.Layout(title=f'Carreras del usuario - {carrera_usuario}',
+                       xaxis=dict(title='Carreras'),
+                       yaxis=dict(title='Número de respuestas'))
+
+    fig = go.Figure(data=data, layout=layout)
+
+    # Convertir la figura a HTML
+    graph_html = fig.to_html(full_html=False, include_plotlyjs='cdn')
+
+    # Convertir el HTML a bytes
+    graph_bytes = graph_html.encode()
+
+    # Crear un objeto BytesIO a partir de los bytes
+    from io import BytesIO
+    graph_bytes_io = BytesIO(graph_bytes)
+
+    # Mover el cursor al principio del objeto BytesIO
+    graph_bytes_io.seek(0)
+
+    # Crear una respuesta Flask
+    response = make_response(graph_bytes_io.getvalue())
+
+    # Establecer el tipo de contenido y la cabecera de descarga
+    response.headers['Content-Type'] = 'text/html'
+    response.headers['Content-Disposition'] = f'attachment; filename=graph_user_{user_id}.html'
+
+    return response

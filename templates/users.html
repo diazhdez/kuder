@@ -64,8 +64,9 @@
                                 <div class="col">
                                 </div>
                             </div>
-                            <!-- Botón para descargar resultados -->
-                            <a href="{{ url_for('admin.admin_results_graph') }}" class="nav-item nav-link">Descargar Gráfica</a> <!-- Nuevo enlace para descargar la gráfica -->
+                           <!-- Botón para descargar resultados del usuario -->
+                           <a href="{{ url_for('admin.admin_results_graph_individual', user_id=user._id) }}"
+                           class="btn btn-primary mt-3">Descargar Resultados</a>
                             <a href="{{ url_for('admin.delete_user', user_id=user._id) }}"
                                 class="btn btn-danger btn-delete mt-3">Eliminar</a>
                         </form>
