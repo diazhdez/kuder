@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, url_for, redirect, flash, session, request
+from flask import Blueprint, render_template, url_for, redirect, flash, session, request, make_response
 
 from functions.functions import get_admin
 
@@ -11,6 +11,9 @@ from bson import ObjectId
 import bcrypt
 
 import database.database as dbase
+
+import plotly.graph_objs as go
+
 
 db = dbase.dbConnection()
 
@@ -191,3 +194,64 @@ def correos():
             return redirect(url_for('session.login'))
     else:
         return redirect(url_for('session.login'))
+
+
+@admin_routes.route('/admin/results/graph/<user_id>')
+def admin_results_graph_individual(user_id):
+    if 'email' not in session:
+        return redirect(url_for('session.login'))
+
+    email = session['email']
+    admin = get_admin(email)
+
+    if not admin:
+        return redirect(url_for('session.login'))
+
+    usuario = db['users'].find_one({'_id': ObjectId(user_id)})
+    if not usuario:
+        return "Usuario no encontrado"
+
+    carrera_usuario = usuario.get('carrera_a_postulars', 'Carrera no especificada')
+
+    carreras_count = {'TICS': 0,
+                      'Gastronomía': 0,
+                      'Mantenimiento Industrial': 0,
+                      'Desarrollo de Negocios': 0}
+
+    respuestas_usuario = db.respuestas.find({'user_id': str(user_id)})
+
+    for respuesta in respuestas_usuario:
+        for pregunta, carrera in respuesta.items():
+            if pregunta.startswith('pregunta_') and carrera in carreras_count:
+                carreras_count[carrera] += 1
+
+    data = [go.Bar(x=list(carreras_count.keys()),
+                   y=list(carreras_count.values()))]
+
+    layout = go.Layout(title=f'Carreras del usuario - {carrera_usuario}',
+                       xaxis=dict(title='Carreras'),
+                       yaxis=dict(title='Número de respuestas'))
+
+    fig = go.Figure(data=data, layout=layout)
+
+    # Convertir la figura a HTML
+    graph_html = fig.to_html(full_html=False, include_plotlyjs='cdn')
+
+    # Convertir el HTML a bytes
+    graph_bytes = graph_html.encode()
+
+    # Crear un objeto BytesIO a partir de los bytes
+    from io import BytesIO
+    graph_bytes_io = BytesIO(graph_bytes)
+
+    # Mover el cursor al principio del objeto BytesIO
+    graph_bytes_io.seek(0)
+
+    # Crear una respuesta Flask
+    response = make_response(graph_bytes_io.getvalue())
+
+    # Establecer el tipo de contenido y la cabecera de descarga
+    response.headers['Content-Type'] = 'text/html'
+    response.headers['Content-Disposition'] = f'attachment; filename=graph_user_{user_id}.html'
+
+    return response
