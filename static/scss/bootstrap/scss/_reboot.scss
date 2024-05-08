@@ -141,7 +141,8 @@ p {
 // 4. Prevent the text-decoration to be skipped.
 
 abbr[title],
-abbr[data-bs-original-title] { // 1
+abbr[data-bs-original-title] {
+  // 1
   text-decoration: underline dotted; // 2
   cursor: help; // 3
   text-decoration-skip-ink: none; // 4
@@ -237,8 +238,13 @@ sup {
   vertical-align: baseline;
 }
 
-sub { bottom: -.25em; }
-sup { top: -.5em; }
+sub {
+  bottom: -.25em;
+}
+
+sup {
+  top: -.5em;
+}
 
 
 // Links
@@ -259,6 +265,7 @@ a {
 // See https://github.com/twbs/bootstrap/issues/19402
 
 a:not([href]):not([class]) {
+
   &,
   &:hover {
     color: inherit;
@@ -305,7 +312,7 @@ code {
   word-wrap: break-word;
 
   // Streamline the style when inside anchors to avoid broken underline and more
-  a > & {
+  a>& {
     color: inherit;
   }
 }
@@ -423,6 +430,7 @@ button,
 select {
   text-transform: none;
 }
+
 // Set the cursor for non-`<button>` buttons
 //
 // Details at https://github.com/twbs/bootstrap/pull/30562
@@ -454,7 +462,8 @@ select {
 // 3. Opinionated: add "hand" cursor to non-disabled button elements.
 
 button,
-[type="button"], // 1
+[type="button"],
+// 1
 [type="reset"],
 [type="submit"] {
   -webkit-appearance: button; // 2
@@ -507,7 +516,7 @@ legend {
   font-weight: $legend-font-weight;
   line-height: inherit;
 
-  + * {
+  +* {
     clear: left; // 2
   }
 }

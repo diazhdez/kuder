@@ -33,16 +33,21 @@
       margin-left: $caret-spacing;
       vertical-align: $caret-vertical-align;
       content: "";
-      @if $direction == down {
+
+      @if $direction ==down {
         @include caret-down();
-      } @else if $direction == up {
+      }
+
+      @else if $direction ==up {
         @include caret-up();
-      } @else if $direction == end {
+      }
+
+      @else if $direction ==end {
         @include caret-end();
       }
     }
 
-    @if $direction == start {
+    @if $direction ==start {
       &::after {
         display: none;
       }
@@ -61,4 +66,5 @@
     }
   }
 }
+
 // scss-docs-end caret-mixins

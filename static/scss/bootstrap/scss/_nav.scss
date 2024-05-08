@@ -17,13 +17,13 @@
   @include font-size($nav-link-font-size);
   font-weight: $nav-link-font-weight;
   color: $nav-link-color;
-  text-decoration: if($link-decoration == none, null, none);
+  text-decoration: if($link-decoration ==none, null, none);
   @include transition($nav-link-transition);
 
   &:hover,
   &:focus {
     color: $nav-link-hover-color;
-    text-decoration: if($link-hover-decoration == underline, none, null);
+    text-decoration: if($link-hover-decoration ==underline, none, null);
   }
 
   // Disabled state lightens text
@@ -89,7 +89,7 @@
   }
 
   .nav-link.active,
-  .show > .nav-link {
+  .show>.nav-link {
     color: $nav-pills-link-active-color;
     @include gradient-bg($nav-pills-link-active-bg);
   }
@@ -101,7 +101,8 @@
 //
 
 .nav-fill {
-  > .nav-link,
+
+  >.nav-link,
   .nav-item {
     flex: 1 1 auto;
     text-align: center;
@@ -109,7 +110,8 @@
 }
 
 .nav-justified {
-  > .nav-link,
+
+  >.nav-link,
   .nav-item {
     flex-basis: 0;
     flex-grow: 1;
@@ -130,10 +132,11 @@
 // Hide tabbable panes to start, show them when `.active`
 
 .tab-content {
-  > .tab-pane {
+  >.tab-pane {
     display: none;
   }
-  > .active {
+
+  >.active {
     display: block;
   }
 }

@@ -8,7 +8,7 @@
   }
 
   .page-item {
-    @if $pagination-margin-start == (-$pagination-border-width) {
+    @if $pagination-margin-start ==(-$pagination-border-width) {
       &:first-child {
         .page-link {
           @include border-start-radius($border-radius);
@@ -20,7 +20,10 @@
           @include border-end-radius($border-radius);
         }
       }
-    } @else {
+    }
+
+    @else {
+
       //Add border-radius to all pageLinks in case they have left margin
       .page-link {
         @include border-radius($border-radius);
@@ -28,4 +31,5 @@
     }
   }
 }
+
 // scss-docs-end pagination-mixin

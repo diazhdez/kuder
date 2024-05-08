@@ -6,8 +6,6 @@ import plotly.graph_objs as go
 
 from bson import ObjectId
 
-import plotly.io as pio
-
 import database.database as dbase
 
 db = dbase.dbConnection()
@@ -312,7 +310,8 @@ def download_html():
         user = get_user(email)
         if user:
             # Obtener el campo 'carrera' del usuario
-            carrera_usuario = user.get('carrera_a_postulars', 'Carrera no especificada')
+            carrera_usuario = user.get(
+                'carrera_a_postulars', 'Carrera no especificada')
 
             # Obtener el ID del usuario actual
             user_id = user['_id']
@@ -372,7 +371,6 @@ def download_html():
     return redirect(url_for('session.login'))
 
 
-
 # Ruta para mostrar el formulario de hubspot
 @user_routes.route('/hubspot/')
 def hubspot():
@@ -399,6 +397,11 @@ def save_hubspot_data():
     firstname = data.get('firstname')
     lastname = data.get('lastname')
     carrera_a_postulars = data.get('carrera_a_postulars')
+    correo = data.get('email')
+    age = data.get('age')
+    phone_number = data.get('phone_number')
+    escuela_de_procedencia = data.get('escuela_de_procedencia')
+    bachillerato = data.get('bachillerato')
 
     # Obtener el ID del usuario
     user_id = data.get('user_id')
@@ -410,7 +413,11 @@ def save_hubspot_data():
     db.users.update_one(
         {'_id': ObjectId(user_id)},
         {'$set': {'firstname': firstname, 'lastname': lastname,
-                  'carrera_a_postulars': carrera_a_postulars}}
+                  'carrera_a_postulars': carrera_a_postulars,
+                  'correo': correo, 'age': age,
+                  'phone_number': phone_number,
+                  'escuela_de_procedencia': escuela_de_procedencia,
+                  'bachillerato': bachillerato}}
     )
 
     return '', 204  # Responder con éxito
