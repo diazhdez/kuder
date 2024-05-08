@@ -401,7 +401,7 @@ def save_hubspot_data():
     age = data.get('age')
     phone_number = data.get('phone_number')
     escuela_de_procedencia = data.get('escuela_de_procedencia')
-    bachillerato = data.get('bachillerato')
+    bachillerato = data.get('bahillerato')
 
     # Obtener el ID del usuario
     user_id = data.get('user_id')
