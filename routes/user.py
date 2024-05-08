@@ -38,26 +38,6 @@ def user():
         return redirect(url_for('session.login'))
 
 
-# Metodo para actulizar datos de un colaborador
-@user_routes.route('/update/', methods=['POST'])
-def update():
-    if request.method == 'POST':
-        user_id = request.form.get('user_id')
-        name = request.form.get('name')
-        carrera = request.form.get('carrera')
-
-        # Actualizar los datos del usuario
-        db.users.update_one(
-            {'_id': ObjectId(user_id)},
-            {'$set': {
-                'name': name,
-                'carrera': carrera
-            }}
-        )
-
-    return redirect(url_for('user.user'))
-
-
 # Ruta para mostrar test
 @user_routes.route('/test/')
 def test():
