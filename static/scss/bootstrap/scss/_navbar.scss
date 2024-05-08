@@ -36,13 +36,13 @@
     justify-content: space-between;
   }
 
-  > .container,
-  > .container-fluid {
+  >.container,
+  >.container-fluid {
     @extend %container-flex-properties;
   }
 
   @each $breakpoint, $container-max-width in $container-max-widths {
-    > .container#{breakpoint-infix($breakpoint, $container-max-widths)} {
+    >.container#{breakpoint-infix($breakpoint, $container-max-widths)} {
       @extend %container-flex-properties;
     }
   }
@@ -58,12 +58,12 @@
   padding-bottom: $navbar-brand-padding-y;
   margin-right: $navbar-brand-margin-end;
   @include font-size($navbar-brand-font-size);
-  text-decoration: if($link-decoration == none, null, none);
+  text-decoration: if($link-decoration ==none, null, none);
   white-space: nowrap;
 
   &:hover,
   &:focus {
-    text-decoration: if($link-hover-decoration == underline, none, null);
+    text-decoration: if($link-hover-decoration ==underline, none, null);
   }
 }
 
@@ -197,6 +197,7 @@
     }
   }
 }
+
 // scss-docs-end navbar-expand-loop
 
 
@@ -229,7 +230,7 @@
       }
     }
 
-    .show > .nav-link,
+    .show>.nav-link,
     .nav-link.active {
       color: $navbar-light-active-color;
     }
@@ -249,7 +250,7 @@
 
     a,
     a:hover,
-    a:focus  {
+    a:focus {
       color: $navbar-light-active-color;
     }
   }
@@ -280,7 +281,7 @@
       }
     }
 
-    .show > .nav-link,
+    .show>.nav-link,
     .nav-link.active {
       color: $navbar-dark-active-color;
     }
@@ -297,6 +298,7 @@
 
   .navbar-text {
     color: $navbar-dark-color;
+
     a,
     a:hover,
     a:focus {

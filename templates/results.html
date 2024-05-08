@@ -7,9 +7,6 @@
 {% endblock %}
 
 {% block two %}
-{% if not user.has_completed_survey %}
-<a href="{{ url_for('user.test') }}" class="nav-item nav-link">Test</a>
-{% endif %}
 <a href="{{ url_for('user.results') }}" class="nav-item nav-link">Resultados</a>
 <a href="{{ url_for('session.logout') }}" class="nav-item nav-link">Cerrar Sesión</a>
 {% endblock %}
@@ -25,8 +22,9 @@
             {{ graph | safe }}
         </div>
         <div class="container text-center">
-            <!-- Agrega este enlace donde desees en tu plantilla HTML -->
+            {% if user.has_completed_survey %}
             <a href="{{ url_for('user.download_html') }}" class="btn btn-primary">Descargar</a>
+            {% endif %}
         </div>
     </div>
 </div>

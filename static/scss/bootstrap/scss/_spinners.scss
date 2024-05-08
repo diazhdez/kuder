@@ -4,8 +4,11 @@
 
 // scss-docs-start spinner-border-keyframes
 @keyframes spinner-border {
-  to { transform: rotate(360deg) #{"/* rtl:ignore */"}; }
+  to {
+    transform: rotate(360deg) #{"/* rtl:ignore */"};
+  }
 }
+
 // scss-docs-end spinner-border-keyframes
 
 .spinner-border {
@@ -35,11 +38,13 @@
   0% {
     transform: scale(0);
   }
+
   50% {
     opacity: 1;
     transform: none;
   }
 }
+
 // scss-docs-end spinner-grow-keyframes
 
 .spinner-grow {
@@ -61,6 +66,7 @@
 
 @if $enable-reduced-motion {
   @media (prefers-reduced-motion: reduce) {
+
     .spinner-border,
     .spinner-grow {
       animation-duration: $spinner-animation-speed * 2;

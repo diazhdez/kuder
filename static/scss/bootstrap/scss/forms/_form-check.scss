@@ -53,16 +53,22 @@
 
     &[type="checkbox"] {
       @if $enable-gradients {
-        background-image: escape-svg($form-check-input-checked-bg-image), var(--#{$variable-prefix}gradient);
-      } @else {
+        background-image: escape-svg($form-check-input-checked-bg-image),
+        var(--#{$variable-prefix}gradient);
+      }
+
+      @else {
         background-image: escape-svg($form-check-input-checked-bg-image);
       }
     }
 
     &[type="radio"] {
       @if $enable-gradients {
-        background-image: escape-svg($form-check-radio-checked-bg-image), var(--#{$variable-prefix}gradient);
-      } @else {
+        background-image: escape-svg($form-check-radio-checked-bg-image),
+        var(--#{$variable-prefix}gradient);
+      }
+
+      @else {
         background-image: escape-svg($form-check-radio-checked-bg-image);
       }
     }
@@ -73,8 +79,11 @@
     border-color: $form-check-input-indeterminate-border-color;
 
     @if $enable-gradients {
-      background-image: escape-svg($form-check-input-indeterminate-bg-image), var(--#{$variable-prefix}gradient);
-    } @else {
+      background-image: escape-svg($form-check-input-indeterminate-bg-image),
+      var(--#{$variable-prefix}gradient);
+    }
+
+    @else {
       background-image: escape-svg($form-check-input-indeterminate-bg-image);
     }
   }
@@ -89,7 +98,7 @@
   // See: https://github.com/twbs/bootstrap/issues/28247
   &[disabled],
   &:disabled {
-    ~ .form-check-label {
+    ~.form-check-label {
       opacity: $form-check-label-disabled-opacity;
     }
   }
@@ -123,8 +132,11 @@
       background-position: $form-switch-checked-bg-position;
 
       @if $enable-gradients {
-        background-image: escape-svg($form-switch-checked-bg-image), var(--#{$variable-prefix}gradient);
-      } @else {
+        background-image: escape-svg($form-switch-checked-bg-image),
+        var(--#{$variable-prefix}gradient);
+      }
+
+      @else {
         background-image: escape-svg($form-switch-checked-bg-image);
       }
     }
@@ -143,7 +155,7 @@
 
   &[disabled],
   &:disabled {
-    + .btn {
+    +.btn {
       pointer-events: none;
       filter: none;
       opacity: $form-check-btn-check-disabled-opacity;

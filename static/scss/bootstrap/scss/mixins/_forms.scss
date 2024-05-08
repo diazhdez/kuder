@@ -3,26 +3,27 @@
 
 // scss-docs-start form-validation-mixins
 @mixin form-validation-state-selector($state) {
-  @if ($state == "valid" or $state == "invalid") {
+  @if ($state =="valid" or $state =="invalid") {
+
     .was-validated #{if(&, "&", "")}:#{$state},
     #{if(&, "&", "")}.is-#{$state} {
       @content;
     }
-  } @else {
+  }
+
+  @else {
     #{if(&, "&", "")}.is-#{$state} {
       @content;
     }
   }
 }
 
-@mixin form-validation-state(
-  $state,
+@mixin form-validation-state($state,
   $color,
   $icon,
   $tooltip-color: color-contrast($color),
   $tooltip-bg-color: rgba($color, $form-feedback-tooltip-opacity),
-  $focus-box-shadow: 0 0 $input-btn-focus-blur $input-focus-width rgba($color, $input-btn-focus-color-opacity)
-) {
+  $focus-box-shadow: 0 0 $input-btn-focus-blur $input-focus-width rgba($color, $input-btn-focus-color-opacity)) {
   .#{$state}-feedback {
     display: none;
     width: 100%;
@@ -48,8 +49,9 @@
   }
 
   @include form-validation-state-selector($state) {
-    ~ .#{$state}-feedback,
-    ~ .#{$state}-tooltip {
+
+    ~.#{$state}-feedback,
+    ~.#{$state}-tooltip {
       display: block;
     }
   }
@@ -88,6 +90,7 @@
       border-color: $color;
 
       @if $enable-validation-icons {
+
         &:not([multiple]):not([size]),
         &:not([multiple])[size="1"] {
           padding-right: $form-select-feedback-icon-padding-end;
@@ -116,13 +119,14 @@
         box-shadow: $focus-box-shadow;
       }
 
-      ~ .form-check-label {
+      ~.form-check-label {
         color: $color;
       }
     }
   }
+
   .form-check-inline .form-check-input {
-    ~ .#{$state}-feedback {
+    ~.#{$state}-feedback {
       margin-left: .5em;
     }
   }
@@ -134,4 +138,5 @@
     }
   }
 }
+
 // scss-docs-end form-validation-mixins
