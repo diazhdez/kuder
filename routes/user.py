@@ -352,7 +352,7 @@ def download_html():
 
 
 # Ruta para mostrar el formulario de hubspot
-@user_routes.route('/hubspot/')
+@user_routes.route('/formulario/')
 def hubspot():
     if 'email' in session:
         email = session['email']
@@ -376,7 +376,7 @@ def save_hubspot_data():
     # Extraer los datos relevantes del formulario
     firstname = data.get('firstname')
     lastname = data.get('lastname')
-    carrera_a_postulars = data.get('carrera_a_postulars')
+    carrera_a_postularse = data.get('carrera_a_postularse')
     correo = data.get('email')
     age = data.get('age')
     phone_number = data.get('phone_number')
@@ -393,7 +393,7 @@ def save_hubspot_data():
     db.users.update_one(
         {'_id': ObjectId(user_id)},
         {'$set': {'firstname': firstname, 'lastname': lastname,
-                  'carrera_a_postulars': carrera_a_postulars,
+                  'carrera_a_postularse': carrera_a_postularse,
                   'correo': correo, 'age': age,
                   'phone_number': phone_number,
                   'escuela_de_procedencia': escuela_de_procedencia,
@@ -401,3 +401,35 @@ def save_hubspot_data():
     )
 
     return '', 204  # Responder con éxito
+
+
+# Ruta para mostrar instrucciones para el formulario
+@user_routes.route('/instrucciones/formulario/')
+def instrucciones_formulario():
+    if 'email' in session:
+        email = session['email']
+        # Función para obtener datos del usuario desde MongoDB
+        user = get_user(email)
+        if user:
+            if user_has_completed_survey(user['_id']):
+                return redirect(url_for('user.results'))
+            else:
+                return render_template('instrucciones_1.html', user=user)
+    else:
+        return redirect(url_for('session.login'))
+    
+
+# Ruta para mostrar instrucciones para el test
+@user_routes.route('/instrucciones/')
+def instrucciones_test():
+    if 'email' in session:
+        email = session['email']
+        # Función para obtener datos del usuario desde MongoDB
+        user = get_user(email)
+        if user:
+            if user_has_completed_survey(user['_id']):
+                return redirect(url_for('user.results'))
+            else:
+                return render_template('instrucciones_2.html', user=user)
+    else:
+        return redirect(url_for('session.login'))

@@ -8,7 +8,7 @@
 
 {% block two %}
 {% if user.has_completed_survey %}
-<a href="{{ url_for('user.results') }}" class="nav-item nav-link">Resultados</a>
+<a href="{{ url_for('user.instrucciones_formulario') }}" class="nav-item nav-link">Resultados</a>
 {% else %}
 <a href="{{ url_for('user.hubspot') }}" class="nav-item nav-link">Test</a>
 {% endif %}
@@ -44,7 +44,7 @@
                     <a class="btn btn-primary rounded-pill px-4 me-3"
                         href="{{ url_for('user.results') }}">Resultados</a>
                     {% else %}
-                    <a class="btn btn-primary rounded-pill px-4 me-3" href="{{ url_for('user.hubspot') }}">Empezar</a>
+                    <a class="btn btn-primary rounded-pill px-4 me-3" href="{{ url_for('user.instrucciones_formulario') }}">Empezar</a>
                     {% endif %}
                 </div>
             </div>

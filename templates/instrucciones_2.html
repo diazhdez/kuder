@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block one %}
+<a href="{{ url_for('user.user') }}" class="navbar-brand p-0">
+    <h1 class="m-0"><i class="fa fa-search me-2"></i>Kuder<span class="fs-5"></span></h1>
+</a>
+{% endblock %}
+
+{% block two %}
+<a href="{{ url_for('user.results') }}" class="nav-item nav-link">Resultados</a>
+<a href="{{ url_for('session.logout') }}" class="nav-item nav-link">Cerrar Sesión</a>
+{% endblock %}
+
+{% block content %}
+<div class="container-xxl py-5">
+    <div class="container px-lg-5">
+        <div class="section-title position-relative text-center pb-2 wow fadeInUp" data-wow-delay="0.1s">
+            <h6 class="position-relative d-inline text-primary ps-4">Instrucciones</h6>
+            <h2 class="mt-2">Antes de contestar el test</h2>
+        </div>
+        <div class="row g-5">
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="d-flex align-items-center mt-4">
+                    <a class="btn btn-primary rounded-pill px-4 me-3" href="{{ url_for('user.test') }}">Entiendo</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block first_block %}
+<a class="btn btn-link" href="{{ url_for('user.user') }}">Inicio</a>
+<a class="btn btn-link" href="{{ url_for('main.contact') }}">Contacto</a>
+{% endblock %}
+
+{% block second_block %}
+<a href="{{ url_for('user.user') }}">Inicio</a>
+{% endblock %}
