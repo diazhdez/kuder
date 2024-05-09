@@ -22,9 +22,7 @@
             {{ graph | safe }}
         </div>
         <div class="container text-center">
-            {% if user.has_completed_survey %}
             <a href="{{ url_for('user.download_html') }}" class="btn btn-primary">Descargar</a>
-            {% endif %}
         </div>
     </div>
 </div>

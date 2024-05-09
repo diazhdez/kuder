@@ -4,6 +4,8 @@ from functions.functions import get_user, user_has_completed_survey, user_has_co
 
 import plotly.graph_objs as go
 
+from datetime import datetime
+
 from bson import ObjectId
 
 import database.database as dbase
@@ -21,19 +23,11 @@ def user():
         # Función para obtener datos del usuario desde MongoDB
         user = get_user(email)
         if user:
-            # Obtener el ID del usuario
-            user_id = user['_id']
             # Buscar si el usuario ha respondido el test
-            user['has_completed_survey'] = user_has_completed_survey(
-                user['_id'])
-            # Buscar las respuestas del usuario en la colección hubspot_responses
-            hubspot_response = db.hubspot_responses.find_one(
-                {'user_id': str(user_id)})
-            if hubspot_response:
-                # Pasar los datos de las respuestas a la plantilla
-                return render_template('user.html', user=user, hubspot_response=hubspot_response)
-            else:
-                return render_template('user.html', user=user, hubspot_response=None)
+            user['has_completed_survey'] = user_has_completed_survey(user['_id'])
+
+            user['has_completed_hubspot_form'] = user_has_completed_hubspot_form(user['_id'])
+            return render_template('user.html', user=user)
     else:
         return redirect(url_for('session.login'))
 
@@ -186,6 +180,7 @@ def guardar():
                 pregunta22 = request.form.get('pregunta22')
                 pregunta23 = request.form.get('pregunta23')
                 pregunta24 = request.form.get('pregunta24')
+                date = datetime.now()
 
                 # Guardar las respuestas en la base de datos MongoDB
                 respuestas.insert_one({
@@ -213,8 +208,14 @@ def guardar():
                     'pregunta_21': pregunta21,
                     'pregunta_22': pregunta22,
                     'pregunta_23': pregunta23,
-                    'pregunta_24': pregunta24
+                    'pregunta_24': pregunta24,
+                    'date': date
                 })
+
+                db.users.update_one(
+                    {'_id': ObjectId(user_id)},
+                    {'$set': {'date': date}}
+                )
 
                 return redirect(url_for('user.test'))
             else:
@@ -277,7 +278,10 @@ def results():
             user['has_completed_survey'] = user_has_completed_survey(
                 user['_id'])
 
-            return render_template('results.html', graph=graph_html, user=user)
+            if user_has_completed_survey(user['_id']):
+                return render_template('results.html', graph=graph_html, user=user)
+            else:
+                return redirect(url_for('user.test'))
     else:
         return redirect(url_for('session.login'))
 
@@ -362,8 +366,6 @@ def hubspot():
                 # Redirige si ya ha completado el formulario de HubSpot
                 return redirect(url_for('user.test'))
             else:
-                user['has_completed_survey'] = user_has_completed_survey(
-                    user['_id'])
                 return render_template('hubspot.html', user=user)
     else:
         return redirect(url_for('session.login'))

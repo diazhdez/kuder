@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, url_for, redirect, flash, session, request, make_response
 
-from functions.functions import get_admin
+from functions.functions import get_admin, user_has_completed_survey
 
 from datetime import datetime
 
@@ -137,13 +137,22 @@ def users():
                         {'firstname': {'$regex': search_query, '$options': 'i'}},
                         {'lastname': {'$regex': search_query, '$options': 'i'}},
                         {'email': {'$regex': search_query, '$options': 'i'}},
-                        {'carrera_a_postulars': {
+                        {'carrera_a_postularse': {
+                            '$regex': search_query, '$options': 'i'}},
+                        {'escuela_de_procedencia': {
                             '$regex': search_query, '$options': 'i'}}
                     ]
                 })
             else:
                 users = db['users'].find()
-            return render_template('users.html', users=users)
+                # Añadir información sobre si el usuario ha completado el cuestionario
+                users_with_survey_status = []
+                for user in users:
+                    user['has_completed_survey'] = user_has_completed_survey(
+                        user['_id'])
+                    users_with_survey_status.append(user)
+
+            return render_template('users.html', users=users_with_survey_status)
         else:
             return redirect(url_for('session.login'))
     else:
@@ -211,7 +220,8 @@ def admin_results_graph_individual(user_id):
     if not usuario:
         return "Usuario no encontrado"
 
-    carrera_usuario = usuario.get('carrera_a_postulars', 'Carrera no especificada')
+    carrera_usuario = usuario.get(
+        'carrera_a_postularse', 'Carrera no especificada')
 
     carreras_count = {'TICS': 0,
                       'Gastronomía': 0,
