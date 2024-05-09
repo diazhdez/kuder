@@ -235,7 +235,7 @@ def results():
         if user:
             # Obtener el campo 'carrera' del usuario
             carrera_usuario = user.get(
-                'carrera_a_postulars', 'Carrera no especificada')
+                'carrera_a_postularse', 'Carrera no especificada')
 
             # Obtener el ID del usuario actual
             user_id = user['_id']
@@ -291,7 +291,7 @@ def download_html():
         if user:
             # Obtener el campo 'carrera' del usuario
             carrera_usuario = user.get(
-                'carrera_a_postulars', 'Carrera no especificada')
+                'carrera_a_postularse', 'Carrera no especificada')
 
             # Obtener el ID del usuario actual
             user_id = user['_id']
@@ -376,10 +376,10 @@ def save_hubspot_data():
     # Extraer los datos relevantes del formulario
     firstname = data.get('firstname')
     lastname = data.get('lastname')
-    carrera_a_postularse = data.get('carrera_a_postularse')
+    carrera_a_postularse = data.get('carerra_a_postularse')
     correo = data.get('email')
     age = data.get('age')
-    phone_number = data.get('phone_number')
+    phone = data.get('phone')
     escuela_de_procedencia = data.get('escuela_de_procedencia')
     bachillerato = data.get('bahillerato')
 
@@ -395,7 +395,7 @@ def save_hubspot_data():
         {'$set': {'firstname': firstname, 'lastname': lastname,
                   'carrera_a_postularse': carrera_a_postularse,
                   'correo': correo, 'age': age,
-                  'phone_number': phone_number,
+                  'phone': phone,
                   'escuela_de_procedencia': escuela_de_procedencia,
                   'bachillerato': bachillerato}}
     )

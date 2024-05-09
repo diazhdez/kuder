@@ -73,7 +73,7 @@
                                 </div>
                                 <div class="col">
                                     <small>Número Telefónico</small>
-                                    <input type="text" class="form-control" value="{{ user.phone_number }}" readonly>
+                                    <input type="text" class="form-control" value="{{ user.phone }}" readonly>
                                 </div>
                             </div>
                             <div class="row mt-3">
@@ -95,8 +95,10 @@
                                 </div>
                             </div>
                             <!-- Botón para descargar resultados del usuario -->
+                            {% if user.has_completed_survey %}
                             <a href="{{ url_for('admin.admin_results_graph_individual', user_id=user._id) }}"
                                 class="btn btn-primary mt-3">Descargar Resultados</a>
+                            {% endif %}
                             <a href="{{ url_for('admin.delete_user', user_id=user._id) }}"
                                 class="btn btn-danger btn-delete mt-3">Eliminar</a>
                         </form>
