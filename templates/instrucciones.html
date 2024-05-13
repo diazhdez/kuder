@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+{% block one %}
+<a href="{{ url_for('user.user') }}" class="navbar-brand p-0">
+    <h1 class="m-0"><i class="fa fa-search me-2"></i>Kuder<span class="fs-5"></span></h1>
+</a>
+{% endblock %}
+
+{% block two %}
+<a href="{{ url_for('session.logout') }}" class="nav-item nav-link">Cerrar Sesión</a>
+{% endblock %}
+
+{% block content %}
+<div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+  <div class="container px-lg-5 text-center">
+      <div class="row justify-content-center">
+            <img src="{{ url_for('static', filename='img/instrucciones.png') }}">
+            <a href="{{ url_for('user.hubspot') }}" class="btn btn-primary mt-3">Aceptar</a>
+  </div>
+</div>
+{% endblock %}
+
+{% block first_block %}
+<a class="btn btn-link" href="{{ url_for('user.user') }}">Inicio</a>
+<a class="btn btn-link" href="{{ url_for('main.contact') }}">Contacto</a>
+{% endblock %}
+
+{% block second_block %}
+<a href="{{ url_for('user.user') }}">Inicio</a>
+{% endblock %}
+
+<style>
+  .carousel-container {  
+    max-width: 50px; /* Establece el ancho máximo del carrusel */  
+    margin: 0 auto; /* Centra horizontalmente el carrusel */
+    }
+</style>
