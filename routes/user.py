@@ -42,8 +42,10 @@ def test():
         if user:
             if user_has_completed_survey(user['_id']):
                 return redirect(url_for('user.results'))
-            else:
+            if user_has_completed_hubspot_form(user['_id']):
                 return render_template('test.html', user=user)
+            else:
+                return redirect(url_for('user.instrucciones'))
     else:
         return redirect(url_for('session.login'))
 
@@ -58,8 +60,10 @@ def testEs():
         if user:
             if user_has_completed_survey(user['_id']):
                 return redirect(url_for('user.results'))
-            else:
+            if user_has_completed_hubspot_form(user['_id']):
                 return render_template('testEs.html', user=user)
+            else:
+                return redirect(url_for('user.instrucciones'))                
     else:
         return redirect(url_for('session.login'))
 
@@ -74,8 +78,11 @@ def testNa():
         if user:
             if user_has_completed_survey(user['_id']):
                 return redirect(url_for('user.results'))
-            else:
+            if user_has_completed_hubspot_form(user['_id']):
                 return render_template('testNa.html', user=user)
+            else:
+                return redirect(url_for('user.instrucciones'))
+            
     else:
         return redirect(url_for('session.login'))
 
@@ -90,8 +97,10 @@ def testMix():
         if user:
             if user_has_completed_survey(user['_id']):
                 return redirect(url_for('user.results'))
-            else:
+            if user_has_completed_hubspot_form(user['_id']):
                 return render_template('testMix.html', user=user)
+            else:
+                return redirect(url_for('user.instrucciones'))
     else:
         return redirect(url_for('session.login'))
 
@@ -106,8 +115,10 @@ def testTla():
         if user:
             if user_has_completed_survey(user['_id']):
                 return redirect(url_for('user.results'))
-            else:
+            if user_has_completed_hubspot_form(user['_id']):
                 return render_template('testTla.html', user=user)
+            else:
+                return redirect(url_for('user.instrucciones'))
     else:
         return redirect(url_for('session.login'))
 
@@ -122,8 +133,10 @@ def testPor():
         if user:
             if user_has_completed_survey(user['_id']):
                 return redirect(url_for('user.results'))
-            else:
+            if user_has_completed_hubspot_form(user['_id']):
                 return render_template('testPor.html', user=user)
+            else:
+                return redirect(url_for('user.instrucciones'))
     else:
         return redirect(url_for('session.login'))
 
@@ -138,8 +151,10 @@ def testFra():
         if user:
             if user_has_completed_survey(user['_id']):
                 return redirect(url_for('user.results'))
-            else:
+            if user_has_completed_hubspot_form(user['_id']):
                 return render_template('testFra.html', user=user)
+            else:
+                return redirect(url_for('user.instrucciones'))
     else:
         return redirect(url_for('session.login'))
 
