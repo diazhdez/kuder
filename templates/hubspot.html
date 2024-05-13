@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block two %}
-<a href="{{ url_for('user.hubspot') }}" class="nav-item nav-link">Test</a>
+<a href="{{ url_for('user.hubspot') }}" class="nav-item nav-link">Formulario</a>
 <a href="{{ url_for('session.logout') }}" class="nav-item nav-link">Cerrar Sesión</a>
 {% endblock %}
 
@@ -44,7 +44,7 @@
                             body: JSON.stringify(formData)
                         }).then(function (response) {
                             // Redirige al usuario a la ruta '/test/' después de enviar el formulario
-                            window.location.href = '/instrucciones/';
+                            window.location.href = '/test/';
                         }).catch(function (error) {
                             console.error('Error:', error);
                         });

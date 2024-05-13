@@ -12,7 +12,7 @@
 {% elif user.has_completed_hubspot_form %}
 <a href="{{ url_for('user.test') }}" class="nav-item nav-link">Test</a>
 {% else %}
-<a href="{{ url_for('user.instrucciones_formulario') }}" class="nav-item nav-link">Formulario</a>
+<a href="{{ url_for('user.instrucciones') }}" class="nav-item nav-link">Formulario</a>
 {% endif %}
 <a href="{{ url_for('session.logout') }}" class="nav-item nav-link">Cerrar Sesión</a>
 {% endblock %}
@@ -49,7 +49,7 @@
                     <a class="btn btn-primary rounded-pill px-4 me-3" href="{{ url_for('user.test') }}">Empezar</a>
                     {% else %}
                     <a class="btn btn-primary rounded-pill px-4 me-3"
-                        href="{{ url_for('user.instrucciones_formulario') }}">Formulario</a>
+                        href="{{ url_for('user.instrucciones') }}">Formulario</a>
                     {% endif %}
                 </div>
             </div>

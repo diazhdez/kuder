@@ -403,27 +403,11 @@ def save_hubspot_data():
     )
 
     return '', 204  # Responder con éxito
-
-
-# Ruta para mostrar instrucciones para el formulario
-@user_routes.route('/instrucciones/formulario/')
-def instrucciones_formulario():
-    if 'email' in session:
-        email = session['email']
-        # Función para obtener datos del usuario desde MongoDB
-        user = get_user(email)
-        if user:
-            if user_has_completed_survey(user['_id']):
-                return redirect(url_for('user.results'))
-            else:
-                return render_template('instrucciones_1.html', user=user)
-    else:
-        return redirect(url_for('session.login'))
     
 
-# Ruta para mostrar instrucciones para el test
+# Ruta para mostrar instrucciones
 @user_routes.route('/instrucciones/')
-def instrucciones_test():
+def instrucciones():
     if 'email' in session:
         email = session['email']
         # Función para obtener datos del usuario desde MongoDB
@@ -432,6 +416,6 @@ def instrucciones_test():
             if user_has_completed_survey(user['_id']):
                 return redirect(url_for('user.results'))
             else:
-                return render_template('instrucciones_2.html', user=user)
+                return render_template('instrucciones.html', user=user)
     else:
         return redirect(url_for('session.login'))
