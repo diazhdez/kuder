@@ -430,6 +430,8 @@ def instrucciones():
         if user:
             if user_has_completed_survey(user['_id']):
                 return redirect(url_for('user.results'))
+            if user_has_completed_hubspot_form(user['_id']):
+                return redirect(url_for('user.test'))
             else:
                 return render_template('instrucciones.html', user=user)
     else:
