@@ -263,7 +263,6 @@ def admin_results_graph_individual(user_id):
 
     # Establecer el tipo de contenido y la cabecera de descarga
     response.headers['Content-Type'] = 'text/html'
-    response.headers['Content-Disposition'] = f'attachment; filename=graph_user_{
-        user_id}.html'
+    response.headers['Content-Disposition'] = f'attachment; filename=graph_user_{user_id}.html'
 
     return response
