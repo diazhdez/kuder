@@ -130,6 +130,7 @@ def users():
         email = session['email']
         admin = get_admin(email)
         if admin:
+            users = []
             if request.method == 'POST':
                 search_query = request.form.get('search_query')
                 users = db['users'].find({
@@ -137,20 +138,20 @@ def users():
                         {'firstname': {'$regex': search_query, '$options': 'i'}},
                         {'lastname': {'$regex': search_query, '$options': 'i'}},
                         {'email': {'$regex': search_query, '$options': 'i'}},
-                        {'carrera_a_postularse': {
-                            '$regex': search_query, '$options': 'i'}},
-                        {'escuela_de_procedencia': {
-                            '$regex': search_query, '$options': 'i'}}
+                        {'datetime': {'$regex': search_query, '$options': 'i'}},
+                        {'date': {'$regex': search_query, '$options': 'i'}},
+                        {'carrera_a_postularse': {'$regex': search_query, '$options': 'i'}},
+                        {'escuela_de_procedencia': {'$regex': search_query, '$options': 'i'}}
                     ]
                 })
             else:
                 users = db['users'].find()
-                # Añadir información sobre si el usuario ha completado el cuestionario
-                users_with_survey_status = []
-                for user in users:
-                    user['has_completed_survey'] = user_has_completed_survey(
-                        user['_id'])
-                    users_with_survey_status.append(user)
+
+            # Añadir información sobre si el usuario ha completado el cuestionario
+            users_with_survey_status = []
+            for user in users:
+                user['has_completed_survey'] = user_has_completed_survey(user['_id'])
+                users_with_survey_status.append(user)
 
             return render_template('users.html', users=users_with_survey_status)
         else:
@@ -262,6 +263,7 @@ def admin_results_graph_individual(user_id):
 
     # Establecer el tipo de contenido y la cabecera de descarga
     response.headers['Content-Type'] = 'text/html'
-    response.headers['Content-Disposition'] = f'attachment; filename=graph_user_{user_id}.html'
+    response.headers['Content-Disposition'] = f'attachment; filename=graph_user_{
+        user_id}.html'
 
     return response

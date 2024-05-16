@@ -123,9 +123,9 @@ def testTla():
         return redirect(url_for('session.login'))
 
 
-# Ruta para contestar test en Portugues
-@user_routes.route('/test/por/')
-def testPor():
+# Ruta para contestar test en Ingles
+@user_routes.route('/test/en/')
+def testEn():
     if 'email' in session:
         email = session['email']
         # Función para obtener datos del usuario desde MongoDB
@@ -134,7 +134,7 @@ def testPor():
             if user_has_completed_survey(user['_id']):
                 return redirect(url_for('user.results'))
             if user_has_completed_hubspot_form(user['_id']):
-                return render_template('testPor.html', user=user)
+                return render_template('testEn.html', user=user)
             else:
                 return redirect(url_for('user.instrucciones'))
     else:
